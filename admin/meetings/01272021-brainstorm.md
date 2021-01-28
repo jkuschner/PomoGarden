@@ -18,42 +18,42 @@ Intro with TA, Group Contract, Team Theme and Values
 
 ## New Business
 
-Roles to fill in (Tentative):
-  Designers/Planners (3 spots) - Patrick, Jared
-  Devs/Builders (4 spots) - Tommy, Chi, Daniel, Jacinth
+* Roles to fill in (Tentative):
+  * Designers/Planners (3 spots) - Patrick, Jared
+  * Devs/Builders (4 spots) - Tommy, Chi, Daniel, Jacinth
   
-Pomo Brainstorm: 
-  https://miro.com/app/board/o9J_lXb94NQ=/
+* Pomo Brainstorm: 
+  * https://miro.com/app/board/o9J_lXb94NQ=/
 
-  Definition/Philosophy
-     - Distraction-free work ethic, Time management
-  Requirements
-     - Start/Finish, Break Timers, Minimal UI elements
+  * Definition/Philosophy
+     * Distraction-free work ethic, Time management
+  * Requirements
+     * Start/Finish, Break Timers, Minimal UI elements
   
-  Compared Pros/Cons of 3 different apps
-     1. TickTick
-        - Simple UI, but has pause button
-     2. pomofocus.io
-        - Cool features, but too cluttered
-     3. Forest
-        - Visual Incentive 
+  * Compared Pros/Cons of 3 different apps
+     * TickTick
+        * Simple UI, but has pause button
+     * pomofocus.io
+        * Cool features, but too cluttered
+     * Forest
+        * Visual Incentive 
         
-   Additional Features
-      - Incentive (tree), Tasks, Statistics
+   * Additional Features
+      * Incentive (tree), Tasks, Statistics
    
-   Theme/Mood
-      - Minimal, Nature
+   * Theme/Mood
+      * Minimal, Nature
     
-   User Stories
-      - Students (school work), Office Workers (job work) 
+   * User Stories
+      * Students (school work), Office Workers (job work) 
 
 ### Additions to agenda
 
 Leeor will work asynchrounously
 
-Tasks for next meeting:
-  Developers - Continue research and brainstorm
-  Designers - Fat marker design incorporating components in Requirements tab
+* Tasks for next meeting:
+  * Developers - Continue research and brainstorm
+  * Designers - Fat marker design incorporating components in Requirements tab
 
 ## Adjournment
 
