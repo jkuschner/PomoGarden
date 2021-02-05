@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tommy's Exploratory Code</title>
+  <link rel="stylesheet" href="./main.css">
+</head>
+
+<body>
+  <span class="pomo"></span>
+  <span class="pomo"></span>
+  <span class="pomo" id="third-pomo"></span>
+  <span class="pomo" id="fourth-pomo"></span>
+
+  
+  <span id="outerCircle">
+    <span id="innerCircle" onclick="startTimer()">Start</span>
+
+  </span>
+  
+
+  <span id="navButton" onclick="showNav()">&#9776;</span>
+
+  <div id="navBar"> 
+    <h2 class="navText">Number of Sessions</h2>
+
+    <div id="containerRect">
+      <div class="rectangle" id="two-pomo-option" onclick="changeNumPomo(this)">
+        <span class="rectText">2</span>
+      </div>
+
+      <div class="rectangle" id="three-pomo-option" onclick="changeNumPomo(this)">
+        <span class="rectText">3</span>
+      </div>
+
+      <div class="rectangle" id="four-pomo-option" style="background-color:orange;" onclick="changeNumPomo(this)">
+        <span class="rectText">4</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-container">
+    <header>
+      
+    </header>
+
+    <main>
+
+      
+    </main>
+  </div>
+
+  
+  <script src="./main.js"></script>
+</body>
+
+</html>
