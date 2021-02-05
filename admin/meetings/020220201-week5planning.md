@@ -34,7 +34,7 @@ N/A
 - have design team present their work for discussion/critique
     - started on wireframing(see https://www.figma.com/file/3kXKTSKZwxZnngeiBlVnzp/Wireframes?node-id=32%3A43)
     - focus sessions should skip to break if you get distracted in the middle.
-- tenative project roadmap will loosely follow lecture5 sprint calendar
+- tentative project roadmap will loosely follow lecture5 sprint calendar
 
 ### Additions to agenda
 
