@@ -1,0 +1,11 @@
+.time {
+    float:left;
+}
+
+#break {
+    display:none;
+}
+
+#end {
+    display:none;
+}
