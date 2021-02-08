@@ -1,0 +1,124 @@
+#navButton {
+    font-size:40px;
+    cursor:pointer;
+    position: absolute;
+    left:95%;
+    top:1%;
+}
+
+#navBar {
+    height: 100%;
+    width: 0%;
+    position: fixed;
+    top: 10%;
+    right: 0%;
+    background-color: rgb(218, 210, 198);
+    transition: 0.5s;
+}
+
+.navText {
+   
+    white-space:nowrap;
+    padding: 8px 8px 8px 32px;
+    
+}
+
+.navRectangle {
+    display: inline-block;
+    position: relative;;
+    left: 20px;
+    height: 50px;
+    width: 75px;
+    border:  2px solid #ff8c00;
+    border-radius: 10px;
+    text-align:center;
+    line-height: 50px;
+    cursor: pointer;
+    background-color: white;
+}
+
+#containerRect {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.pomo {
+    height: 15px;
+    width: 15px;
+    background-color: white;
+    border-radius: 50%;
+    border: 2px solid orange;
+    display: inline-block;
+    visibility: visible;
+}
+
+.rectText {
+    font-size: x-large;
+}
+
+#entirePomoTimer{
+    position: absolute;
+    left: 35%;
+    top: 15%;
+    width: 40%;
+}
+
+#outerCircle {
+    height: 300px;
+    width: 300px;
+    background-color: white;
+    border-radius: 50%;
+    border: 30px solid orange;
+    display: inline-block;
+    visibility: visible;
+    position: absolute; 
+    
+}
+
+#innerCircle {
+    cursor: pointer;
+    height: 262.5px;
+    width: 262.5px;
+    background-color: orange;
+    border-radius: 50%;
+    display: inline-block;
+    visibility: visible;
+    text-align: center;
+    line-height: 262.5px;
+    font-size: 50px;
+
+    position:relative;
+    top:6%;
+    left:6%;
+}
+
+#allPomos {
+   position:absolute;
+   left:44%;
+   top:70%;
+}
+
+#timerButtons {
+   position:absolute;
+   left:43.2%;
+   top:77%;
+}
+
+.time {
+    float:left;
+}
+
+#clockDisplay {
+    margin:auto;
+    width:45%;
+}
+
+#break {
+    display:none;
+    background-color: orange;
+}
+
+#end {
+    display:none;
+    background-color: orange;
+}
