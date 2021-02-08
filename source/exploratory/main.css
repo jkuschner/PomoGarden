@@ -1,8 +1,9 @@
 #navButton {
     font-size:40px;
     cursor:pointer;
-    position: fixed;
-    right:3%;
+    position: absolute;
+    left:95%;
+    top:1%;
 }
 
 #navBar {
@@ -22,13 +23,13 @@
     
 }
 
-.rectangle {
+.navRectangle {
     display: inline-block;
     position: relative;;
     left: 20px;
     height: 50px;
     width: 75px;
-    border:  2px solid orange;
+    border:  2px solid #ff8c00;
     border-radius: 10px;
     text-align:center;
     line-height: 50px;
@@ -55,6 +56,13 @@
     font-size: x-large;
 }
 
+#entirePomoTimer{
+    position: absolute;
+    left: 35%;
+    top: 15%;
+    width: 40%;
+}
+
 #outerCircle {
     height: 300px;
     width: 300px;
@@ -63,6 +71,8 @@
     border: 30px solid orange;
     display: inline-block;
     visibility: visible;
+    position: absolute; 
+    
 }
 
 #innerCircle {
@@ -80,4 +90,35 @@
     position:relative;
     top:6%;
     left:6%;
+}
+
+#allPomos {
+   position:absolute;
+   left:44%;
+   top:70%;
+}
+
+#timerButtons {
+   position:absolute;
+   left:43.2%;
+   top:77%;
+}
+
+.time {
+    float:left;
+}
+
+#clockDisplay {
+    margin:auto;
+    width:45%;
+}
+
+#break {
+    display:none;
+    background-color: orange;
+}
+
+#end {
+    display:none;
+    background-color: orange;
 }
