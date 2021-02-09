@@ -1,0 +1,25 @@
+{
+    "name": "cse110-w21-team19",
+    "version": "1.0.0",
+    "description": "Pomodoro Timer",
+    "main": "index.js",
+    "scripts": {
+        "test": "jest"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jkuschner/cse110-w21-team19.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/jkuschner/cse110-w21-team19/issues"
+    },
+    "homepage": "https://github.com/jkuschner/cse110-w21-team19#readme",
+    "devDependencies": {
+        "jest": "^26.6.3"
+    },
+    "jest": {
+        "moduleDirectories": ["node_modules", "source"]
+    }
+}
