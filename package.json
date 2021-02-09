@@ -4,7 +4,8 @@
     "description": "Pomodoro Timer",
     "main": "index.js",
     "scripts": {
-        "test": "jest"
+        "test": "jest",
+        "prettier": "prettier --write source test"
     },
     "repository": {
         "type": "git",
@@ -20,6 +21,17 @@
         "jest": "^26.6.3"
     },
     "jest": {
-        "moduleDirectories": ["node_modules", "source"]
+        "moduleDirectories": [
+            "node_modules",
+            "source"
+        ]
+    },
+    "prettier": {
+        "tabWidth": 4,
+        "semi": false,
+        "singleQuote": true
+    },
+    "dependencies": {
+        "prettier": "^2.2.1"
     }
 }
