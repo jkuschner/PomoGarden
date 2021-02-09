@@ -6,9 +6,8 @@
     "scripts": {
         "test": "jest",
         "lint": "eslint . --ext .js",
-        "init-lint": "eslint --init",
         "prettier": "prettier --write source test",
-        "format": "prettier-eslint --write '**/*.js'"
+        "gen-docs": "jsdoc -c docs-conf.json"
     },
     "repository": {
         "type": "git",
@@ -22,7 +21,8 @@
     "homepage": "https://github.com/jkuschner/cse110-w21-team19#readme",
     "devDependencies": {
         "eslint": "^7.19.0",
-        "jest": "^26.6.3"
+        "jest": "^26.6.3",
+        "jsdoc": "^3.6.6"
     },
     "jest": {
         "moduleDirectories": [
