@@ -1,5 +1,5 @@
 /**
- * Adds 3 numbers.
+ * Adds 3 numbers...
  * @param {Number} a First number
  * @param {Number} b Second number
  * @param {Number} c Third number

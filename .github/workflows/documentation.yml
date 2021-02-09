@@ -3,7 +3,6 @@ on:
   push:
     branchces:
       - main
-      - dev
 jobs:
   build:
     runs-on: ubuntu-latest
