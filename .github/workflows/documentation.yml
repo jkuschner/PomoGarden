@@ -1,7 +1,7 @@
 name: Generate Documentation
 on:
   push:
-    branchces:
+    branches:
       - main
 jobs:
   build:
