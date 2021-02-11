@@ -1,4 +1,4 @@
-# 02/06/2021 Team Standup 2
+# 02/09/2021 Team Standup 2
 
 ## Members
 * Jacinth
@@ -23,3 +23,9 @@
 * Leeor
     * Worked on lab and other classes
     * Plans to work on user stories
+* Josh
+    * Didn't work on anything class-related
+* Zach
+    * Working on standup format and posts
+    * Previously held meeting
+    * Planning on presenting for discussion, reviewing dev and design work, and organizing repo
