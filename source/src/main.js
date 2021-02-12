@@ -1,16 +1,5 @@
+// Navigation Bar
 var navBar = document.getElementById("navBar");
-
-var firstPomo = document.getElementById("first-pomo");
-var secondPomo = document.getElementById("second-pomo")
-var thirdPomo = document.getElementById("third-pomo");
-var fourthPomo = document.getElementById("fourth-pomo");
-
-var rectangle = document.getElementsByClassName("rectangle");
-
-var twoPomoOption = document.getElementById("two-pomo-option");
-var threePomoOption = document.getElementById("three-pomo-option");
-var fourPomoOption = document.getElementById("four-pomo-option");
-
 function showNav() {
     if (navBar.style.width < "20%") {
         navBar.style.width = "20%";
@@ -19,97 +8,84 @@ function showNav() {
     }
 }
 
-function changeNumPomo(x) {
-    
-    if (x.id == "two-pomo-option") {
-        thirdPomo.style.visibility = "hidden";
-        fourthPomo.style.visibility = "hidden";
-
-        threePomoOption.style.backgroundColor = "white";
-        fourPomoOption.style.backgroundColor = "white";
-    } else if (x.id == "three-pomo-option") {
-        thirdPomo.style.visibility = "visible";
-        fourthPomo.style.visibility = "hidden";
-
-        twoPomoOption.style.backgroundColor = "white";
-        fourPomoOption.style.backgroundColor = "white";
-    } else {
-        thirdPomo.style.visibility = "visible";
-        fourthPomo.style.visibility = "visible";
-
-        twoPomoOption.style.backgroundColor = "white";
-        threePomoOption.style.backgroundColor = "white";
-    }
-
-    x.style.backgroundColor = "orange";
-}
-
+// User starts timer in inner circle 
 var innerCircle = document.getElementById("innerCircle"); 
 var checkTimerStart = false;
 function startTimerVisual(id) {
     innerCircle.style.backgroundColor = "white";
     if (!checkTimerStart) {
         if (id == "innerCircle") {
-            startTimer(0.1*60, true)
+            startTimer(workTime*60, true)
         } else {
-            console.log('hi');
-            startTimer(0.1*60, false)
+            startTimer(breakTime*60, false)
         }
         
         checkTimerStart = true;
     }
 }
 
-
-// Timer Code Below
-
-var x = document.getElementById("break");
+// Pomodoro Timer 
 var timer;
-var pomoVal = 25*60;
 var count = 0;
+var workTime = 0.1;
+var breakTime = 0.1;
+
+var firstPomo = document.getElementById("first-pomo");
+var secondPomo = document.getElementById("second-pomo")
+var thirdPomo = document.getElementById("third-pomo");
+var fourthPomo = document.getElementById("fourth-pomo");
+var pomo = document.getElementsByClassName("pomo")
 
 function startTimer(seconds, increment) {
-    console.log("timer started");
     let time = seconds;
 
-    //document.getElementById("pomo").style.display = "none";
     document.getElementById("break").style.display = "none";
     document.getElementById("end").style.display = "block";
     document.getElementById("end").innerHTML = "Stop";
 
     document.getElementById("min").innerHTML = Math.floor(seconds/60);
     document.getElementById("sec").innerHTML = checkSecond(Math.round(time%60));
+
+    // reset # of pomos if full
+    if (count == 4) {
+        count = 0;
+        firstPomo.style.backgroundColor = "white";
+        secondPomo.style.backgroundColor = "white";
+        thirdPomo.style.backgroundColor = "white";
+        fourthPomo.style.backgroundColor = "white";
+        // document.getElementById("break").innerHTML = "Break"
+    }
     
     timer = setInterval( function(){
         if( time <= 0) {
 
             if(increment === true) {
                 count++;
-                // document.getElementById("count").innerHTML = count;
+            } 
 
-                if (count == 1) {
-                    firstPomo.style.backgroundColor = "orange";
-                } else if (count == 2) {
-                    secondPomo.style.backgroundColor = "orange";
-                } else if (count == 3) {
-                    thirdPomo.style.backgroundColor = "orange";
-                } else {
-                    fourthPomo.style.backgroundColor = "orange";
-                }
+            // Fill in pomo based on count
+            if (count == 1) {
+                firstPomo.style.backgroundColor = "orange";
+            } else if (count == 2) {
+                secondPomo.style.backgroundColor = "orange";
+            } else if (count == 3) {
+                thirdPomo.style.backgroundColor = "orange";
+            } else if (count == 4) {
+                fourthPomo.style.backgroundColor = "orange";
+                // document.getElementById("break").innerHTML = "Long Break"
+                breakTime = 0.2;
+            } 
 
-                innerCircle.style.backgroundColor = "orange";
-                checkTimerStart = false;
-            }
+            innerCircle.style.backgroundColor = "orange";
+            checkTimerStart = false;
 
             document.getElementById("min").innerHTML = 25;
             document.getElementById("sec").innerHTML = checkSecond(0);
 
             clearInterval(timer);
 
-            //document.getElementById("pomo").style.display = "block";
             document.getElementById("break").style.display = "block";
             document.getElementById("end").style.display = "none";
-            
         } else {
             time -= 1;
 
@@ -134,7 +110,6 @@ function endPomo() {
     document.getElementById("min").innerHTML = 25;
     document.getElementById("sec").innerHTML = checkSecond(0);
 
-    //document.getElementById("pomo").style.display = "block";
     document.getElementById("end").style.display = "none";
 }
 
