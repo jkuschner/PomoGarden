@@ -12,6 +12,8 @@
     * Implemented long break in exploratory timer
     * Working on other classes
 * Patrick
+    * Dark mode ideation
+    * Few prototype wireframes for dark mode
 * Leeor
 * Josh
     * Working on uploading meeting recordings to the repo
