@@ -20,28 +20,27 @@ function showNav() {
 function changeNumPomo(x) {
     
     if (x.id == "two-pomo-option") {
-        document.cookie = "2";
+        localStorage.setItem("pomoCount", 2);
         thirdPomo.style.visibility = "hidden";
         fourthPomo.style.visibility = "hidden";
         
         threePomoOption.style.backgroundColor = "white";
         fourPomoOption.style.backgroundColor = "white";
     } else if (x.id == "three-pomo-option") {
-        document.cookie = "3";
+        localStorage.setItem("pomoCount", 3);
         thirdPomo.style.visibility = "visible";
         fourthPomo.style.visibility = "hidden";
         
         twoPomoOption.style.backgroundColor = "white";
         fourPomoOption.style.backgroundColor = "white";
     } else {
-        document.cookie = "4";
+        localStorage.setItem("pomoCount", 4);
         thirdPomo.style.visibility = "visible";
         fourthPomo.style.visibility = "visible";
 
         twoPomoOption.style.backgroundColor = "white";
         threePomoOption.style.backgroundColor = "white";
     }
-    alert(document.cookie);
     x.style.backgroundColor = "orange";
 }
 
@@ -165,14 +164,22 @@ function toggleEnd() {
     }
 }
 
-var cookievar = parseInt(document.cookie,10);
-alert(cookievar);
-if(cookievar == 2){
+
+
+
+//need to get cookie and parse string to find correct value
+
+
+window.addEventListener("DOMContentLoaded",()=>{
+let numPomos = localStorage.getItem("pomoCount");
+alert(numPomos);
+if(numPomos == 2){
     changeNumPomo(twoPomoOption);
 }
-else if(cookievar == 3){
+else if(numPomos == 3){
     changeNumPomo(threePomoOption);
 }
 else{
     changeNumPomo(fourPomoOption);
 }
+});
