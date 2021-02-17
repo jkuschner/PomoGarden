@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Tommy's Exploratory Code</title>
+        <link rel="stylesheet" href="./main.css" />
+    </head>
+
+    <body>
+        <div id="entirePomoTimer">
+            <h1 id="title">Ready to Work?</h1>
+
+            <div id="outerCircle">
+                <span id="innerCircle" onclick="startTimerVisual(id)">
+                    <div id="clockDisplay">
+                        <p class="time" id="min">Start</p>
+                        <p class="time" id="sep"></p>
+                        <p class="time" id="sec"></p>
+                    </div>
+                </span>
+            </div>
+
+            <div id="allPomos">
+                <span class="pomo" id="first-pomo"></span>
+                <span class="pomo" id="second-pomo"></span>
+                <span class="pomo" id="third-pomo"></span>
+                <span class="pomo" id="fourth-pomo"></span>
+            </div>
+
+            <div id="timerButtons">
+                <button id="end" class="navRectangle" onclick="endPomo()">
+                    Stop
+                </button>
+                <button
+                    id="break"
+                    class="navRectangle"
+                    onclick="startTimerVisual(id)"
+                >
+                    Break
+                </button>
+            </div>
+        </div>
+
+        <span id="navButton" onclick="showNav()">&#9776;</span>
+
+        <div id="navBar">
+            <h2 class="navText">Long Break Time</h2>
+
+            <div id="navContainer">
+                <div
+                    class="navRectangle"
+                    id="longBreakTen"
+                    onclick="changeLongBreak(id)"
+                >
+                    10
+                </div>
+                <div
+                    class="navRectangle"
+                    id="longBreakFifteen"
+                    onclick="changeLongBreak(id)"
+                >
+                    15
+                </div>
+                <div
+                    class="navRectangle"
+                    id="longBreakTwenty"
+                    onclick="changeLongBreak(id)"
+                >
+                    20
+                </div>
+            </div>
+
+            <br />
+            <br />
+            <br />
+            <br />
+
+            <h2 class="navText">Theme Color</h2>
+
+            <div id="navContainer">
+                <div
+                    class="navRectangle"
+                    onclick="changeTheme(id)"
+                    id="blueTheme"
+                ></div>
+                <div
+                    class="navRectangle"
+                    onclick="changeTheme(id)"
+                    id="greenTheme"
+                ></div>
+                <div
+                    class="navRectangle"
+                    onclick="changeTheme(id)"
+                    id="orangeTheme"
+                ></div>
+                <div
+                    class="navRectangle"
+                    onclick="changeTheme(id)"
+                    id="purpleTheme"
+                ></div>
+                <div
+                    class="navRectangle"
+                    onclick="changeTheme(id)"
+                    id="yellowTheme"
+                ></div>
+            </div>
+        </div>
+
+        <script src="./main.js"></script>
+    </body>
+</html>
