@@ -25,8 +25,8 @@ window.addEventListener('DOMContentLoaded', ()=> {
 // Navigation Bar
 var navBar = document.getElementById("navBar");
 function showNav() {
-    if (navBar.style.width < "20%") {
-        navBar.style.width = "20%";
+    if (navBar.style.width < "19vw") {
+        navBar.style.width = "19vw";
     } else {
         navBar.style.width = "0%";
     }
