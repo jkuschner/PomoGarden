@@ -10,10 +10,14 @@
 
 <body>
   
-  <h1 id="title">Ready to Work?</h1>
+  
 
   <div id="entirePomoTimer">
-    <span id="outerCircle">
+    <h1 id="title">Ready to Work?</h1>
+    
+   
+    
+    <div id="outerCircle">
       <span id="innerCircle" onclick="startTimerVisual(id)">
         <div id="clockDisplay">
           <p class="time" id="min" >Start</p>
@@ -21,7 +25,9 @@
           <p class="time" id="sec"></p>
         </div>
       </span>
-    </span>
+    </div>
+
+
 
     <div id="allPomos">
       <span class="pomo" id="first-pomo"></span>
@@ -29,6 +35,8 @@
       <span class="pomo" id="third-pomo"></span>
       <span class="pomo" id="fourth-pomo"></span>
     </div>
+
+    
   
     <div id="timerButtons">  
       <button id="end" class="navRectangle" onclick="endPomo()">Stop</button>
@@ -42,7 +50,7 @@
   <div id="navBar"> 
     <h2 class="navText">Long Break Time</h2>
 
-    <div id="longBreaks">    
+    <div id="navContainer">    
       <div class="navRectangle" id="longBreakTen" onclick="changeLongBreak(id)">10</div>
       <div class="navRectangle" id="longBreakFifteen" onclick="changeLongBreak(id)">15</div>
       <div class="navRectangle" id="longBreakTwenty" onclick="changeLongBreak(id)">20</div>
@@ -55,17 +63,10 @@
 
     <h2 class="navText">Theme Color</h2>
 
-    <div id="longBreaks">    
+    <div id="navContainer">    
       <div class="navRectangle" onclick="changeTheme(id)" id="blueTheme"></div>
       <div class="navRectangle" onclick="changeTheme(id)" id="greenTheme"></div>
-      <div class="navRectangle" onclick="changeTheme(id)" id="orangeTheme"></div>
-    </div>
-
-    <br>
-    <br>
-    <br>
-
-    <div id="longBreaks">  
+      <div class="navRectangle" onclick="changeTheme(id)" id="orangeTheme"></div> 
       <div class="navRectangle" onclick="changeTheme(id)" id="purpleTheme"></div>
       <div class="navRectangle" onclick="changeTheme(id)" id="yellowTheme"></div>
     </div>
