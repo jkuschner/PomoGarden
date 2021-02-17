@@ -5,9 +5,9 @@
     "main": "index.js",
     "scripts": {
         "test": "jest",
-        "lint": "eslint . --ext .js",
-        "prettier": "prettier --write source test",
-        "gen-docs": "jsdoc -c docs-conf.json"
+        "lint": "eslint -c config/eslint-conf.json . --ext .js",
+        "prettier": "prettier --write src test",
+        "gen-docs": "jsdoc -c config/docs-conf.json"
     },
     "repository": {
         "type": "git",
@@ -27,7 +27,7 @@
     "jest": {
         "moduleDirectories": [
             "node_modules",
-            "source"
+            "src"
         ]
     },
     "prettier": {
