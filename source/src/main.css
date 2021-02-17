@@ -1,10 +1,10 @@
 /* Navigation Bar*/
 #navButton {
-    font-size:3vw;
-    cursor:pointer;
+    font-size: 3vw;
+    cursor: pointer;
     position: absolute;
-    left:95%;
-    top:1%;
+    left: 95%;
+    top: 1%;
 }
 
 #navBar {
@@ -17,14 +17,12 @@
     transition: 0.5s;
     white-space: nowrap;
     display: inline-block;
-
-    
 }
 
 .navText {
     font-size: 1.5vw;
-    white-space:nowrap;
-    padding: 8px 8px 8px 32px;  
+    white-space: nowrap;
+    padding: 8px 8px 8px 32px;
 }
 
 .navRectangle {
@@ -32,9 +30,9 @@
     left: 1.5vw;
     height: 3.5vw;
     width: 5vw;
-    border:  2px solid #ff8c00;
+    border: 2px solid #ff8c00;
     border-radius: 1vw;
-    text-align:center;
+    text-align: center;
     line-height: 3.5vw;
     cursor: pointer;
     background-color: white;
@@ -42,7 +40,6 @@
     display: inline-block;
     font-size: 1vw;
 }
-
 
 #navContainer {
     position: absolute;
@@ -52,21 +49,17 @@
     grid-template-columns: 30% 30% 30%;
     grid-template-rows: 60%;
     left: -1.2vw;
-    
 }
 
 #longBreakTen {
- 
     background-color: white;
 }
 
 #longBreakFifteen {
-
     background-color: orange;
 }
 
 #longBreakTwenty {
- 
     background-color: white;
 }
 
@@ -90,13 +83,11 @@
     background-color: white;
 }
 
-
-
 /* Pomodoro Timer*/
 
 #title {
     position: relative;
-    font-family: "Lucida Console", monospace;
+    font-family: 'Lucida Console', monospace;
     left: -20%;
     top: -10%;
     text-align: center;
@@ -104,7 +95,7 @@
     font-size: 3vw;
 }
 
-#entirePomoTimer{
+#entirePomoTimer {
     position: absolute;
     left: 35%;
     top: 20%;
@@ -120,13 +111,12 @@
     border: 1.3vw solid orange;
     display: inline-block;
     visibility: visible;
-    position: relative; 
+    position: relative;
     left: 6%;
     top: -10%;
 }
 
 #innerCircle {
-    
     cursor: pointer;
     height: 15vw;
     width: 15vw;
@@ -137,19 +127,19 @@
     text-align: center;
     line-height: 9vw;
     font-size: 3vw;
-    font-family: "Lucida Console", monospace;
-    position:relative;
-    top:6%;
-    left:6%;
+    font-family: 'Lucida Console', monospace;
+    position: relative;
+    top: 6%;
+    left: 6%;
 }
 
 #allPomos {
-   position:relative;
-   left:6.5vw;
-   top:-2vw;
-   display: flex;
-   justify-content: space-evenly;
-   width: 12vw;
+    position: relative;
+    left: 6.5vw;
+    top: -2vw;
+    display: flex;
+    justify-content: space-evenly;
+    width: 12vw;
 }
 
 .pomo {
@@ -162,40 +152,33 @@
     visibility: visible;
 }
 
-
 #timerButtons {
-   position:relative;
-   left:5%;
-
+    position: relative;
+    left: 5%;
 }
 
 .time {
-    float:left;
+    float: left;
 }
 
 #clockDisplay {
-   
-    margin:auto;
+    margin: auto;
     text-align: center;
     width: 62%;
-    
 }
 
 #break {
-
-    left:20%;
-    display:none;
+    left: 20%;
+    display: none;
     background-color: orange;
-    font-family: "Lucida Console", monospace;
+    font-family: 'Lucida Console', monospace;
     font-size: 1vw;
-
 }
 
 #end {
-
-    left:20%;
-    display:none;
+    left: 20%;
+    display: none;
     background-color: orange;
-    font-family: "Lucida Console", monospace;
+    font-family: 'Lucida Console', monospace;
     font-size: 1vw;
 }
