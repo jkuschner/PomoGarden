@@ -6,7 +6,7 @@
     "scripts": {
         "test": "jest",
         "lint": "eslint -c config/eslint-conf.json . --ext .js",
-        "prettier": "prettier --write source test",
+        "prettier": "prettier --write src test",
         "gen-docs": "jsdoc -c config/docs-conf.json"
     },
     "repository": {
@@ -27,7 +27,7 @@
     "jest": {
         "moduleDirectories": [
             "node_modules",
-            "source"
+            "src"
         ]
     },
     "prettier": {
