@@ -1,0 +1,184 @@
+/* Navigation Bar*/
+#navButton {
+    font-size: 3vw;
+    cursor: pointer;
+    position: absolute;
+    left: 95%;
+    top: 1%;
+}
+
+#navBar {
+    height: 50vw;
+    width: 0vw;
+    position: fixed;
+    top: 5vw;
+    right: 0%;
+    background-color: rgb(218, 210, 198);
+    transition: 0.5s;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.navText {
+    font-size: 1.5vw;
+    white-space: nowrap;
+    padding: 8px 8px 8px 32px;
+}
+
+.navRectangle {
+    position: relative;
+    left: 1.5vw;
+    height: 3.5vw;
+    width: 5vw;
+    border: 2px solid #ff8c00;
+    border-radius: 1vw;
+    text-align: center;
+    line-height: 3.5vw;
+    cursor: pointer;
+    background-color: white;
+    white-space: nowrap;
+    display: inline-block;
+    font-size: 1vw;
+}
+
+#navContainer {
+    position: absolute;
+    justify-content: space-evenly;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    grid-template-rows: 60%;
+    left: -1.2vw;
+}
+
+#longBreakTen {
+    background-color: white;
+}
+
+#longBreakFifteen {
+    background-color: orange;
+}
+
+#longBreakTwenty {
+    background-color: white;
+}
+
+#blueTheme {
+    background-color: white;
+}
+
+#greenTheme {
+    background-color: white;
+}
+
+#orangeTheme {
+    background-color: orange;
+}
+
+#purpleTheme {
+    background-color: white;
+}
+
+#yellowTheme {
+    background-color: white;
+}
+
+/* Pomodoro Timer*/
+
+#title {
+    position: relative;
+    font-family: 'Lucida Console', monospace;
+    left: -20%;
+    top: -10%;
+    text-align: center;
+    width: 100%;
+    font-size: 3vw;
+}
+
+#entirePomoTimer {
+    position: absolute;
+    left: 35%;
+    top: 20%;
+    width: 40vw;
+    height: 50vw;
+}
+
+#outerCircle {
+    height: 17vw;
+    width: 17vw;
+    background-color: white;
+    border-radius: 10vw;
+    border: 1.3vw solid orange;
+    display: inline-block;
+    visibility: visible;
+    position: relative;
+    left: 6%;
+    top: -10%;
+}
+
+#innerCircle {
+    cursor: pointer;
+    height: 15vw;
+    width: 15vw;
+    background-color: orange;
+    border-radius: 10vw;
+    display: inline-block;
+    visibility: visible;
+    text-align: center;
+    line-height: 9vw;
+    font-size: 3vw;
+    font-family: 'Lucida Console', monospace;
+    position: relative;
+    top: 6%;
+    left: 6%;
+}
+
+#allPomos {
+    position: relative;
+    left: 6.5vw;
+    top: -2vw;
+    display: flex;
+    justify-content: space-evenly;
+    width: 12vw;
+}
+
+.pomo {
+    height: 1vw;
+    width: 1vw;
+    background-color: white;
+    border-radius: 50%;
+    border: 2px solid #ff8c00;
+    display: inline-block;
+    visibility: visible;
+}
+
+#timerButtons {
+    position: relative;
+    left: 5%;
+}
+
+.time {
+    float: left;
+}
+
+#clockDisplay {
+    margin: auto;
+    text-align: center;
+    width: 62%;
+}
+
+#break {
+    left: 20%;
+    display: none;
+    background-color: orange;
+    font-family: 'Lucida Console', monospace;
+    font-size: 1vw;
+}
+
+#end {
+    left: 20%;
+    display: none;
+    background-color: orange;
+    font-family: 'Lucida Console', monospace;
+    font-size: 1vw;
+}
