@@ -33,7 +33,7 @@ Zach
     - Autoplay timer as setting that can be turned on and off
     - The person can take a breather and move at their pace
     - Removing the ability to skip the break
-    - 2 Start buttons
+    - Start button will be big circle in the middle
     - Don't save pomo progress, only saving the settings
 
 ## Adjournment
