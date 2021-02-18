@@ -1,3 +1,10 @@
+/*Create custom colors*/
+:root {
+    --main-bg-color: white;
+    --main-heavy-color: #ffb422;
+    --main-light-color: #ffd074;
+}
+
 /* Navigation Bar*/
 #navButton {
     font-size: 3vw;
@@ -13,7 +20,7 @@
     position: fixed;
     top: 5vw;
     right: 0%;
-    background-color: rgb(218, 210, 198);
+    background-color: var(--main-bg-color);
     transition: 0.5s;
     white-space: nowrap;
     display: inline-block;
@@ -30,12 +37,12 @@
     left: 1.5vw;
     height: 3.5vw;
     width: 5vw;
-    border: 2px solid #ff8c00;
+    border: 2px solid var(--main-heavy-color);
     border-radius: 1vw;
     text-align: center;
     line-height: 3.5vw;
     cursor: pointer;
-    background-color: white;
+    background-color: var(--main-bg-color);
     white-space: nowrap;
     display: inline-block;
     font-size: 1vw;
@@ -52,34 +59,39 @@
 }
 
 #longBreakTen {
-    background-color: white;
+    background-color: var(--main-bg-color);
 }
 
 #longBreakFifteen {
-    background-color: orange;
+    background-color: var(--main-light-color);
 }
 
 #longBreakTwenty {
-    background-color: white;
+    background-color: var(--main-bg-color);
 }
 
 #blueTheme {
+    border: 2px solid #23c6fa; 
     background-color: white;
 }
 
 #greenTheme {
+    border: 2px solid #82eb82;
     background-color: white;
 }
 
 #orangeTheme {
-    background-color: orange;
+    border: 2px solid #ffb422;
+    background-color: #ffd074;
 }
 
 #purpleTheme {
+    border: 2px solid #f68de6;
     background-color: white;
 }
 
 #yellowTheme {
+    border: 2px solid #fbe842;
     background-color: white;
 }
 
@@ -108,7 +120,7 @@
     width: 17vw;
     background-color: white;
     border-radius: 10vw;
-    border: 1.3vw solid orange;
+    border: 1.3vw solid var(--main-heavy-color);
     display: inline-block;
     visibility: visible;
     position: relative;
@@ -120,7 +132,7 @@
     cursor: pointer;
     height: 15vw;
     width: 15vw;
-    background-color: orange;
+    background-color: var(--main-light-color);
     border-radius: 10vw;
     display: inline-block;
     visibility: visible;
@@ -145,9 +157,9 @@
 .pomo {
     height: 1vw;
     width: 1vw;
-    background-color: white;
+    background-color: var(--main-bg-color);
     border-radius: 50%;
-    border: 2px solid #ff8c00;
+    border: 2px solid var(--main-heavy-color);
     display: inline-block;
     visibility: visible;
 }
@@ -170,7 +182,7 @@
 #break {
     left: 20%;
     display: none;
-    background-color: orange;
+    background-color: var(--main-light-color);
     font-family: 'Lucida Console', monospace;
     font-size: 1vw;
 }
@@ -178,7 +190,7 @@
 #end {
     left: 20%;
     display: none;
-    background-color: orange;
+    background-color: var(--main-light-color);
     font-family: 'Lucida Console', monospace;
     font-size: 1vw;
 }
