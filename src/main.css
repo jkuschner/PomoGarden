@@ -1,8 +1,32 @@
-/* Custom colors, change these to change the theme */
-:root {
+/* Colors for each theme, change these to change the theme */
+.themeOrange {
     --main-bg-color: white;
     --main-heavy-color: #ffb422;
     --main-light-color: #ffd074;
+}
+
+.themeBlue {
+    --main-bg-color: white;
+    --main-heavy-color: #23c6fa;
+    --main-light-color: #95ecff;
+}
+
+.themeGreen {
+    --main-bg-color: white;
+    --main-heavy-color: #66e466;
+    --main-light-color: #b5ffae;
+}
+
+.themePurple {
+    --main-bg-color: white;
+    --main-heavy-color: #f68de6;
+    --main-light-color: #ffdceb;
+}
+
+.themeYellow {
+    --main-bg-color: white;
+    --main-heavy-color: #fbe843;
+    --main-light-color: #f9fbaa;
 }
 
 /* Navigation Bar*/
@@ -77,7 +101,7 @@
 }
 
 #greenTheme {
-    border: 2px solid #82eb82;
+    border: 2px solid #66e466;
     background-color: white;
 }
 
