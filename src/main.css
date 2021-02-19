@@ -95,27 +95,27 @@
 }
 
 /* Themes selectors have hardcoded colors */
-#blueTheme {
+#themeBlue {
     border: 2px solid #23c6fa; 
     background-color: white;
 }
 
-#greenTheme {
+#themeGreen {
     border: 2px solid #66e466;
     background-color: white;
 }
 
-#orangeTheme {
+#themeOrange {
     border: 2px solid #ffb422;
-    background-color: #ffd074;
+    background-color: white;
 }
 
-#purpleTheme {
+#themePurple {
     border: 2px solid #f68de6;
     background-color: white;
 }
 
-#yellowTheme {
+#themeYellow {
     border: 2px solid #fbe842;
     background-color: white;
 }

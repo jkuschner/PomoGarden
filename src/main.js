@@ -224,4 +224,7 @@ function changeLongBreak(id) {
     }
 }
 
-function changeTheme(id) {}
+function changeTheme(id) {
+    document.documentElement.className = id
+    document.getElementById(id).backgroundColor = 'var(--main-bg-color)'
+}
