@@ -220,7 +220,7 @@ function changeLongBreak(id) {
 
         tenElement.style.backgroundColor = 'var(--main-bg-color)'
         fifteenElement.style.backgroundColor = 'var(--main-bg-color)'
-        twenthElement.style.backgroundColor ='var(--main-light-color)'
+        twentyElement.style.backgroundColor ='var(--main-light-color)'
     }
 }
 
