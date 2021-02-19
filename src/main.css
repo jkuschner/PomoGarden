@@ -29,6 +29,17 @@
     --main-light-color: #f9fbaa;
 }
 
+.themeGrey {
+    --main-bg-color: #121212;
+    --main-heavy-color: #565656;
+    --main-light-color: #565656;
+    color: #ffffff;
+}
+
+body {
+    background-color: var(--main-bg-color);
+}
+
 /* Navigation Bar*/
 #navButton {
     font-size: 3vw;
@@ -98,27 +109,32 @@
 /* Themes selectors have hardcoded colors */
 #themeBlue {
     border: 2px solid #23c6fa; 
-    background-color: white;
+    background-color: var(--main-bg-color);
 }
 
 #themeGreen {
     border: 2px solid #66e466;
-    background-color: white;
+    background-color: var(--main-bg-color);
 }
 
 #themeOrange {
     border: 2px solid #ffb422;
-    background-color: white;
+    background-color: var(--main-bg-color);
 }
 
 #themePurple {
     border: 2px solid #f68de6;
-    background-color: white;
+    background-color: var(--main-bg-color);
 }
 
 #themeYellow {
     border: 2px solid #fbe842;
-    background-color: white;
+    background-color: var(--main-bg-color);
+}
+
+#themeGrey {
+    border: 2px solid #565656;
+    background-color: var(--main-bg-color);
 }
 
 /* Pomodoro Timer*/
@@ -144,7 +160,7 @@
 #outerCircle {
     height: 17vw;
     width: 17vw;
-    background-color: white;
+    background-color: var(--main-bg-color);
     border-radius: 10vw;
     border: 1.3vw solid var(--main-heavy-color);
     display: inline-block;
