@@ -38,7 +38,7 @@ var checkTimerStart = false
 
 function startTimerVisual(id) {
     if (!checkTimerStart) {
-        innerCircle.style.backgroundColor = 'white'
+        innerCircle.style.backgroundColor = 'var(--main-bg-color)';
         innerCircle.style.cursor = 'auto'
 
         if (id == 'innerCircle') {
@@ -86,10 +86,10 @@ function startTimer(seconds, increment) {
         count = 0
         localStorage.setItem('count', count)
 
-        firstPomo.style.backgroundColor = 'white'
-        secondPomo.style.backgroundColor = 'white'
-        thirdPomo.style.backgroundColor = 'white'
-        fourthPomo.style.backgroundColor = 'white'
+        firstPomo.style.backgroundColor = 'var(--main-bg-color)'
+        secondPomo.style.backgroundColor = 'var(--main-bg-color)'
+        thirdPomo.style.backgroundColor = 'var(--main-bg-color)'
+        fourthPomo.style.backgroundColor = 'var(--main-bg-color)'
     }
 
     timer = setInterval(function () {
@@ -146,19 +146,19 @@ function endPomo() {
 function updatePomo() {
     // Fill in pomo based on count
     if (count == 1) {
-        firstPomo.style.backgroundColor = 'orange'
+        firstPomo.style.backgroundColor = 'var(--main-light-color)'
     } else if (count == 2) {
-        firstPomo.style.backgroundColor = 'orange'
-        secondPomo.style.backgroundColor = 'orange'
+        firstPomo.style.backgroundColor = 'var(--main-light-color)'
+        secondPomo.style.backgroundColor = 'var(--main-light-color)'
     } else if (count == 3) {
-        firstPomo.style.backgroundColor = 'orange'
-        secondPomo.style.backgroundColor = 'orange'
-        thirdPomo.style.backgroundColor = 'orange'
+        firstPomo.style.backgroundColor = 'var(--main-light-color)'
+        secondPomo.style.backgroundColor = 'var(--main-light-color)'
+        thirdPomo.style.backgroundColor = 'var(--main-light-color)'
     } else if (count == 4) {
-        firstPomo.style.backgroundColor = 'orange'
-        secondPomo.style.backgroundColor = 'orange'
-        thirdPomo.style.backgroundColor = 'orange'
-        fourthPomo.style.backgroundColor = 'orange'
+        firstPomo.style.backgroundColor = 'var(--main-light-color)'
+        secondPomo.style.backgroundColor = 'var(--main-light-color)'
+        thirdPomo.style.backgroundColor = 'var(--main-light-color)'
+        fourthPomo.style.backgroundColor = 'var(--main-light-color)'
         // document.getElementById("break").innerHTML = "Long Break"
     }
 }
@@ -167,7 +167,7 @@ function endTimer() {
     clearInterval(timer)
     checkTimerStart = false
 
-    innerCircle.style.backgroundColor = 'orange'
+    innerCircle.style.backgroundColor = 'var(--main-bg-color)'
     innerCircle.style.cursor = 'pointer'
 
     document.getElementById('title').innerHTML = 'Ready to Work?'
@@ -197,33 +197,30 @@ function confirmSkip() {
 }
 
 function changeLongBreak(id) {
+    let tenElement = document.getElementById('longBreakTen')
+    let fifteenElement = document.getElementById('longBreakFifteen')
+    let twentyElement = document.getElementById('longBreakTwenty')
     if (id == 'longBreakTen') {
         longBreakTime = 0.2
         localStorage.setItem('longBreakTime', longBreakTime)
 
-        document.getElementById('longBreakTen').style.backgroundColor = 'orange'
-        document.getElementById('longBreakFifteen').style.backgroundColor =
-            'white'
-        document.getElementById('longBreakTwenty').style.backgroundColor =
-            'white'
+        tenElement.style.backgroundColor = 'var(--main-light-color)'
+        fifteenElement.style.backgroundColor ='var(--main-bg-color)'
+        twentyElement.style.backgroundColor = 'var(--main-bg-color)'
     } else if (id == 'longBreakFifteen') {
         longBreakTime = 0.3
         localStorage.setItem('longBreakTime', longBreakTime)
 
-        document.getElementById('longBreakFifteen').style.backgroundColor =
-            'orange'
-        document.getElementById('longBreakTen').style.backgroundColor = 'white'
-        document.getElementById('longBreakTwenty').style.backgroundColor =
-            'white'
+        tenElement.style.backgroundColor = 'var(--main-bg-color)'
+        fifteenElement.style.backgroundColor = 'var(--main-light-color)'
+        twentyElement.style.backgroundColor = 'var(--main-bg-color)'
     } else {
         longBreakTime = 0.4
         localStorage.setItem('longBreakTime', longBreakTime)
 
-        document.getElementById('longBreakTwenty').style.backgroundColor =
-            'orange'
-        document.getElementById('longBreakTen').style.backgroundColor = 'white'
-        document.getElementById('longBreakFifteen').style.backgroundColor =
-            'white'
+        tenElement.style.backgroundColor = 'var(--main-bg-color)'
+        fifteenElement.style.backgroundColor = 'var(--main-bg-color)'
+        twenthElement.style.backgroundColor ='var(--main-light-color)'
     }
 }
 
