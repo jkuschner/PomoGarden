@@ -1,4 +1,4 @@
-/*Create custom colors*/
+/* Custom colors, change these to change the theme */
 :root {
     --main-bg-color: white;
     --main-heavy-color: #ffb422;
@@ -70,6 +70,7 @@
     background-color: var(--main-bg-color);
 }
 
+/* Themes selectors have hardcoded colors */
 #blueTheme {
     border: 2px solid #23c6fa; 
     background-color: white;
@@ -99,7 +100,7 @@
 
 #title {
     position: relative;
-    font-family: 'Lucida Console', monospace;
+    font-family: 'Montserrat', sans-serif;
     left: -20%;
     top: -10%;
     text-align: center;
@@ -139,7 +140,7 @@
     text-align: center;
     line-height: 9vw;
     font-size: 3vw;
-    font-family: 'Lucida Console', monospace;
+    font-family: 'Montserrat', sans-serif;
     position: relative;
     top: 6%;
     left: 6%;
@@ -176,14 +177,14 @@
 #clockDisplay {
     margin: auto;
     text-align: center;
-    width: 62%;
+    width: 63%;
 }
 
 #break {
     left: 20%;
     display: none;
     background-color: var(--main-light-color);
-    font-family: 'Lucida Console', monospace;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1vw;
 }
 
@@ -191,6 +192,6 @@
     left: 20%;
     display: none;
     background-color: var(--main-light-color);
-    font-family: 'Lucida Console', monospace;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1vw;
 }
