@@ -48,6 +48,7 @@
     transition: 0.5s;
     white-space: nowrap;
     display: inline-block;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .navText {
