@@ -56,7 +56,9 @@ body {
     top: 5vw;
     right: 0%;
     background-color: var(--main-bg-color);
+    /*
     transition: 0.5s;
+    */
     white-space: nowrap;
     display: inline-block;
     font-family: 'Montserrat', sans-serif;
