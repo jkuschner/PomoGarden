@@ -40,7 +40,6 @@ function startTimerVisual(id) {
     if (!checkTimerStart) {
         innerCircle.style.backgroundColor = 'white'
         innerCircle.style.cursor = 'auto'
-        document.getElementById('sep').innerHTML = ':'
 
         if (id == 'innerCircle') {
             startTimer(workTime * 60, true)
@@ -79,16 +78,8 @@ var pomo = document.getElementsByClassName('pomo')
 
 function startTimer(seconds, increment) {
     let time = seconds
-
-    if (Math.floor(seconds / 60) < 10) {
-        document.getElementById('min').innerHTML =
-            '0' + Math.floor(seconds / 60)
-    } else {
-        document.getElementById('min').innerHTML = Math.floor(seconds / 60)
-    }
-    document.getElementById('sec').innerHTML = checkSecond(
-        Math.round(time % 60)
-    )
+    
+    displayTime(time)
 
     // reset # of pomos if full
     if (count == 4) {
@@ -121,30 +112,23 @@ function startTimer(seconds, increment) {
             }
         } else {
             time -= 1
-
-            if (Math.floor(seconds / 60) < 10) {
-                document.getElementById('min').innerHTML =
-                    '0' + Math.floor(seconds / 60)
-            } else {
-                document.getElementById('min').innerHTML = Math.floor(
-                    seconds / 60
-                )
-            }
-            document.getElementById('sec').innerHTML = checkSecond(
-                Math.round(time % 60)
-            )
+            displayTime(time);
         }
     }, 1000)
 }
 
-function checkSecond(sec) {
-    if (sec < 10 && sec >= 0) {
-        sec = '0' + sec
-    } // add zero in front of numbers < 10
-    if (sec < 0) {
-        sec = '59'
+//Takes in time value, converts into MM:SS format
+//sets time element in html accordingly
+function displayTime(time){
+    let seconds = time % 60
+    let minutes = Math.floor(time / 60)
+    if (minutes < 10){
+        minutes = "0" + minutes;
     }
-    return sec
+    if (seconds < 10){
+        seconds = "0" + seconds;
+    }
+    document.getElementById('time').innerHTML = minutes + ":" + seconds
 }
 
 function endPomo() {
@@ -188,9 +172,7 @@ function endTimer() {
 
     document.getElementById('title').innerHTML = 'Ready to Work?'
 
-    document.getElementById('min').innerHTML = 'Start'
-    document.getElementById('sep').innerHTML = ''
-    document.getElementById('sec').innerHTML = ''
+    document.getElementById('time').innerHTML = 'Start'
 }
 
 function toggleBreak() {
