@@ -4,13 +4,13 @@
 <ellipse cx="139.451" cy="111.572" rx="3" ry="6" transform="rotate(-15 139.451 111.572)" fill="#717171"/>
 <ellipse cx="121.364" cy="122.364" rx="3" ry="6" transform="rotate(-45 121.364 122.364)" fill="#717171"/>
 <ellipse cx="111.364" cy="139.364" rx="3" ry="6" transform="rotate(-75 111.364 139.364)" fill="#717171"/>
-<ellipse cx="110.572" cy="159.452" rx="3" ry="6" transform="rotate(-105 110.572 159.452)" fill="#717171"/>
+<ellipse cx="111.572" cy="160.452" rx="3" ry="6" transform="rotate(-105 111.572 160.452)" fill="#717171"/>
 <ellipse cx="121.364" cy="179.365" rx="3" ry="6" transform="rotate(-135 121.364 179.365)" fill="#717171"/>
 <ellipse cx="139.451" cy="190.573" rx="3" ry="6" transform="rotate(-165 139.451 190.573)" fill="#717171"/>
 <ellipse rx="3" ry="6" transform="matrix(-0.965926 -0.258819 -0.258819 0.965926 160.451 111.572)" fill="#717171"/>
 <ellipse rx="3" ry="6" transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 178.537 122.364)" fill="#717171"/>
 <ellipse rx="3" ry="6" transform="matrix(-0.258819 -0.965926 -0.965926 0.258819 188.537 139.364)" fill="#717171"/>
-<ellipse rx="3" ry="6" transform="matrix(0.258819 -0.965926 -0.965926 -0.258819 189.33 159.452)" fill="#717171"/>
-<ellipse rx="3" ry="6" transform="matrix(0.707107 -0.707107 -0.707107 -0.707107 178.537 179.365)" fill="#717171"/>
+<ellipse rx="3" ry="6" transform="matrix(0.258819 -0.965926 -0.965926 -0.258819 188.572 160.452)" fill="#717171"/>
+<ellipse rx="3" ry="6" transform="matrix(0.707107 -0.707107 -0.707107 -0.707107 179.364 179.365)" fill="#717171"/>
 <ellipse rx="3" ry="6" transform="matrix(0.965926 -0.258819 -0.258819 -0.965926 160.451 190.573)" fill="#717171"/>
 </svg>
