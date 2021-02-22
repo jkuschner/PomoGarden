@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="themeOrange">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Tommy's Exploratory Code</title>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"> 
         <link rel="stylesheet" href="./main.css" />
     </head>
 
@@ -14,9 +16,7 @@
             <div id="outerCircle">
                 <span id="innerCircle" onclick="startTimerVisual(id)">
                     <div id="clockDisplay">
-                        <p class="time" id="min">Start</p>
-                        <p class="time" id="sep"></p>
-                        <p class="time" id="sec"></p>
+                        <p id="time">Start</p>
                     </div>
                 </span>
             </div>
@@ -82,27 +82,32 @@
                 <div
                     class="navRectangle"
                     onclick="changeTheme(id)"
-                    id="blueTheme"
+                    id="themeBlue"
                 ></div>
                 <div
                     class="navRectangle"
                     onclick="changeTheme(id)"
-                    id="greenTheme"
+                    id="themeGreen"
                 ></div>
                 <div
                     class="navRectangle"
                     onclick="changeTheme(id)"
-                    id="orangeTheme"
+                    id="themeOrange"
                 ></div>
                 <div
                     class="navRectangle"
                     onclick="changeTheme(id)"
-                    id="purpleTheme"
+                    id="themePurple"
                 ></div>
                 <div
                     class="navRectangle"
                     onclick="changeTheme(id)"
-                    id="yellowTheme"
+                    id="themeYellow"
+                ></div>
+                <div
+                    class="navRectangle"
+                    onclick="changeTheme(id)"
+                    id="themeGrey"
                 ></div>
             </div>
         </div>
