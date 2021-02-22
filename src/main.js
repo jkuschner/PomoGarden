@@ -180,7 +180,7 @@ function endTimer() {
 
     //another if else to deal with updated central button 
     if(pomoOrBreak == "break"){
-        document.getElementById('title').innerHTML = 'Ready to Start Break?';
+        document.getElementById('title').innerHTML = 'Time For a Break';
         document.getElementById('time').innerHTML = 'Break';
     }
     else{
