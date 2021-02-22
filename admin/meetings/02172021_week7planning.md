@@ -38,4 +38,4 @@ Zach
 
 ## Adjournment
 
-Meeting adjourned at 4:00 PM by all.
+Meeting adjourned at 3:00 PM by all.
