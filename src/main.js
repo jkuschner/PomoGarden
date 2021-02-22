@@ -36,16 +36,21 @@ function showNav() {
 var innerCircle = document.getElementById('innerCircle')
 var checkTimerStart = false
 
+//this is a bit of a garbage solution but I'm creating a variable to check if starting pomo or break since the current check with id won't quite fit
+var pomoOrBreak = "pomo";
+
 function startTimerVisual(id) {
+    console.log(pomoOrBreak);
     if (!checkTimerStart) {
         innerCircle.style.backgroundColor = 'var(--main-bg-color)';
         innerCircle.style.cursor = 'auto'
 
-        if (id == 'innerCircle') {
+        //originally was based on id, changed to this since we want the center button to both start pomos and breaks
+        if(pomoOrBreak == "pomo"){
             startTimer(workTime * 60, true)
-
             document.getElementById('end').innerHTML = 'Skip'
             document.getElementById('title').innerHTML = 'Focus'
+            pomoOrBreak = "break";
         } else {
             if (count == 4) {
                 startTimer(longBreakTime * 60, false)
@@ -55,6 +60,7 @@ function startTimerVisual(id) {
 
             document.getElementById('end').innerHTML = 'Stop'
             document.getElementById('title').innerHTML = 'Relax'
+            pomoOrBreak = "pomo";
         }
 
         document.getElementById('break').style.display = 'none'
@@ -104,7 +110,8 @@ function startTimer(seconds, increment) {
             endTimer()
 
             if (increment) {
-                document.getElementById('break').style.display = 'block'
+                //break can effectively be deleted if the issue I'm working on is correct
+                //document.getElementById('break').style.display = 'block'
                 document.getElementById('end').style.display = 'none'
             } else {
                 document.getElementById('break').style.display = 'none'
@@ -164,15 +171,22 @@ function updatePomo() {
 }
 
 function endTimer() {
+    console.log("timer ending, pomoOrBreak = "+pomoOrBreak);
     clearInterval(timer)
     checkTimerStart = false
 
     innerCircle.style.backgroundColor = 'var(--main-bg-color)'
     innerCircle.style.cursor = 'pointer'
 
-    document.getElementById('title').innerHTML = 'Ready to Work?'
-
-    document.getElementById('time').innerHTML = 'Start'
+    //another if else to deal with updated central button 
+    if(pomoOrBreak == "break"){
+        document.getElementById('title').innerHTML = 'Time For a Break';
+        document.getElementById('time').innerHTML = 'Break';
+    }
+    else{
+        document.getElementById('title').innerHTML = 'Ready to Work?'
+        document.getElementById('time').innerHTML = 'Start'
+    }
 }
 
 function toggleBreak() {
