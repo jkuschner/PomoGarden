@@ -4,8 +4,11 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Pomo Garden</title>
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+            rel="stylesheet"
+        />
         <link rel="stylesheet" href="./main.css" />
     </head>
 
@@ -120,13 +123,19 @@
             <br />
 
             <h2 class="navText">Volume</h2>
-            
+
             <div id="navContainer">
-                <img id="volume-image" src="./images/volume-level-2.svg">
+                <img id="volume-image" src="./images/volume-level-2.svg" />
                 <p id="volume-number">50</p>
-                <input id="volume-slider" type="range" min="0" max="100" value="50" oninput="changeVolume()">
+                <input
+                    id="volume-slider"
+                    type="range"
+                    min="0"
+                    max="100"
+                    value="50"
+                    oninput="changeVolume()"
+                />
             </div>
-            
         </div>
 
         <audio id="alarm" src="./audio/alarm.mp3"></audio>

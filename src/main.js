@@ -11,9 +11,9 @@ window.addEventListener('DOMContentLoaded', () => {
     // Store theme on refresh
     if (localStorage.getItem('theme') == null) {
         localStorage.setItem('theme', 'themeOrange')
-        changeTheme('themeOrange');
+        changeTheme('themeOrange')
     } else {
-        changeTheme(localStorage.getItem('theme'));
+        changeTheme(localStorage.getItem('theme'))
     }
 
     // Store long break time on refresh
@@ -32,7 +32,7 @@ window.addEventListener('DOMContentLoaded', () => {
     // Store volume on refresh
     if (localStorage.getItem('volume') != null) {
         volumeSlider.value = localStorage.getItem('volume')
-        changeVolume();
+        changeVolume()
     }
 })
 
@@ -96,7 +96,7 @@ var thirdPomo = document.getElementById('third-pomo')
 var fourthPomo = document.getElementById('fourth-pomo')
 var pomo = document.getElementsByClassName('pomo')
 
-var alarm = document.getElementById("alarm");
+var alarm = document.getElementById('alarm')
 
 function startTimer(seconds, increment) {
     let time = seconds
@@ -121,7 +121,7 @@ function startTimer(seconds, increment) {
                 localStorage.setItem('count', count)
             }
 
-            alarm.play();
+            alarm.play()
 
             updatePomo()
 
@@ -259,15 +259,17 @@ function changeTheme(id) {
     document.documentElement.className = id
 
     var currentTheme = localStorage.getItem('theme')
-    document.getElementById(currentTheme).style.backgroundColor = 'var(--main-bg-color)'
+    document.getElementById(currentTheme).style.backgroundColor =
+        'var(--main-bg-color)'
 
     localStorage.setItem('theme', id)
-    document.getElementById(id).style.backgroundColor = 'var(--main-light-color)'
+    document.getElementById(id).style.backgroundColor =
+        'var(--main-light-color)'
 }
 
-var volumeSlider = document.getElementById("volume-slider")
-var volumeNumber = document.getElementById("volume-number")
-var volumeImage = document.getElementById("volume-image")
+var volumeSlider = document.getElementById('volume-slider')
+var volumeNumber = document.getElementById('volume-number')
+var volumeImage = document.getElementById('volume-image')
 function changeVolume() {
     localStorage.setItem('volume', volumeSlider.value)
 
@@ -275,12 +277,12 @@ function changeVolume() {
     alarm.volume = volumeSlider.value / 100
 
     if (volumeSlider.value == 0) {
-        volumeImage.src = "./images/volume-level-0.svg";
+        volumeImage.src = './images/volume-level-0.svg'
     } else if (volumeSlider.value >= 1 && volumeSlider.value <= 33) {
-        volumeImage.src = "./images/volume-level-1.svg";
+        volumeImage.src = './images/volume-level-1.svg'
     } else if (volumeSlider.value >= 34 && volumeSlider.value <= 66) {
-        volumeImage.src = "./images/volume-level-2.svg";
+        volumeImage.src = './images/volume-level-2.svg'
     } else {
-        volumeImage.src = "./images/volume-level-3.svg";
+        volumeImage.src = './images/volume-level-3.svg'
     }
 }

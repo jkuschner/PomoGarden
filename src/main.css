@@ -148,7 +148,7 @@ body {
 }
 
 #volume-slider {
-    position:absolute;
+    position: absolute;
     width: 12vw;
     height: 1vw;
     top: 0.15vw;
@@ -156,7 +156,7 @@ body {
 }
 
 #volume-number {
-    position:absolute;
+    position: absolute;
     font-size: 1.1vw;
     top: -1vw;
     left: 5vw;
