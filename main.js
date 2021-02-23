@@ -1,12 +1,20 @@
 window.addEventListener('DOMContentLoaded', () => {
     // Store number of pomos on refresh
-    if (localStorage.getItem('count') == null) {
-        count = 0
-    } else {
-        count = localStorage.getItem('count')
-    }
+    // if (localStorage.getItem('count') == null) {
+    //     count = 0
+    // } else {
+    //     count = localStorage.getItem('count')
+    // }
 
-    updatePomo()
+    //updatePomo()
+
+    // Store theme on refresh
+    if (localStorage.getItem('theme') == null) {
+        localStorage.setItem('theme', 'themeOrange')
+        changeTheme('themeOrange')
+    } else {
+        changeTheme(localStorage.getItem('theme'))
+    }
 
     // Store long break time on refresh
     if (localStorage.getItem('longBreakTime') == null) {
@@ -19,6 +27,12 @@ window.addEventListener('DOMContentLoaded', () => {
         } else {
             changeLongBreak('longBreakTwenty')
         }
+    }
+
+    // Store volume on refresh
+    if (localStorage.getItem('volume') != null) {
+        volumeSlider.value = localStorage.getItem('volume')
+        changeVolume()
     }
 })
 
@@ -36,17 +50,21 @@ function showNav() {
 var innerCircle = document.getElementById('innerCircle')
 var checkTimerStart = false
 
+//this is a bit of a garbage solution but I'm creating a variable to check if starting pomo or break since the current check with id won't quite fit
+var pomoOrBreak = 'pomo'
+
 function startTimerVisual(id) {
+    console.log(pomoOrBreak)
     if (!checkTimerStart) {
-        innerCircle.style.backgroundColor = 'white'
+        innerCircle.style.backgroundColor = 'var(--main-bg-color)'
         innerCircle.style.cursor = 'auto'
-        document.getElementById('sep').innerHTML = ':'
 
-        if (id == 'innerCircle') {
+        //originally was based on id, changed to this since we want the center button to both start pomos and breaks
+        if (pomoOrBreak == 'pomo') {
             startTimer(workTime * 60, true)
-
             document.getElementById('end').innerHTML = 'Skip'
             document.getElementById('title').innerHTML = 'Focus'
+            pomoOrBreak = 'break'
         } else {
             if (count == 4) {
                 startTimer(longBreakTime * 60, false)
@@ -56,6 +74,7 @@ function startTimerVisual(id) {
 
             document.getElementById('end').innerHTML = 'Stop'
             document.getElementById('title').innerHTML = 'Relax'
+            pomoOrBreak = 'pomo'
         }
 
         document.getElementById('break').style.display = 'none'
@@ -66,7 +85,7 @@ function startTimerVisual(id) {
 
 // Pomodoro Timer
 var timer
-var count
+var count = 0
 var workTime = 0.1
 var breakTime = 0.1
 var longBreakTime = 0.3
@@ -77,28 +96,22 @@ var thirdPomo = document.getElementById('third-pomo')
 var fourthPomo = document.getElementById('fourth-pomo')
 var pomo = document.getElementsByClassName('pomo')
 
+var alarm = document.getElementById('alarm')
+
 function startTimer(seconds, increment) {
     let time = seconds
 
-    if (Math.floor(seconds / 60) < 10) {
-        document.getElementById('min').innerHTML =
-            '0' + Math.floor(seconds / 60)
-    } else {
-        document.getElementById('min').innerHTML = Math.floor(seconds / 60)
-    }
-    document.getElementById('sec').innerHTML = checkSecond(
-        Math.round(time % 60)
-    )
+    displayTime(time)
 
     // reset # of pomos if full
     if (count == 4) {
         count = 0
         localStorage.setItem('count', count)
 
-        firstPomo.style.backgroundColor = 'white'
-        secondPomo.style.backgroundColor = 'white'
-        thirdPomo.style.backgroundColor = 'white'
-        fourthPomo.style.backgroundColor = 'white'
+        firstPomo.style.backgroundColor = 'var(--main-bg-color)'
+        secondPomo.style.backgroundColor = 'var(--main-bg-color)'
+        thirdPomo.style.backgroundColor = 'var(--main-bg-color)'
+        fourthPomo.style.backgroundColor = 'var(--main-bg-color)'
     }
 
     timer = setInterval(function () {
@@ -108,12 +121,15 @@ function startTimer(seconds, increment) {
                 localStorage.setItem('count', count)
             }
 
+            alarm.play()
+
             updatePomo()
 
             endTimer()
 
             if (increment) {
-                document.getElementById('break').style.display = 'block'
+                //break can effectively be deleted if the issue I'm working on is correct
+                //document.getElementById('break').style.display = 'block'
                 document.getElementById('end').style.display = 'none'
             } else {
                 document.getElementById('break').style.display = 'none'
@@ -121,30 +137,23 @@ function startTimer(seconds, increment) {
             }
         } else {
             time -= 1
-
-            if (Math.floor(seconds / 60) < 10) {
-                document.getElementById('min').innerHTML =
-                    '0' + Math.floor(seconds / 60)
-            } else {
-                document.getElementById('min').innerHTML = Math.floor(
-                    seconds / 60
-                )
-            }
-            document.getElementById('sec').innerHTML = checkSecond(
-                Math.round(time % 60)
-            )
+            displayTime(time)
         }
     }, 1000)
 }
 
-function checkSecond(sec) {
-    if (sec < 10 && sec >= 0) {
-        sec = '0' + sec
-    } // add zero in front of numbers < 10
-    if (sec < 0) {
-        sec = '59'
+//Takes in time value, converts into MM:SS format
+//sets time element in html accordingly
+function displayTime(time) {
+    let seconds = time % 60
+    let minutes = Math.floor(time / 60)
+    if (minutes < 10) {
+        minutes = '0' + minutes
     }
-    return sec
+    if (seconds < 10) {
+        seconds = '0' + seconds
+    }
+    document.getElementById('time').innerHTML = minutes + ':' + seconds
 }
 
 function endPomo() {
@@ -162,35 +171,39 @@ function endPomo() {
 function updatePomo() {
     // Fill in pomo based on count
     if (count == 1) {
-        firstPomo.style.backgroundColor = 'orange'
+        firstPomo.style.backgroundColor = 'var(--main-light-color)'
     } else if (count == 2) {
-        firstPomo.style.backgroundColor = 'orange'
-        secondPomo.style.backgroundColor = 'orange'
+        firstPomo.style.backgroundColor = 'var(--main-light-color)'
+        secondPomo.style.backgroundColor = 'var(--main-light-color)'
     } else if (count == 3) {
-        firstPomo.style.backgroundColor = 'orange'
-        secondPomo.style.backgroundColor = 'orange'
-        thirdPomo.style.backgroundColor = 'orange'
+        firstPomo.style.backgroundColor = 'var(--main-light-color)'
+        secondPomo.style.backgroundColor = 'var(--main-light-color)'
+        thirdPomo.style.backgroundColor = 'var(--main-light-color)'
     } else if (count == 4) {
-        firstPomo.style.backgroundColor = 'orange'
-        secondPomo.style.backgroundColor = 'orange'
-        thirdPomo.style.backgroundColor = 'orange'
-        fourthPomo.style.backgroundColor = 'orange'
+        firstPomo.style.backgroundColor = 'var(--main-light-color)'
+        secondPomo.style.backgroundColor = 'var(--main-light-color)'
+        thirdPomo.style.backgroundColor = 'var(--main-light-color)'
+        fourthPomo.style.backgroundColor = 'var(--main-light-color)'
         // document.getElementById("break").innerHTML = "Long Break"
     }
 }
 
 function endTimer() {
+    console.log('timer ending, pomoOrBreak = ' + pomoOrBreak)
     clearInterval(timer)
     checkTimerStart = false
 
-    innerCircle.style.backgroundColor = 'orange'
+    innerCircle.style.backgroundColor = 'var(--main-light-color)'
     innerCircle.style.cursor = 'pointer'
 
-    document.getElementById('title').innerHTML = 'Ready to Work?'
-
-    document.getElementById('min').innerHTML = 'Start'
-    document.getElementById('sep').innerHTML = ''
-    document.getElementById('sec').innerHTML = ''
+    //another if else to deal with updated central button
+    if (pomoOrBreak == 'break') {
+        document.getElementById('title').innerHTML = 'Time For a Break'
+        document.getElementById('time').innerHTML = 'Break'
+    } else {
+        document.getElementById('title').innerHTML = 'Ready to Work?'
+        document.getElementById('time').innerHTML = 'Start'
+    }
 }
 
 function toggleBreak() {
@@ -215,34 +228,61 @@ function confirmSkip() {
 }
 
 function changeLongBreak(id) {
+    let tenElement = document.getElementById('longBreakTen')
+    let fifteenElement = document.getElementById('longBreakFifteen')
+    let twentyElement = document.getElementById('longBreakTwenty')
     if (id == 'longBreakTen') {
         longBreakTime = 0.2
         localStorage.setItem('longBreakTime', longBreakTime)
 
-        document.getElementById('longBreakTen').style.backgroundColor = 'orange'
-        document.getElementById('longBreakFifteen').style.backgroundColor =
-            'white'
-        document.getElementById('longBreakTwenty').style.backgroundColor =
-            'white'
+        tenElement.style.backgroundColor = 'var(--main-light-color)'
+        fifteenElement.style.backgroundColor = 'var(--main-bg-color)'
+        twentyElement.style.backgroundColor = 'var(--main-bg-color)'
     } else if (id == 'longBreakFifteen') {
         longBreakTime = 0.3
         localStorage.setItem('longBreakTime', longBreakTime)
 
-        document.getElementById('longBreakFifteen').style.backgroundColor =
-            'orange'
-        document.getElementById('longBreakTen').style.backgroundColor = 'white'
-        document.getElementById('longBreakTwenty').style.backgroundColor =
-            'white'
+        tenElement.style.backgroundColor = 'var(--main-bg-color)'
+        fifteenElement.style.backgroundColor = 'var(--main-light-color)'
+        twentyElement.style.backgroundColor = 'var(--main-bg-color)'
     } else {
         longBreakTime = 0.4
         localStorage.setItem('longBreakTime', longBreakTime)
 
-        document.getElementById('longBreakTwenty').style.backgroundColor =
-            'orange'
-        document.getElementById('longBreakTen').style.backgroundColor = 'white'
-        document.getElementById('longBreakFifteen').style.backgroundColor =
-            'white'
+        tenElement.style.backgroundColor = 'var(--main-bg-color)'
+        fifteenElement.style.backgroundColor = 'var(--main-bg-color)'
+        twentyElement.style.backgroundColor = 'var(--main-light-color)'
     }
 }
 
-function changeTheme(id) {}
+function changeTheme(id) {
+    document.documentElement.className = id
+
+    var currentTheme = localStorage.getItem('theme')
+    document.getElementById(currentTheme).style.backgroundColor =
+        'var(--main-bg-color)'
+
+    localStorage.setItem('theme', id)
+    document.getElementById(id).style.backgroundColor =
+        'var(--main-light-color)'
+}
+
+var volumeSlider = document.getElementById('volume-slider')
+var volumeNumber = document.getElementById('volume-number')
+var volumeImage = document.getElementById('volume-image')
+function changeVolume() {
+    localStorage.setItem('volume', volumeSlider.value)
+
+    volumeNumber.innerHTML = volumeSlider.value
+    alarm.volume = volumeSlider.value / 100
+
+    if (volumeSlider.value == 0) {
+        volumeImage.src = './images/volume-level-0.svg'
+    } else if (volumeSlider.value >= 1 && volumeSlider.value <= 33) {
+        volumeImage.src = './images/volume-level-1.svg'
+    } else if (volumeSlider.value >= 34 && volumeSlider.value <= 66) {
+        volumeImage.src = './images/volume-level-2.svg'
+    } else {
+        volumeImage.src = './images/volume-level-3.svg'
+    }
+}

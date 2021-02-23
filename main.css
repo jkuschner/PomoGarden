@@ -1,3 +1,45 @@
+/* Colors for each theme, change these to change the theme */
+.themeOrange {
+    --main-bg-color: white;
+    --main-heavy-color: #ffb422;
+    --main-light-color: #ffd074;
+}
+
+.themeBlue {
+    --main-bg-color: white;
+    --main-heavy-color: #23c6fa;
+    --main-light-color: #95ecff;
+}
+
+.themeGreen {
+    --main-bg-color: white;
+    --main-heavy-color: #66e466;
+    --main-light-color: #b5ffae;
+}
+
+.themePurple {
+    --main-bg-color: white;
+    --main-heavy-color: #f68de6;
+    --main-light-color: #ffdceb;
+}
+
+.themeYellow {
+    --main-bg-color: white;
+    --main-heavy-color: #fbe843;
+    --main-light-color: #f9fbaa;
+}
+
+.themeGrey {
+    --main-bg-color: #121212;
+    --main-heavy-color: #565656;
+    --main-light-color: #565656;
+    color: #ffffff;
+}
+
+body {
+    background-color: var(--main-bg-color);
+}
+
 /* Navigation Bar*/
 #navButton {
     font-size: 3vw;
@@ -13,10 +55,13 @@
     position: fixed;
     top: 5vw;
     right: 0%;
-    background-color: rgb(218, 210, 198);
+    background-color: var(--main-bg-color);
+    /*
     transition: 0.5s;
+    */
     white-space: nowrap;
     display: inline-block;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .navText {
@@ -30,12 +75,12 @@
     left: 1.5vw;
     height: 3.5vw;
     width: 5vw;
-    border: 2px solid #ff8c00;
+    border: 2px solid var(--main-heavy-color);
     border-radius: 1vw;
     text-align: center;
     line-height: 3.5vw;
     cursor: pointer;
-    background-color: white;
+    background-color: var(--main-bg-color);
     white-space: nowrap;
     display: inline-block;
     font-size: 1vw;
@@ -52,42 +97,76 @@
 }
 
 #longBreakTen {
-    background-color: white;
+    background-color: var(--main-bg-color);
 }
 
 #longBreakFifteen {
-    background-color: orange;
+    background-color: var(--main-light-color);
 }
 
 #longBreakTwenty {
-    background-color: white;
+    background-color: var(--main-bg-color);
 }
 
-#blueTheme {
-    background-color: white;
+/* Themes selectors have hardcoded colors */
+#themeBlue {
+    border: 2px solid #23c6fa;
+    background-color: var(--main-bg-color);
 }
 
-#greenTheme {
-    background-color: white;
+#themeGreen {
+    border: 2px solid #66e466;
+    background-color: var(--main-bg-color);
 }
 
-#orangeTheme {
-    background-color: orange;
+#themeOrange {
+    border: 2px solid #ffb422;
+    background-color: var(--main-bg-color);
 }
 
-#purpleTheme {
-    background-color: white;
+#themePurple {
+    border: 2px solid #f68de6;
+    background-color: var(--main-bg-color);
 }
 
-#yellowTheme {
-    background-color: white;
+#themeYellow {
+    border: 2px solid #fbe842;
+    background-color: var(--main-bg-color);
+}
+
+#themeGrey {
+    border: 2px solid #565656;
+    background-color: var(--main-bg-color);
+}
+
+#volume-image {
+    position: absolute;
+    top: -0.2vw;
+    left: 2.5vw;
+    height: 2vw;
+    width: 2vw;
+}
+
+#volume-slider {
+    position: absolute;
+    width: 12vw;
+    height: 1vw;
+    top: 0.15vw;
+    left: 7vw;
+}
+
+#volume-number {
+    position: absolute;
+    font-size: 1.1vw;
+    top: -1vw;
+    left: 5vw;
 }
 
 /* Pomodoro Timer*/
 
 #title {
     position: relative;
-    font-family: 'Lucida Console', monospace;
+    font-family: 'Montserrat', sans-serif;
     left: -20%;
     top: -10%;
     text-align: center;
@@ -106,9 +185,9 @@
 #outerCircle {
     height: 17vw;
     width: 17vw;
-    background-color: white;
+    background-color: var(--main-bg-color);
     border-radius: 10vw;
-    border: 1.3vw solid orange;
+    border: 1.3vw solid var(--main-heavy-color);
     display: inline-block;
     visibility: visible;
     position: relative;
@@ -120,14 +199,14 @@
     cursor: pointer;
     height: 15vw;
     width: 15vw;
-    background-color: orange;
+    background-color: var(--main-light-color);
     border-radius: 10vw;
     display: inline-block;
     visibility: visible;
     text-align: center;
     line-height: 9vw;
     font-size: 3vw;
-    font-family: 'Lucida Console', monospace;
+    font-family: 'Montserrat', sans-serif;
     position: relative;
     top: 6%;
     left: 6%;
@@ -145,9 +224,9 @@
 .pomo {
     height: 1vw;
     width: 1vw;
-    background-color: white;
+    background-color: var(--main-bg-color);
     border-radius: 50%;
-    border: 2px solid #ff8c00;
+    border: 2px solid var(--main-heavy-color);
     display: inline-block;
     visibility: visible;
 }
@@ -164,21 +243,21 @@
 #clockDisplay {
     margin: auto;
     text-align: center;
-    width: 62%;
+    width: 63%;
 }
 
 #break {
     left: 20%;
     display: none;
-    background-color: orange;
-    font-family: 'Lucida Console', monospace;
+    background-color: var(--main-light-color);
+    font-family: 'Montserrat', sans-serif;
     font-size: 1vw;
 }
 
 #end {
     left: 20%;
     display: none;
-    background-color: orange;
-    font-family: 'Lucida Console', monospace;
+    background-color: var(--main-light-color);
+    font-family: 'Montserrat', sans-serif;
     font-size: 1vw;
 }
