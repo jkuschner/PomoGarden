@@ -1,12 +1,20 @@
 window.addEventListener('DOMContentLoaded', () => {
     // Store number of pomos on refresh
-    if (localStorage.getItem('count') == null) {
-        count = 0
-    } else {
-        count = localStorage.getItem('count')
-    }
+    // if (localStorage.getItem('count') == null) {
+    //     count = 0
+    // } else {
+    //     count = localStorage.getItem('count')
+    // }
 
-    updatePomo()
+    //updatePomo()
+
+    // Store theme on refresh
+    if (localStorage.getItem('theme') == null) {
+        localStorage.setItem('theme', 'themeOrange')
+        changeTheme('themeOrange')
+    } else {
+        changeTheme(localStorage.getItem('theme'))
+    }
 
     // Store long break time on refresh
     if (localStorage.getItem('longBreakTime') == null) {
@@ -19,6 +27,12 @@ window.addEventListener('DOMContentLoaded', () => {
         } else {
             changeLongBreak('longBreakTwenty')
         }
+    }
+
+    // Store volume on refresh
+    if (localStorage.getItem('volume') != null) {
+        volumeSlider.value = localStorage.getItem('volume')
+        changeVolume()
     }
 })
 
@@ -37,20 +51,20 @@ var innerCircle = document.getElementById('innerCircle')
 var checkTimerStart = false
 
 //this is a bit of a garbage solution but I'm creating a variable to check if starting pomo or break since the current check with id won't quite fit
-var pomoOrBreak = "pomo";
+var pomoOrBreak = 'pomo'
 
 function startTimerVisual(id) {
-    console.log(pomoOrBreak);
+    console.log(pomoOrBreak)
     if (!checkTimerStart) {
-        innerCircle.style.backgroundColor = 'var(--main-bg-color)';
+        innerCircle.style.backgroundColor = 'var(--main-bg-color)'
         innerCircle.style.cursor = 'auto'
 
         //originally was based on id, changed to this since we want the center button to both start pomos and breaks
-        if(pomoOrBreak == "pomo"){
+        if (pomoOrBreak == 'pomo') {
             startTimer(workTime * 60, true)
             document.getElementById('end').innerHTML = 'Skip'
             document.getElementById('title').innerHTML = 'Focus'
-            pomoOrBreak = "break";
+            pomoOrBreak = 'break'
         } else {
             if (count == 4) {
                 startTimer(longBreakTime * 60, false)
@@ -60,7 +74,7 @@ function startTimerVisual(id) {
 
             document.getElementById('end').innerHTML = 'Stop'
             document.getElementById('title').innerHTML = 'Relax'
-            pomoOrBreak = "pomo";
+            pomoOrBreak = 'pomo'
         }
 
         document.getElementById('break').style.display = 'none'
@@ -71,7 +85,7 @@ function startTimerVisual(id) {
 
 // Pomodoro Timer
 var timer
-var count
+var count = 0
 var workTime = 0.1
 var breakTime = 0.1
 var longBreakTime = 0.3
@@ -82,9 +96,11 @@ var thirdPomo = document.getElementById('third-pomo')
 var fourthPomo = document.getElementById('fourth-pomo')
 var pomo = document.getElementsByClassName('pomo')
 
+var alarm = document.getElementById('alarm')
+
 function startTimer(seconds, increment) {
     let time = seconds
-    
+
     displayTime(time)
 
     // reset # of pomos if full
@@ -105,6 +121,8 @@ function startTimer(seconds, increment) {
                 localStorage.setItem('count', count)
             }
 
+            alarm.play()
+
             updatePomo()
 
             endTimer()
@@ -119,23 +137,23 @@ function startTimer(seconds, increment) {
             }
         } else {
             time -= 1
-            displayTime(time);
+            displayTime(time)
         }
     }, 1000)
 }
 
 //Takes in time value, converts into MM:SS format
 //sets time element in html accordingly
-function displayTime(time){
+function displayTime(time) {
     let seconds = time % 60
     let minutes = Math.floor(time / 60)
-    if (minutes < 10){
-        minutes = "0" + minutes;
+    if (minutes < 10) {
+        minutes = '0' + minutes
     }
-    if (seconds < 10){
-        seconds = "0" + seconds;
+    if (seconds < 10) {
+        seconds = '0' + seconds
     }
-    document.getElementById('time').innerHTML = minutes + ":" + seconds
+    document.getElementById('time').innerHTML = minutes + ':' + seconds
 }
 
 function endPomo() {
@@ -171,19 +189,18 @@ function updatePomo() {
 }
 
 function endTimer() {
-    console.log("timer ending, pomoOrBreak = "+pomoOrBreak);
+    console.log('timer ending, pomoOrBreak = ' + pomoOrBreak)
     clearInterval(timer)
     checkTimerStart = false
 
-    innerCircle.style.backgroundColor = 'var(--main-bg-color)'
+    innerCircle.style.backgroundColor = 'var(--main-light-color)'
     innerCircle.style.cursor = 'pointer'
 
-    //another if else to deal with updated central button 
-    if(pomoOrBreak == "break"){
-        document.getElementById('title').innerHTML = 'Time For a Break';
-        document.getElementById('time').innerHTML = 'Break';
-    }
-    else{
+    //another if else to deal with updated central button
+    if (pomoOrBreak == 'break') {
+        document.getElementById('title').innerHTML = 'Time For a Break'
+        document.getElementById('time').innerHTML = 'Break'
+    } else {
         document.getElementById('title').innerHTML = 'Ready to Work?'
         document.getElementById('time').innerHTML = 'Start'
     }
@@ -219,7 +236,7 @@ function changeLongBreak(id) {
         localStorage.setItem('longBreakTime', longBreakTime)
 
         tenElement.style.backgroundColor = 'var(--main-light-color)'
-        fifteenElement.style.backgroundColor ='var(--main-bg-color)'
+        fifteenElement.style.backgroundColor = 'var(--main-bg-color)'
         twentyElement.style.backgroundColor = 'var(--main-bg-color)'
     } else if (id == 'longBreakFifteen') {
         longBreakTime = 0.3
@@ -234,11 +251,38 @@ function changeLongBreak(id) {
 
         tenElement.style.backgroundColor = 'var(--main-bg-color)'
         fifteenElement.style.backgroundColor = 'var(--main-bg-color)'
-        twentyElement.style.backgroundColor ='var(--main-light-color)'
+        twentyElement.style.backgroundColor = 'var(--main-light-color)'
     }
 }
 
 function changeTheme(id) {
     document.documentElement.className = id
-    document.getElementById(id).backgroundColor = 'var(--main-bg-color)'
+
+    var currentTheme = localStorage.getItem('theme')
+    document.getElementById(currentTheme).style.backgroundColor =
+        'var(--main-bg-color)'
+
+    localStorage.setItem('theme', id)
+    document.getElementById(id).style.backgroundColor =
+        'var(--main-light-color)'
+}
+
+var volumeSlider = document.getElementById('volume-slider')
+var volumeNumber = document.getElementById('volume-number')
+var volumeImage = document.getElementById('volume-image')
+function changeVolume() {
+    localStorage.setItem('volume', volumeSlider.value)
+
+    volumeNumber.innerHTML = volumeSlider.value
+    alarm.volume = volumeSlider.value / 100
+
+    if (volumeSlider.value == 0) {
+        volumeImage.src = './images/volume-level-0.svg'
+    } else if (volumeSlider.value >= 1 && volumeSlider.value <= 33) {
+        volumeImage.src = './images/volume-level-1.svg'
+    } else if (volumeSlider.value >= 34 && volumeSlider.value <= 66) {
+        volumeImage.src = './images/volume-level-2.svg'
+    } else {
+        volumeImage.src = './images/volume-level-3.svg'
+    }
 }

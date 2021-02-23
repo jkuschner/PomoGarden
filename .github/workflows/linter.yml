@@ -1,0 +1,20 @@
+name: Run Linting and Code Style
+on: pull_request
+jobs:
+  build:
+    name: Linting and Code Style
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install modules
+      run: npm install
+    - name: ESLint
+      run: npm run lint
+    - name: prettier
+      run: npm run prettier
+    - name: Commit formatted code
+      uses: EndBug/add-and-commit@v7.0.0
+      with:
+        message: "Autoformatted Javascript code with Prettier"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
