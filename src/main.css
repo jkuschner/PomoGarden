@@ -139,6 +139,29 @@ body {
     background-color: var(--main-bg-color);
 }
 
+#volume-image {
+    position: absolute;
+    top: -0.2vw;
+    left: 2.5vw;
+    height: 2vw;
+    width: 2vw;
+}
+
+#volume-slider {
+    position:absolute;
+    width: 12vw;
+    height: 1vw;
+    top: 0.15vw;
+    left: 7vw;
+}
+
+#volume-number {
+    position:absolute;
+    font-size: 1.1vw;
+    top: -1vw;
+    left: 5vw;
+}
+
 /* Pomodoro Timer*/
 
 #title {
