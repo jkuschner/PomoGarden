@@ -110,7 +110,7 @@ body {
 
 /* Themes selectors have hardcoded colors */
 #themeBlue {
-    border: 2px solid #23c6fa; 
+    border: 2px solid #23c6fa;
     background-color: var(--main-bg-color);
 }
 
