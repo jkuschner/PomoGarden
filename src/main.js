@@ -193,7 +193,7 @@ function endTimer() {
     clearInterval(timer)
     checkTimerStart = false
 
-    innerCircle.style.backgroundColor = 'var(--main-bg-color)'
+    innerCircle.style.backgroundColor = 'var(--main-light-color)'
     innerCircle.style.cursor = 'pointer'
 
     //another if else to deal with updated central button 
