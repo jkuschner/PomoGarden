@@ -1,20 +1,12 @@
 window.addEventListener('DOMContentLoaded', () => {
     // Store number of pomos on refresh
-    // if (localStorage.getItem('count') == null) {
-    //     count = 0
-    // } else {
-    //     count = localStorage.getItem('count')
-    // }
-
-    //updatePomo()
-
-    // Store theme on refresh
-    if (localStorage.getItem('theme') == null) {
-        localStorage.setItem('theme', 'themeOrange')
-        changeTheme('themeOrange')
+    if (localStorage.getItem('count') == null) {
+        count = 0
     } else {
-        changeTheme(localStorage.getItem('theme'))
+        count = localStorage.getItem('count')
     }
+
+    updatePomo()
 
     // Store long break time on refresh
     if (localStorage.getItem('longBreakTime') == null) {
@@ -27,12 +19,6 @@ window.addEventListener('DOMContentLoaded', () => {
         } else {
             changeLongBreak('longBreakTwenty')
         }
-    }
-
-    // Store volume on refresh
-    if (localStorage.getItem('volume') != null) {
-        volumeSlider.value = localStorage.getItem('volume')
-        changeVolume()
     }
 })
 
@@ -85,7 +71,7 @@ function startTimerVisual(id) {
 
 // Pomodoro Timer
 var timer
-var count = 0
+var count
 var workTime = 0.1
 var breakTime = 0.1
 var longBreakTime = 0.3
@@ -95,8 +81,6 @@ var secondPomo = document.getElementById('second-pomo')
 var thirdPomo = document.getElementById('third-pomo')
 var fourthPomo = document.getElementById('fourth-pomo')
 var pomo = document.getElementsByClassName('pomo')
-
-var alarm = document.getElementById('alarm')
 
 function startTimer(seconds, increment) {
     let time = seconds
@@ -120,8 +104,6 @@ function startTimer(seconds, increment) {
                 count++
                 localStorage.setItem('count', count)
             }
-
-            alarm.play()
 
             updatePomo()
 
@@ -193,7 +175,7 @@ function endTimer() {
     clearInterval(timer)
     checkTimerStart = false
 
-    innerCircle.style.backgroundColor = 'var(--main-light-color)'
+    innerCircle.style.backgroundColor = 'var(--main-bg-color)'
     innerCircle.style.cursor = 'pointer'
 
     //another if else to deal with updated central button
@@ -257,32 +239,5 @@ function changeLongBreak(id) {
 
 function changeTheme(id) {
     document.documentElement.className = id
-
-    var currentTheme = localStorage.getItem('theme')
-    document.getElementById(currentTheme).style.backgroundColor =
-        'var(--main-bg-color)'
-
-    localStorage.setItem('theme', id)
-    document.getElementById(id).style.backgroundColor =
-        'var(--main-light-color)'
-}
-
-var volumeSlider = document.getElementById('volume-slider')
-var volumeNumber = document.getElementById('volume-number')
-var volumeImage = document.getElementById('volume-image')
-function changeVolume() {
-    localStorage.setItem('volume', volumeSlider.value)
-
-    volumeNumber.innerHTML = volumeSlider.value
-    alarm.volume = volumeSlider.value / 100
-
-    if (volumeSlider.value == 0) {
-        volumeImage.src = './images/volume-level-0.svg'
-    } else if (volumeSlider.value >= 1 && volumeSlider.value <= 33) {
-        volumeImage.src = './images/volume-level-1.svg'
-    } else if (volumeSlider.value >= 34 && volumeSlider.value <= 66) {
-        volumeImage.src = './images/volume-level-2.svg'
-    } else {
-        volumeImage.src = './images/volume-level-3.svg'
-    }
+    document.getElementById(id).backgroundColor = 'var(--main-bg-color)'
 }
