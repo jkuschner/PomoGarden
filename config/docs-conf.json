@@ -9,7 +9,7 @@
     ]
   },
   "opts": {
-    "destination": "./docs/",
+    "destination": "./build/docs/",
     "recurse": true
   }
 }
