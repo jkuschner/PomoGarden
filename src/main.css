@@ -47,7 +47,6 @@ body {
     background-color: var(--main-bg-color);
 }
 
-
 /* Navigation Bar*/
 
 #navButton {
@@ -118,7 +117,6 @@ body {
     background-color: var(--main-bg-color);
 }
 
-
 /* Themes selectors have hardcoded colors */
 
 #themeBlue {
@@ -173,7 +171,6 @@ body {
     top: -1vw;
     left: 5vw;
 }
-
 
 /* Pomodoro Timer*/
 

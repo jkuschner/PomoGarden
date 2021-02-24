@@ -104,9 +104,9 @@ var alarm = document.getElementById('alarm')
 function startTimer(seconds, increment) {
     let time = seconds
 
-    timeDisplay.style.visibility = 'visible';
-    fruitIcon.style.visibility = 'visible';
-    timerStart.style.visibility = 'hidden';
+    timeDisplay.style.visibility = 'visible'
+    fruitIcon.style.visibility = 'visible'
+    timerStart.style.visibility = 'hidden'
     displayTime(time)
 
     // reset # of pomos if full
@@ -211,8 +211,8 @@ function endTimer() {
         timerStart.innerHTML = 'Start'
     }
     timeDisplay.style.visibility = 'hidden'
-    fruitIcon.style.visibility = 'hidden';
-    timerStart.style.visibility = 'visible';
+    fruitIcon.style.visibility = 'hidden'
+    timerStart.style.visibility = 'visible'
 }
 
 function toggleBreak() {
