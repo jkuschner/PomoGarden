@@ -5,6 +5,7 @@
       "."
     ],
     "exclude": [
+      "build",
       "node_modules"
     ]
   },
