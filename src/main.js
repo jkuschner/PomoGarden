@@ -95,12 +95,18 @@ var secondPomo = document.getElementById('second-pomo')
 var thirdPomo = document.getElementById('third-pomo')
 var fourthPomo = document.getElementById('fourth-pomo')
 var pomo = document.getElementsByClassName('pomo')
+var timeDisplay = document.getElementById('time')
+var fruitIcon = document.getElementById('fruitIcon')
+var timerStart = document.getElementById('timerStart')
 
 var alarm = document.getElementById('alarm')
 
 function startTimer(seconds, increment) {
     let time = seconds
 
+    timeDisplay.style.visibility = 'visible';
+    fruitIcon.style.visibility = 'visible';
+    timerStart.style.visibility = 'hidden';
     displayTime(time)
 
     // reset # of pomos if full
@@ -199,11 +205,14 @@ function endTimer() {
     //another if else to deal with updated central button
     if (pomoOrBreak == 'break') {
         document.getElementById('title').innerHTML = 'Time For a Break'
-        document.getElementById('time').innerHTML = 'Break'
+        timerStart.innerHTML = 'Break'
     } else {
         document.getElementById('title').innerHTML = 'Ready to Work?'
-        document.getElementById('time').innerHTML = 'Start'
+        timerStart.innerHTML = 'Start'
     }
+    timeDisplay.style.visibility = 'hidden'
+    fruitIcon.style.visibility = 'hidden';
+    timerStart.style.visibility = 'visible';
 }
 
 function toggleBreak() {

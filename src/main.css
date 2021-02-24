@@ -47,6 +47,7 @@ body {
     background-color: var(--main-bg-color);
 }
 
+
 /* Navigation Bar*/
 
 #navButton {
@@ -117,6 +118,7 @@ body {
     background-color: var(--main-bg-color);
 }
 
+
 /* Themes selectors have hardcoded colors */
 
 #themeBlue {
@@ -172,13 +174,12 @@ body {
     left: 5vw;
 }
 
+
 /* Pomodoro Timer*/
 
 #title {
     position: relative;
     font-family: 'Montserrat', sans-serif;
-    /* left: -20%;
-    top: -10%; */
     text-align: center;
     width: 100%;
     font-size: 3vw;
@@ -281,12 +282,25 @@ body {
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     width: 100%;
+    visibility: hidden;
 }
 
 #time {
     position: relative;
     text-align: center;
     font-size: 2vw;
+    font-family: 'Montserrat', sans-serif;
     width: 100%;
     margin-bottom: 0.5vw;
+    visibility: hidden;
+}
+
+#timerStart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2vw;
+    font-family: 'Montserrat', sans-serif;
+    visibility: visible;
 }
