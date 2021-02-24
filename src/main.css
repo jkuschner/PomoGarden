@@ -4,30 +4,35 @@
     --main-bg-color: white;
     --main-heavy-color: #ffb422;
     --main-light-color: #ffd074;
+    --fruit-url: url('images/Orange.svg');
 }
 
 .themeBlue {
     --main-bg-color: white;
     --main-heavy-color: #23c6fa;
     --main-light-color: #95ecff;
+    --fruit-url: url('images/Onion.svg');
 }
 
 .themeGreen {
     --main-bg-color: white;
     --main-heavy-color: #66e466;
     --main-light-color: #b5ffae;
+    --fruit-url: url('images/Tomato.svg');
 }
 
 .themePurple {
     --main-bg-color: white;
     --main-heavy-color: #f68de6;
     --main-light-color: #ffdceb;
+    --fruit-url: url('images/Grape.svg');
 }
 
 .themeYellow {
     --main-bg-color: white;
     --main-heavy-color: #fbe843;
     --main-light-color: #f9fbaa;
+    --fruit-url: url('images/Lemon.svg');
 }
 
 .themeGrey {
@@ -35,12 +40,12 @@
     --main-heavy-color: #565656;
     --main-light-color: #565656;
     color: #ffffff;
+    --fruit-url: url('images/Coconut.svg');
 }
 
 body {
     background-color: var(--main-bg-color);
 }
-
 
 /* Navigation Bar*/
 
@@ -112,7 +117,6 @@ body {
     background-color: var(--main-bg-color);
 }
 
-
 /* Themes selectors have hardcoded colors */
 
 #themeBlue {
@@ -167,7 +171,6 @@ body {
     top: -1vw;
     left: 5vw;
 }
-
 
 /* Pomodoro Timer*/
 
@@ -270,6 +273,7 @@ body {
 }
 
 #fruitIcon {
+    content: var(--fruit-url);
     margin: 0;
     position: absolute;
     top: 50%;
