@@ -5,8 +5,8 @@
     "main": "index.js",
     "scripts": {
         "test": "jest",
-        "lint": "eslint -c config/eslint-conf.json . --ext .js",
-        "prettier": "prettier --write src test",
+        "lint": "eslint . --ext .js",
+        "prettier": "prettier --write src/ test/ *.json",
         "gen-docs": "jsdoc -c config/docs-conf.json",
         "clean": "rimraf build/",
         "build": "npm run clean && copyfiles -u 1 \"src/**/*\" build/ && npm run gen-docs",
@@ -30,10 +30,15 @@
         "jsdoc": "^3.6.6",
         "rimraf": "^3.0.2"
     },
+    "dependencies": {
+        "prettier": "^2.2.1",
+        "prettier-eslint": "^12.0.0",
+        "prettier-eslint-cli": "^5.0.0"
+    },
     "jest": {
         "moduleDirectories": [
-            "node_modules",
-            "src"
+            "node_modules/",
+            "src/"
         ]
     },
     "prettier": {
@@ -41,9 +46,24 @@
         "semi": false,
         "singleQuote": true
     },
-    "dependencies": {
-        "prettier": "^2.2.1",
-        "prettier-eslint": "^12.0.0",
-        "prettier-eslint-cli": "^5.0.0"
+    "eslintConfig": {
+        "env": {
+            "browser": true,
+            "commonjs": true,
+            "es2021": true,
+            "node": true,
+            "jest": true
+        },
+        "extends": "eslint:recommended",
+        "parserOptions": {
+            "ecmaVersion": 12
+        },
+        "rules": {
+            "no-unused-vars": "off"
+        },
+        "ignorePatterns": [
+            "build/",
+            "node_modules/"
+        ]
     }
 }
