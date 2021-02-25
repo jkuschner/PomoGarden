@@ -80,7 +80,7 @@ body {
 
 .navRectangle {
     position: relative;
-    /* left: 1.5vw; */
+    left: 1.5vw;
     height: 3.5vw;
     width: 5vw;
     border: 2px solid var(--main-heavy-color);
