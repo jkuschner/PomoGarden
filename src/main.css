@@ -163,6 +163,19 @@ body {
     height: 1vw;
     top: 0.15vw;
     left: 7vw;
+
+    background: linear-gradient(to right, var(--main-heavy-color) 0%, var(--main-heavy-color) 50%, #fff 50%, #fff 100%);
+    border: solid 1px var(--main-heavy-color);
+    border-radius: 8px;
+    -webkit-appearance: none;
+}
+
+input[type='range']::-webkit-slider-thumb {
+    width: 1vw;
+    -webkit-appearance: none;
+    height: 1vw;
+    background: black;
+    border-radius: 1vw;
 }
 
 #volume-number {
@@ -180,10 +193,11 @@ body {
     text-align: center;
     width: 100%;
     font-size: 3vw;
+    top: 1vw;
 }
 
 #entirePomoTimer {
-    top: 20%;
+    top: 50%;
     margin: auto;
     width: 100%;
 }
@@ -199,7 +213,6 @@ body {
     position: relative;
     margin: auto;
     /* left: 6%; */
-    top: -10%;
 }
 
 #innerCircle {
@@ -239,7 +252,8 @@ body {
 #timerButtons {
     position: relative;
     margin: auto;
-    top: 4vw;
+    top: 4.5vw;
+    left: -1.5vw;
 }
 
 .time {
