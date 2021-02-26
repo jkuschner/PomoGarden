@@ -5,11 +5,12 @@
       "."
     ],
     "exclude": [
+      "build",
       "node_modules"
     ]
   },
   "opts": {
-    "destination": "./docs/",
+    "destination": "./build/docs/",
     "recurse": true
   }
 }
