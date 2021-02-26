@@ -14,4 +14,3 @@ All except Leeor
     * Researching testing
 * Coordinators
     * Working on project pitch
-    

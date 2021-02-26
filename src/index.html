@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" class="themeOrange">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Pomo Garden</title>
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="./main.css" />
+    </head>
+
+    <body>
+        <div id="entirePomoTimer">
+            <h1 id="title">Ready to Work?</h1>
+
+            <p id="time">00:00</p>
+
+            <div id="outerCircle">
+                <span id="innerCircle" onclick="startTimerVisual(id)">
+                    <img id="fruitIcon" alt="Fruit" />
+                    <div id="timerStart">Start</div>
+                </span>
+            </div>
+
+            <div id="allPomos">
+                <span class="pomo" id="first-pomo"></span>
+                <span class="pomo" id="second-pomo"></span>
+                <span class="pomo" id="third-pomo"></span>
+                <span class="pomo" id="fourth-pomo"></span>
+            </div>
+
+            <div id="timerButtons">
+                <button id="end" class="navRectangle" onclick="endPomo()">
+                    Stop
+                </button>
+                <button
+                    id="break"
+                    class="navRectangle"
+                    onclick="startTimerVisual(id)"
+                >
+                    Break
+                </button>
+            </div>
+        </div>
+
+        <span id="navButton" onclick="showNav()">&#9776;</span>
+
+        <div id="navBar">
+            <h2 class="navText">Long Break Time</h2>
+
+            <div id="navContainer">
+                <div
+                    class="navRectangle"
+                    id="longBreakTen"
+                    onclick="changeLongBreak(id)"
+                >
+                    10
+                </div>
+                <div
+                    class="navRectangle"
+                    id="longBreakFifteen"
+                    onclick="changeLongBreak(id)"
+                >
+                    15
+                </div>
+                <div
+                    class="navRectangle"
+                    id="longBreakTwenty"
+                    onclick="changeLongBreak(id)"
+                >
+                    20
+                </div>
+            </div>
+
+            <br />
+            <br />
+            <br />
+            <br />
+
+            <h2 class="navText">Theme Color</h2>
+
+            <div id="navContainer">
+                <div
+                    class="navRectangle"
+                    onclick="changeTheme(id)"
+                    id="themeBlue"
+                ></div>
+                <div
+                    class="navRectangle"
+                    onclick="changeTheme(id)"
+                    id="themeGreen"
+                ></div>
+                <div
+                    class="navRectangle"
+                    onclick="changeTheme(id)"
+                    id="themeOrange"
+                ></div>
+                <div
+                    class="navRectangle"
+                    onclick="changeTheme(id)"
+                    id="themePurple"
+                ></div>
+                <div
+                    class="navRectangle"
+                    onclick="changeTheme(id)"
+                    id="themeYellow"
+                ></div>
+                <div
+                    class="navRectangle"
+                    onclick="changeTheme(id)"
+                    id="themeGrey"
+                ></div>
+            </div>
+
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+
+            <h2 class="navText">Volume</h2>
+
+            <div id="navContainer">
+                <img id="volume-image" src="./images/volume-level-2.svg" />
+                <p id="volume-number">50</p>
+                <input
+                    id="volume-slider"
+                    type="range"
+                    min="0"
+                    max="100"
+                    value="50"
+                    oninput="changeVolume()"
+                />
+            </div>
+        </div>
+
+        <audio id="alarm" src="./audio/alarm.mp3"></audio>
+
+        <script src="./main.js"></script>
+    </body>
+</html>
