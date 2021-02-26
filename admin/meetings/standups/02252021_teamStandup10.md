@@ -9,8 +9,14 @@
     * Working on animations
 * Jared
     * Work
+* Jacinth
+    * Testing arithmetic operations in JS files
+* Tommy
+    * Volume slider color and minor bug fix
 * Leeor
     * Plans to work on ADRs
+* Patrick
+    * ADRs
 * Josh
     * Met with Zach to discuss plans for our Sprint review meeting and retro
     * Summarized sprint retro poll into a single doc
