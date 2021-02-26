@@ -295,7 +295,14 @@ function changeVolume() {
         volumeImage.src = './images/volume-level-3.svg'
     }
 
-    var value = ((volumeSlider.value - volumeSlider.min) / (volumeSlider.max - volumeSlider.min)) * 100
-    volumeSlider.style.background = 'linear-gradient(to right, var(--main-light-color) 0%, var(--main-light-color) ' + value + '%, #fff ' + value + '%, white 100%)'
+    var value =
+        ((volumeSlider.value - volumeSlider.min) /
+            (volumeSlider.max - volumeSlider.min)) *
+        100
+    volumeSlider.style.background =
+        'linear-gradient(to right, var(--main-light-color) 0%, var(--main-light-color) ' +
+        value +
+        '%, #fff ' +
+        value +
+        '%, white 100%)'
 }
-
