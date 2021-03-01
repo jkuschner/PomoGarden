@@ -11,7 +11,7 @@ The following are tests to check the current and future builds for the main butt
 -   [ ] The 'Skip' prompts a warning
     -   [ ] If approved - goes to break
     -   [ ] If denied - continues the countdown from where it stopped
--   If *not* interruption, after the countdown has finished:
+-   If _not_ interruption, after the countdown has finished:
     -   [ ] Break button appears
     -   [ ] Title changes to indicate it's break time
     -   [ ] A single pomo is added (below the main button)
