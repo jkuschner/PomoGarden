@@ -61,7 +61,7 @@ function startTimerVisual(id) {
 
         //originally was based on id, changed to this since we want the center button to both start pomos and breaks
         if (pomoOrBreak == 'pomo') {
-            startTimer(workTime * 60, true)
+            startTimer(workTime * 60-1, true)
             document.getElementById('end').innerHTML = 'Skip'
             document.getElementById('title').innerHTML = 'Focus'
 
@@ -307,7 +307,7 @@ var loader = document.getElementById('loader')
   , border = document.getElementById('border')
   , α = 0
   , π = Math.PI
-  , t = workTime * 60 * 3;
+  , t = workTime * 60 * 1000/360;
 /*haven't gotten around to modifying code to correctly start/stop with timer*/
 function draw() {
   
