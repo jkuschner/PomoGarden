@@ -6,14 +6,12 @@ The following are tests to check the current and future builds for the main butt
 
 ## Checklist
 
-### Functionality
-
 -   [ ] Clicking the 'Start' button starts the countdown of the focus session
 -   [ ] The title changes after clicking 'Start' to indicate the focus session
 -   [ ] The 'Skip' prompts a warning
     -   [ ] If approved - goes to break
-    -   [ ] If denied - continues the countdown where it stopped
--   If not interruption, after the countdown has finished:
+    -   [ ] If denied - continues the countdown from where it stopped
+-   If *not* interruption, after the countdown has finished:
     -   [ ] Break button appears
     -   [ ] Title changes to indicate it's break time
     -   [ ] A single pomo is added (below the main button)
@@ -30,10 +28,3 @@ The following are tests to check the current and future builds for the main butt
     -   [ ] End focus session
     -   [ ] Start relax session
     -   [ ] End relax session
-
-### Appearance
-
--   [ ] 'Start' / 'Break' text is centered within the circle
--   [ ] 'Start' / 'Break' text is clear and visible (over the background)
--   [ ] Titles are clear and visible (over the background)
--   [ ] Changing the theme color changes the color of the inner, outer circles, and the 4 small circles
