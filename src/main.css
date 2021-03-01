@@ -219,7 +219,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     /*messing around with z-index since circle wasn't showing up in front*/
-    z-index: 2
+    z-index: 1;
 }
 
 #allPomos {
@@ -322,16 +322,18 @@ body {
     transform: translate(-50%, -50%);*/
 /*positioning is off so I'm currently trying to figure out if the problem is the css*/
 #animation {
-  display: block;
-  margin: 50px auto;
+ 
+  transform: translate(-50%, -50%);
   position: absolute;
+  top: 50%;
+  left: 50%;
   width: 90%;
   height: 90%;
-  z-index: 999
+  z-index: 0;
 }
 
 #loader 
-{ fill: #745923 }
+{ fill: white}
 
 #border 
-{ fill: #743423 }
+{ fill: white }
