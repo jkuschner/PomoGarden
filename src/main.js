@@ -268,6 +268,7 @@ function changeTheme(id) {
     document.documentElement.className = id
 
     var currentTheme = localStorage.getItem('theme')
+    console.log("curTheme: " + currentTheme);
     document.getElementById(currentTheme).style.backgroundColor =
         'var(--main-bg-color)'
 
@@ -306,3 +307,5 @@ function changeVolume() {
         value +
         '%, white 100%)'
 }
+
+module.exports = displayTime;
