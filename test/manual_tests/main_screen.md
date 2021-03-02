@@ -24,7 +24,5 @@ The following are tests to check the current and future builds for the main butt
 -   [ ] In break session - 'Stop' button causes to jump to the beginning of a new focus session (without starting it)
 -   [ ] After 4 full pomos, a longer break is given
 -   Sound is provided when:
-    -   [ ] Start focus session
     -   [ ] End focus session
-    -   [ ] Start relax session
     -   [ ] End relax session
