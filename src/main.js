@@ -38,6 +38,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 // Navigation Bar
 var navBar = document.getElementById('navBar')
+
 function showNav() {
     if (navBar.style.width < '19vw') {
         navBar.style.width = '19vw'
@@ -120,7 +121,7 @@ function startTimer(seconds, increment) {
         fourthPomo.style.backgroundColor = 'var(--main-bg-color)'
     }
 
-    timer = setInterval(function () {
+    timer = setInterval(function() {
         if (time <= 0) {
             if (increment) {
                 count++
@@ -163,14 +164,7 @@ function displayTime(time) {
 }
 
 function endPomo() {
-    if (document.getElementById('end').innerHTML == 'Skip') {
-        if (!confirmSkip()) {
-            return
-        }
-    }
-
     endTimer()
-
     document.getElementById('end').style.display = 'none'
 }
 
@@ -190,7 +184,7 @@ function updatePomo() {
         secondPomo.style.backgroundColor = 'var(--main-light-color)'
         thirdPomo.style.backgroundColor = 'var(--main-light-color)'
         fourthPomo.style.backgroundColor = 'var(--main-light-color)'
-        // document.getElementById("break").innerHTML = "Long Break"
+            // document.getElementById("break").innerHTML = "Long Break"
     }
 }
 
@@ -231,9 +225,25 @@ function toggleEnd() {
     }
 }
 
-function confirmSkip() {
-    var decision = confirm('Are you sure you want to break this work session?')
-    return decision
+var skipPopup = document.getElementById("skip-popup")
+var skipConfirm = document.getElementById('skip-confirm')
+var skipCancel = document.getElementById('skip-cancel')
+
+skipConfirm.addEventListener('click', () => {
+    skipPopup.style.display = "none"
+    endPomo()
+})
+
+skipCancel.addEventListener('click', () => {
+    skipPopup.style.display = "none"
+})
+
+function skipOrStop() {
+    if (document.getElementById('end').innerHTML == 'Skip') {
+        skipPopup.style.display = "block"
+    } else {
+        endPomo()
+    }
 }
 
 function changeLongBreak(id) {
@@ -279,6 +289,7 @@ function changeTheme(id) {
 var volumeSlider = document.getElementById('volume-slider')
 var volumeNumber = document.getElementById('volume-number')
 var volumeImage = document.getElementById('volume-image')
+
 function changeVolume() {
     localStorage.setItem('volume', volumeSlider.value)
 
