@@ -121,7 +121,7 @@ function startTimer(seconds, increment) {
         fourthPomo.style.backgroundColor = 'var(--main-bg-color)'
     }
 
-    timer = setInterval(function() {
+    timer = setInterval(function () {
         if (time <= 0) {
             if (increment) {
                 count++
@@ -184,7 +184,7 @@ function updatePomo() {
         secondPomo.style.backgroundColor = 'var(--main-light-color)'
         thirdPomo.style.backgroundColor = 'var(--main-light-color)'
         fourthPomo.style.backgroundColor = 'var(--main-light-color)'
-            // document.getElementById("break").innerHTML = "Long Break"
+        // document.getElementById("break").innerHTML = "Long Break"
     }
 }
 
@@ -225,22 +225,22 @@ function toggleEnd() {
     }
 }
 
-var skipPopup = document.getElementById("skip-popup")
+var skipPopup = document.getElementById('skip-popup')
 var skipConfirm = document.getElementById('skip-confirm')
 var skipCancel = document.getElementById('skip-cancel')
 
 skipConfirm.addEventListener('click', () => {
-    skipPopup.style.display = "none"
+    skipPopup.style.display = 'none'
     endPomo()
 })
 
 skipCancel.addEventListener('click', () => {
-    skipPopup.style.display = "none"
+    skipPopup.style.display = 'none'
 })
 
 function skipOrStop() {
     if (document.getElementById('end').innerHTML == 'Skip') {
-        skipPopup.style.display = "block"
+        skipPopup.style.display = 'block'
     } else {
         endPomo()
     }
