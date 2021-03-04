@@ -1,32 +1,38 @@
 /* Colors for each theme, change these to change the theme */
+
 .themeOrange {
     --main-bg-color: white;
     --main-heavy-color: #ffb422;
     --main-light-color: #ffd074;
+    --fruit-url: url('images/Orange.svg');
 }
 
 .themeBlue {
     --main-bg-color: white;
     --main-heavy-color: #23c6fa;
     --main-light-color: #95ecff;
+    --fruit-url: url('images/Onion.svg');
 }
 
 .themeGreen {
     --main-bg-color: white;
     --main-heavy-color: #66e466;
     --main-light-color: #b5ffae;
+    --fruit-url: url('images/Tomato.svg');
 }
 
 .themePurple {
     --main-bg-color: white;
     --main-heavy-color: #f68de6;
     --main-light-color: #ffdceb;
+    --fruit-url: url('images/Grape.svg');
 }
 
 .themeYellow {
     --main-bg-color: white;
     --main-heavy-color: #fbe843;
     --main-light-color: #f9fbaa;
+    --fruit-url: url('images/Lemon.svg');
 }
 
 .themeGrey {
@@ -34,6 +40,7 @@
     --main-heavy-color: #565656;
     --main-light-color: #565656;
     color: #ffffff;
+    --fruit-url: url('images/Coconut.svg');
 }
 
 body {
@@ -41,6 +48,7 @@ body {
 }
 
 /* Navigation Bar*/
+
 #navButton {
     font-size: 3vw;
     cursor: pointer;
@@ -84,6 +92,7 @@ body {
     white-space: nowrap;
     display: inline-block;
     font-size: 1vw;
+    margin: auto;
 }
 
 #navContainer {
@@ -96,47 +105,35 @@ body {
     left: -1.2vw;
 }
 
-#longBreakTen {
-    background-color: var(--main-bg-color);
+#navContainer > label {
+    display: block;
+    width: 100%;
 }
 
-#longBreakFifteen {
+#navContainer > label > input {
+    visibility: hidden;
+    position: absolute;
+}
+
+#navContainer > label > input + div {
+    position: relative;
+    left: 1.5vw;
+    height: 3.5vw;
+    width: 5vw;
+    border: 2px solid var(--main-heavy-color);
+    border-radius: 1vw;
+    text-align: center;
+    line-height: 3.5vw;
+    cursor: pointer;
+    background-color: transparent;
+    white-space: nowrap;
+    display: inline-block;
+    font-size: 1vw;
+    margin: auto;
+}
+
+#navContainer > label > input:checked + div {
     background-color: var(--main-light-color);
-}
-
-#longBreakTwenty {
-    background-color: var(--main-bg-color);
-}
-
-/* Themes selectors have hardcoded colors */
-#themeBlue {
-    border: 2px solid #23c6fa;
-    background-color: var(--main-bg-color);
-}
-
-#themeGreen {
-    border: 2px solid #66e466;
-    background-color: var(--main-bg-color);
-}
-
-#themeOrange {
-    border: 2px solid #ffb422;
-    background-color: var(--main-bg-color);
-}
-
-#themePurple {
-    border: 2px solid #f68de6;
-    background-color: var(--main-bg-color);
-}
-
-#themeYellow {
-    border: 2px solid #fbe842;
-    background-color: var(--main-bg-color);
-}
-
-#themeGrey {
-    border: 2px solid #565656;
-    background-color: var(--main-bg-color);
 }
 
 #volume-image {
@@ -153,6 +150,25 @@ body {
     height: 1vw;
     top: 0.15vw;
     left: 7vw;
+
+    background: linear-gradient(
+        to right,
+        var(--main-heavy-color) 0%,
+        var(--main-heavy-color) 50%,
+        #fff 50%,
+        #fff 100%
+    );
+    border: solid 1px var(--main-heavy-color);
+    border-radius: 8px;
+    -webkit-appearance: none;
+}
+
+input[type='range']::-webkit-slider-thumb {
+    width: 1vw;
+    -webkit-appearance: none;
+    height: 1vw;
+    background: black;
+    border-radius: 1vw;
 }
 
 #volume-number {
@@ -167,19 +183,16 @@ body {
 #title {
     position: relative;
     font-family: 'Montserrat', sans-serif;
-    left: -20%;
-    top: -10%;
     text-align: center;
     width: 100%;
     font-size: 3vw;
+    top: 1vw;
 }
 
 #entirePomoTimer {
-    position: absolute;
-    left: 35%;
-    top: 20%;
-    width: 40vw;
-    height: 50vw;
+    top: 50%;
+    margin: auto;
+    width: 100%;
 }
 
 #outerCircle {
@@ -188,34 +201,32 @@ body {
     background-color: var(--main-bg-color);
     border-radius: 10vw;
     border: 1.3vw solid var(--main-heavy-color);
-    display: inline-block;
+    /* display: inline-block; */
     visibility: visible;
     position: relative;
-    left: 6%;
-    top: -10%;
+    margin: auto;
+    /* left: 6%; */
 }
 
 #innerCircle {
     cursor: pointer;
-    height: 15vw;
-    width: 15vw;
+    height: 90%;
+    width: 90%;
     background-color: var(--main-light-color);
-    border-radius: 10vw;
+    border-radius: 50%;
     display: inline-block;
-    visibility: visible;
-    text-align: center;
-    line-height: 9vw;
-    font-size: 3vw;
     font-family: 'Montserrat', sans-serif;
-    position: relative;
-    top: 6%;
-    left: 6%;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #allPomos {
     position: relative;
-    left: 6.5vw;
-    top: -2vw;
+    margin: auto;
+    top: 3vw;
     display: flex;
     justify-content: space-evenly;
     width: 12vw;
@@ -233,7 +244,9 @@ body {
 
 #timerButtons {
     position: relative;
-    left: 5%;
+    margin: auto;
+    top: 4.5vw;
+    left: -1.5vw;
 }
 
 .time {
@@ -242,12 +255,13 @@ body {
 
 #clockDisplay {
     margin: auto;
-    text-align: center;
+    /* text-align: center; */
     width: 63%;
+    align-self: center;
 }
 
 #break {
-    left: 20%;
+    margin: auto;
     display: none;
     background-color: var(--main-light-color);
     font-family: 'Montserrat', sans-serif;
@@ -255,9 +269,93 @@ body {
 }
 
 #end {
-    left: 20%;
+    margin: auto;
     display: none;
     background-color: var(--main-light-color);
     font-family: 'Montserrat', sans-serif;
     font-size: 1vw;
+}
+
+#fruitIcon {
+    content: var(--fruit-url);
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 100%;
+    visibility: hidden;
+}
+
+#time {
+    position: relative;
+    text-align: center;
+    font-size: 2vw;
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
+    margin-bottom: 0.5vw;
+    visibility: hidden;
+}
+
+#timerStart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2vw;
+    font-family: 'Montserrat', sans-serif;
+    visibility: visible;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal::before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin: 0;
+}
+
+.modal > .content {
+    text-align: left;
+    display: inline-block;
+    background-color: var(--main-bg-color);
+    box-sizing: border-box;
+    position: relative;
+    max-width: 30vw;
+    padding: 20px;
+    border-radius: 1vw;
+    font-size: 1vw;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.cancel {
+    float: right;
+    font-size: 1vw;
+    padding: 5px;
+    cursor: pointer;
+    color: blue;
+}
+
+.confirm {
+    float: right;
+    font-size: 1vw;
+    padding: 5px;
+    cursor: pointer;
+    color: red;
 }
