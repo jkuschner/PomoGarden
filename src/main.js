@@ -25,6 +25,7 @@ window.addEventListener('DOMContentLoaded', () => {
  * Theme name is saved when a theme option is clicked
  */
 function loadTheme() {
+    /* global getTheme, setTheme, saveTheme */
     const currentTheme = setTheme(getTheme() || 'themeOrange', false)
     const themeRadios = document.forms['themeOptions'].elements['themeOption']
     for (let i = 0; i < themeRadios.length; i++) {
@@ -63,6 +64,7 @@ let longBreakType = 'break15'
  * Break type is saved when a new break type is selected
  */
 async function loadTimerValues() {
+    /* global getTimerValues, getLongBreak, saveLongBreak */
     timerVals = await getTimerValues()
     longBreakType = getLongBreak() || longBreakType
     const longBreakRadios =
@@ -106,6 +108,7 @@ function workTime() {
 // load volume
 
 function loadVolume() {
+    /* global getVolume */
     const currentVolume = getVolume()
     if (currentVolume != null) {
         volumeSlider.value = currentVolume

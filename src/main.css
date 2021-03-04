@@ -78,23 +78,6 @@ body {
     padding: 8px 8px 8px 32px;
 }
 
-.navRectangle {
-    position: relative;
-    left: 1.5vw;
-    height: 3.5vw;
-    width: 5vw;
-    border: 2px solid var(--main-heavy-color);
-    border-radius: 1vw;
-    text-align: center;
-    line-height: 3.5vw;
-    cursor: pointer;
-    background-color: var(--main-bg-color);
-    white-space: nowrap;
-    display: inline-block;
-    font-size: 1vw;
-    margin: auto;
-}
-
 #navContainer {
     position: absolute;
     justify-content: space-evenly;
@@ -115,7 +98,7 @@ body {
     position: absolute;
 }
 
-#navContainer > label > input + div {
+#navContainer > label > input + div, .navRectangle {
     position: relative;
     left: 1.5vw;
     height: 3.5vw;
