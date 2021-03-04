@@ -98,7 +98,7 @@ body {
     position: absolute;
 }
 
-#navContainer > label > input + div, .navRectangle {
+#navContainer > label > input + span, .navRectangle {
     position: relative;
     left: 1.5vw;
     height: 3.5vw;
@@ -115,7 +115,7 @@ body {
     margin: auto;
 }
 
-#navContainer > label > input:checked + div {
+#navContainer > label > input:checked + span {
     background-color: var(--main-light-color);
 }
 
