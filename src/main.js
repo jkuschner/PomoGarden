@@ -9,32 +9,82 @@ window.addEventListener('DOMContentLoaded', () => {
     //updatePomo()
 
     // Store theme on refresh
-    if (localStorage.getItem('theme') == null) {
-        localStorage.setItem('theme', 'themeOrange')
-        changeTheme('themeOrange')
-    } else {
-        changeTheme(localStorage.getItem('theme'))
-    }
+    loadTheme()
 
     // Store long break time on refresh
-    if (localStorage.getItem('longBreakTime') == null) {
-        changeLongBreak('longBreakFifteen')
-    } else {
-        if (localStorage.getItem('longBreakTime') == 0.2) {
-            changeLongBreak('longBreakTen')
-        } else if (localStorage.getItem('longBreakTime') == 0.3) {
-            changeLongBreak('longBreakFifteen')
-        } else {
-            changeLongBreak('longBreakTwenty')
-        }
-    }
+    loadTimerValues()
 
     // Store volume on refresh
-    if (localStorage.getItem('volume') != null) {
-        volumeSlider.value = localStorage.getItem('volume')
+    loadVolume()
+})
+
+// load theme
+
+function loadTheme() {
+    const currentTheme = setTheme(getTheme() || 'themeOrange', false)
+    const themeRadios = document.forms['themeOptions'].elements['themeOption']
+    for (let i = 0; i < themeRadios.length; i++) {
+        const radio = themeRadios[i]
+        if (radio.value == currentTheme) {
+            radio.checked = true
+        }
+        radio.onclick = () => {
+            setTheme(radio.value, true)
+        }
+    }
+}
+
+function setTheme(theme, save) {
+    document.documentElement.className = theme
+    if (save) {
+        saveTheme(theme)
+    }
+    return theme
+}
+
+// load work, break, long break times
+
+let timerVals = undefined
+let longBreakType = 'break15'
+
+async function loadTimerValues() {
+    timerVals = await getTimerValues()
+    longBreakType = getLongBreak() || longBreakType
+    const longBreakRadios =
+        document.forms['breakOptions'].elements['breakOption']
+    for (let i = 0; i < longBreakRadios.length; i++) {
+        const radio = longBreakRadios[i]
+        if (radio.value == longBreakType) {
+            radio.checked = true
+        }
+        radio.onclick = () => {
+            longBreakType = radio.value
+            saveLongBreak(longBreakType)
+        }
+    }
+}
+
+function longBreakTime() {
+    return timerVals.longBreakTimes[longBreakType]
+}
+
+function breakTime() {
+    return timerVals.breakTime
+}
+
+function workTime() {
+    return timerVals.workTime
+}
+
+// load volume
+
+function loadVolume() {
+    const currentVolume = getVolume()
+    if (currentVolume != null) {
+        volumeSlider.value = currentVolume
         changeVolume()
     }
-})
+}
 
 // Navigation Bar
 const navBar = document.getElementById('navBar')
@@ -62,15 +112,15 @@ function startTimerVisual(id) {
 
         //originally was based on id, changed to this since we want the center button to both start pomos and breaks
         if (pomoOrBreak == 'pomo') {
-            startTimer(workTime * 60, true)
+            startTimer(workTime() * 60, true)
             document.getElementById('end').innerHTML = 'Skip'
             document.getElementById('title').innerHTML = 'Focus'
             pomoOrBreak = 'break'
         } else {
             if (count == 4) {
-                startTimer(longBreakTime * 60, false)
+                startTimer(longBreakTime() * 60, false)
             } else {
-                startTimer(breakTime * 60, false)
+                startTimer(breakTime() * 60, false)
             }
 
             document.getElementById('end').innerHTML = 'Stop'
@@ -87,9 +137,6 @@ function startTimerVisual(id) {
 // Pomodoro Timer
 let timer = undefined
 let count = 0
-const workTime = 0.1
-const breakTime = 0.1
-let longBreakTime = 0.3
 
 const firstPomo = document.getElementById('first-pomo')
 const secondPomo = document.getElementById('second-pomo')
@@ -244,46 +291,6 @@ function skipOrStop() {
     } else {
         endPomo()
     }
-}
-
-function changeLongBreak(id) {
-    const tenElement = document.getElementById('longBreakTen')
-    const fifteenElement = document.getElementById('longBreakFifteen')
-    const twentyElement = document.getElementById('longBreakTwenty')
-    if (id == 'longBreakTen') {
-        longBreakTime = 0.2
-        localStorage.setItem('longBreakTime', longBreakTime)
-
-        tenElement.style.backgroundColor = 'var(--main-light-color)'
-        fifteenElement.style.backgroundColor = 'var(--main-bg-color)'
-        twentyElement.style.backgroundColor = 'var(--main-bg-color)'
-    } else if (id == 'longBreakFifteen') {
-        longBreakTime = 0.3
-        localStorage.setItem('longBreakTime', longBreakTime)
-
-        tenElement.style.backgroundColor = 'var(--main-bg-color)'
-        fifteenElement.style.backgroundColor = 'var(--main-light-color)'
-        twentyElement.style.backgroundColor = 'var(--main-bg-color)'
-    } else {
-        longBreakTime = 0.4
-        localStorage.setItem('longBreakTime', longBreakTime)
-
-        tenElement.style.backgroundColor = 'var(--main-bg-color)'
-        fifteenElement.style.backgroundColor = 'var(--main-bg-color)'
-        twentyElement.style.backgroundColor = 'var(--main-light-color)'
-    }
-}
-
-function changeTheme(id) {
-    document.documentElement.className = id
-
-    const currentTheme = localStorage.getItem('theme')
-    document.getElementById(currentTheme).style.backgroundColor =
-        'var(--main-bg-color)'
-
-    localStorage.setItem('theme', id)
-    document.getElementById(id).style.backgroundColor =
-        'var(--main-light-color)'
 }
 
 const volumeSlider = document.getElementById('volume-slider')

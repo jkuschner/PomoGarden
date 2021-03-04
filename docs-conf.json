@@ -1,16 +1,11 @@
 {
-  "source": {
-    "includePattern": ".+\\.js(doc|x)?$",
-    "include": [
-      "."
-    ],
-    "exclude": [
-      "build",
-      "node_modules"
-    ]
-  },
-  "opts": {
-    "destination": "./build/docs/",
-    "recurse": true
-  }
+    "source": {
+        "includePattern": ".+\\.js(doc|x)?$",
+        "include": ["."],
+        "exclude": ["build", "node_modules"]
+    },
+    "opts": {
+        "destination": "./build/docs/",
+        "recurse": true
+    }
 }

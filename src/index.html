@@ -59,29 +59,20 @@
         <div id="navBar">
             <h2 class="navText">Long Break Time</h2>
 
-            <div id="navContainer">
-                <div
-                    class="navRectangle"
-                    id="longBreakTen"
-                    onclick="changeLongBreak(id)"
-                >
-                    10
-                </div>
-                <div
-                    class="navRectangle"
-                    id="longBreakFifteen"
-                    onclick="changeLongBreak(id)"
-                >
-                    15
-                </div>
-                <div
-                    class="navRectangle"
-                    id="longBreakTwenty"
-                    onclick="changeLongBreak(id)"
-                >
-                    20
-                </div>
-            </div>
+            <form id="navContainer" name="breakOptions">
+                <label>
+                    <input type="radio" name="breakOption" value="break10" />
+                    <div id="longBreakTen">10</div>
+                </label>
+                <label>
+                    <input type="radio" name="breakOption" value="break15" />
+                    <div id="longBreakFifteen">15</div>
+                </label>
+                <label>
+                    <input type="radio" name="breakOption" value="break20" />
+                    <div id="longBreakTwenty">20</div>
+                </label>
+            </form>
 
             <br />
             <br />
@@ -90,38 +81,44 @@
 
             <h2 class="navText">Theme Color</h2>
 
-            <div id="navContainer">
-                <div
-                    class="navRectangle"
-                    onclick="changeTheme(id)"
-                    id="themeBlue"
-                ></div>
-                <div
-                    class="navRectangle"
-                    onclick="changeTheme(id)"
-                    id="themeGreen"
-                ></div>
-                <div
-                    class="navRectangle"
-                    onclick="changeTheme(id)"
-                    id="themeOrange"
-                ></div>
-                <div
-                    class="navRectangle"
-                    onclick="changeTheme(id)"
-                    id="themePurple"
-                ></div>
-                <div
-                    class="navRectangle"
-                    onclick="changeTheme(id)"
-                    id="themeYellow"
-                ></div>
-                <div
-                    class="navRectangle"
-                    onclick="changeTheme(id)"
-                    id="themeGrey"
-                ></div>
-            </div>
+            <form id="navContainer" name="themeOptions">
+                <label>
+                    <input type="radio" name="themeOption" value="themeBlue" />
+                    <div class="themeBlue"></div>
+                </label>
+                <label>
+                    <input type="radio" name="themeOption" value="themeGreen" />
+                    <div class="themeGreen"></div>
+                </label>
+                <label>
+                    <input
+                        type="radio"
+                        name="themeOption"
+                        value="themeOrange"
+                    />
+                    <div class="themeOrange"></div>
+                </label>
+                <label>
+                    <input
+                        type="radio"
+                        name="themeOption"
+                        value="themePurple"
+                    />
+                    <div class="themePurple"></div>
+                </label>
+                <label>
+                    <input
+                        type="radio"
+                        name="themeOption"
+                        value="themeYellow"
+                    />
+                    <div class="themeYellow"></div>
+                </label>
+                <label>
+                    <input type="radio" name="themeOption" value="themeGrey" />
+                    <div class="themeGrey"></div>
+                </label>
+            </form>
 
             <br />
             <br />
@@ -149,6 +146,7 @@
 
         <audio id="alarm" src="./audio/alarm.mp3"></audio>
 
+        <script src="./utils.js"></script>
         <script src="./main.js"></script>
     </body>
 </html>
