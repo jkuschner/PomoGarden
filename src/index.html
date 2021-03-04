@@ -25,12 +25,24 @@
                 </span>
             </div>
 
-            <div id="allPomos">
-                <span class="pomo" id="first-pomo"></span>
-                <span class="pomo" id="second-pomo"></span>
-                <span class="pomo" id="third-pomo"></span>
-                <span class="pomo" id="fourth-pomo"></span>
-            </div>
+            <form id="allPomos" name="pomoDisplay">
+                <label>
+                    <input type="checkbox" name="pomo" disabled="disabled" />
+                    <span class="pomo"></span>
+                </label>
+                <label>
+                    <input type="checkbox" name="pomo" disabled="disabled" />
+                    <span class="pomo" id="first-pomo"></span>
+                </label>
+                <label>
+                    <input type="checkbox" name="pomo" disabled="disabled" />
+                    <span class="pomo" id="first-pomo"></span>
+                </label>
+                <label>
+                    <input type="checkbox" name="pomo" disabled="disabled" />
+                    <span class="pomo" id="first-pomo"></span>
+                </label>
+            </form>
 
             <div id="timerButtons">
                 <button id="end" class="navRectangle" onclick="skipOrStop()">
@@ -59,7 +71,7 @@
         <div id="navBar">
             <h2 class="navText">Long Break Time</h2>
 
-            <form id="navContainer" name="breakOptions">
+            <form class="navContainer" name="breakOptions">
                 <label>
                     <input type="radio" name="breakOption" value="break10" />
                     <span>10</span>
@@ -81,7 +93,7 @@
 
             <h2 class="navText">Theme Color</h2>
 
-            <form id="navContainer" name="themeOptions">
+            <form class="navContainer" name="themeOptions">
                 <label>
                     <input type="radio" name="themeOption" value="themeBlue" />
                     <span class="themeBlue"></span>
@@ -130,7 +142,7 @@
 
             <h2 class="navText">Volume</h2>
 
-            <div id="navContainer">
+            <div class="navContainer">
                 <img id="volume-image" src="./images/volume-level-2.svg" />
                 <p id="volume-number">50</p>
                 <input

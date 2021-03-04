@@ -168,11 +168,7 @@ function startTimerVisual(id) {
 let timer = undefined
 let count = 0
 
-const firstPomo = document.getElementById('first-pomo')
-const secondPomo = document.getElementById('second-pomo')
-const thirdPomo = document.getElementById('third-pomo')
-const fourthPomo = document.getElementById('fourth-pomo')
-const pomo = document.getElementsByClassName('pomo')
+const pomo = document.forms['pomoDisplay'].elements['pomo']
 const timeDisplay = document.getElementById('time')
 const fruitIcon = document.getElementById('fruitIcon')
 const timerStart = document.getElementById('timerStart')
@@ -192,10 +188,7 @@ function startTimer(seconds, increment) {
         count = 0
         localStorage.setItem('count', count)
 
-        firstPomo.style.backgroundColor = 'var(--main-bg-color)'
-        secondPomo.style.backgroundColor = 'var(--main-bg-color)'
-        thirdPomo.style.backgroundColor = 'var(--main-bg-color)'
-        fourthPomo.style.backgroundColor = 'var(--main-bg-color)'
+        updatePomo()
     }
 
     timer = setInterval(function () {
@@ -247,21 +240,8 @@ function endPomo() {
 
 function updatePomo() {
     // Fill in pomo based on count
-    if (count == 1) {
-        firstPomo.style.backgroundColor = 'var(--main-light-color)'
-    } else if (count == 2) {
-        firstPomo.style.backgroundColor = 'var(--main-light-color)'
-        secondPomo.style.backgroundColor = 'var(--main-light-color)'
-    } else if (count == 3) {
-        firstPomo.style.backgroundColor = 'var(--main-light-color)'
-        secondPomo.style.backgroundColor = 'var(--main-light-color)'
-        thirdPomo.style.backgroundColor = 'var(--main-light-color)'
-    } else if (count == 4) {
-        firstPomo.style.backgroundColor = 'var(--main-light-color)'
-        secondPomo.style.backgroundColor = 'var(--main-light-color)'
-        thirdPomo.style.backgroundColor = 'var(--main-light-color)'
-        fourthPomo.style.backgroundColor = 'var(--main-light-color)'
-        // document.getElementById("break").innerHTML = "Long Break"
+    for (let i = 0; i < pomo.length; i++) {
+        pomo[i].checked = i < count
     }
 }
 

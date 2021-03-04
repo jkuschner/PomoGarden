@@ -78,7 +78,7 @@ body {
     padding: 8px 8px 8px 32px;
 }
 
-#navContainer {
+.navContainer {
     position: absolute;
     justify-content: space-evenly;
     width: 100%;
@@ -88,17 +88,18 @@ body {
     left: -1.2vw;
 }
 
-#navContainer > label {
+.navContainer > label {
     display: block;
     width: 100%;
 }
 
-#navContainer > label > input {
+.navContainer > label > input {
     visibility: hidden;
     position: absolute;
 }
 
-#navContainer > label > input + span, .navRectangle {
+.navContainer > label > input + span,
+.navRectangle {
     position: relative;
     left: 1.5vw;
     height: 3.5vw;
@@ -115,7 +116,7 @@ body {
     margin: auto;
 }
 
-#navContainer > label > input:checked + span {
+.navContainer > label > input:checked + span {
     background-color: var(--main-light-color);
 }
 
@@ -215,7 +216,18 @@ input[type='range']::-webkit-slider-thumb {
     width: 12vw;
 }
 
-.pomo {
+#allPomos > label {
+    display: block;
+}
+
+#allPomos > label > input {
+    visibility: hidden;
+    position: absolute;
+    pointer-events: none;
+}
+
+#allPomos > label > input + span {
+    pointer-events: none;
     height: 1vw;
     width: 1vw;
     background-color: var(--main-bg-color);
@@ -223,6 +235,11 @@ input[type='range']::-webkit-slider-thumb {
     border: 2px solid var(--main-heavy-color);
     display: inline-block;
     visibility: visible;
+}
+
+#allPomos > label > input:checked + span {
+    pointer-events: none;
+    background-color: var(--main-heavy-color);
 }
 
 #timerButtons {
