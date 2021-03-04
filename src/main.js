@@ -20,6 +20,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
 // load theme
 
+/**
+ * Load the selected theme from local storage, or default to 'themeOrange'
+ * Theme name is saved when a theme option is clicked
+ */
 function loadTheme() {
     const currentTheme = setTheme(getTheme() || 'themeOrange', false)
     const themeRadios = document.forms['themeOptions'].elements['themeOption']
@@ -34,6 +38,12 @@ function loadTheme() {
     }
 }
 
+/**
+ * Changes the theme of the entire timer
+ * @param {String} theme CSS class name of the theme to set
+ * @param {Boolean} save whether to save to local storage
+ * @returns the new theme
+ */
 function setTheme(theme, save) {
     document.documentElement.className = theme
     if (save) {
@@ -47,6 +57,11 @@ function setTheme(theme, save) {
 let timerVals = undefined
 let longBreakType = 'break15'
 
+/**
+ * Load timer values (work time, break time...) to use later
+ * Load the long break type selected, which is used to access the correct break time in the loaded timer values
+ * Break type is saved when a new break type is selected
+ */
 async function loadTimerValues() {
     timerVals = await getTimerValues()
     longBreakType = getLongBreak() || longBreakType
@@ -64,14 +79,26 @@ async function loadTimerValues() {
     }
 }
 
+/**
+ * Gets the long break time from the timerVals object
+ * @returns long break time
+ */
 function longBreakTime() {
     return timerVals.longBreakTimes[longBreakType]
 }
 
+/**
+ * Gets the break time from the timerVals object
+ * @returns break time
+ */
 function breakTime() {
     return timerVals.breakTime
 }
 
+/**
+ * Gets the work time from the timerVals object
+ * @returns work time
+ */
 function workTime() {
     return timerVals.workTime
 }
