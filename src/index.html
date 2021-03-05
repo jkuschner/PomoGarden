@@ -5,10 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Pomo Garden</title>
         <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
-            rel="stylesheet"
-        />
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="./main.css" />
     </head>
 
@@ -45,17 +42,8 @@
             </form>
 
             <div id="timerButtons">
-                <button id="end" class="navRectangle" onclick="skipOrStop()" disabled="disabled">
-                    Stop
-                </button>
-                <button
-                    id="break"
-                    class="navRectangle"
-                    onclick="startTimerVisual(id)"
-                    disabled="disabled"
-                >
-                    Break
-                </button>
+                <button id="end" class="navRectangle" onclick="skipOrStop()" disabled="disabled">Stop</button>
+                <button id="break" class="navRectangle" onclick="startTimerVisual(id)" disabled="disabled">Break</button>
 
                 <div class="modal" id="skip-popup">
                     <div class="content vertical-align-middle">
@@ -104,27 +92,15 @@
                     <span class="themeGreen"></span>
                 </label>
                 <label>
-                    <input
-                        type="radio"
-                        name="themeOption"
-                        value="themeOrange"
-                    />
+                    <input type="radio" name="themeOption" value="themeOrange" />
                     <span class="themeOrange"></span>
                 </label>
                 <label>
-                    <input
-                        type="radio"
-                        name="themeOption"
-                        value="themePurple"
-                    />
+                    <input type="radio" name="themeOption" value="themePurple" />
                     <span class="themePurple"></span>
                 </label>
                 <label>
-                    <input
-                        type="radio"
-                        name="themeOption"
-                        value="themeYellow"
-                    />
+                    <input type="radio" name="themeOption" value="themeYellow" />
                     <span class="themeYellow"></span>
                 </label>
                 <label>
@@ -146,14 +122,7 @@
             <div class="navContainer">
                 <img id="volume-image" src="./images/volume-level-2.svg" />
                 <p id="volume-number">50</p>
-                <input
-                    id="volume-slider"
-                    type="range"
-                    min="0"
-                    max="100"
-                    value="50"
-                    oninput="changeVolume()"
-                />
+                <input id="volume-slider" type="range" min="0" max="100" value="50" oninput="changeVolume()" />
             </div>
         </div>
 

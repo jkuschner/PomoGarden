@@ -135,13 +135,7 @@ body {
     top: 0.15vw;
     left: 7vw;
 
-    background: linear-gradient(
-        to right,
-        var(--main-heavy-color) 0%,
-        var(--main-heavy-color) 50%,
-        #fff 50%,
-        #fff 100%
-    );
+    background: linear-gradient(to right, var(--main-heavy-color) 0%, var(--main-heavy-color) 50%, #fff 50%, #fff 100%);
     border: solid 1px var(--main-heavy-color);
     border-radius: 8px;
     -webkit-appearance: none;

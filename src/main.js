@@ -67,8 +67,7 @@ async function loadTimerValues() {
     /* global getTimerValues, getLongBreak, saveLongBreak */
     timerVals = await getTimerValues()
     longBreakType = getLongBreak() || longBreakType
-    const longBreakRadios =
-        document.forms['breakOptions'].elements['breakOption']
+    const longBreakRadios = document.forms['breakOptions'].elements['breakOption']
     for (let i = 0; i < longBreakRadios.length; i++) {
         const radio = longBreakRadios[i]
         if (radio.value == longBreakType) {
@@ -304,14 +303,7 @@ function changeVolume() {
         volumeImage.src = './images/volume-level-3.svg'
     }
 
-    const value =
-        ((volumeSlider.value - volumeSlider.min) /
-            (volumeSlider.max - volumeSlider.min)) *
-        100
+    const value = ((volumeSlider.value - volumeSlider.min) / (volumeSlider.max - volumeSlider.min)) * 100
     volumeSlider.style.background =
-        'linear-gradient(to right, var(--main-light-color) 0%, var(--main-light-color) ' +
-        value +
-        '%, #fff ' +
-        value +
-        '%, white 100%)'
+        'linear-gradient(to right, var(--main-light-color) 0%, var(--main-light-color) ' + value + '%, #fff ' + value + '%, white 100%)'
 }
