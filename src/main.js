@@ -54,7 +54,6 @@ var checkTimerStart = false
 var pomoOrBreak = 'pomo'
 
 function startTimerVisual(id) {
-    console.log(pomoOrBreak)
     if (!checkTimerStart) {
         innerCircle.style.backgroundColor = 'var(--main-bg-color)'
         innerCircle.style.cursor = 'auto'
@@ -200,9 +199,13 @@ function updatePomo() {
     }
 }
 
-function endTimer() {
-    console.log('timer ending, pomoOrBreak = ' + pomoOrBreak)
+function endTimer() { 
     
+    /*ensures that if 365 degrees haven't been drawn the circle will be reset*/
+    while(α%365 != 0){
+        clearTimeout(fruitAnimation);
+        draw();
+    }
     endFruitAnimation()
     clearInterval(timer)
     checkTimerStart = false
@@ -305,13 +308,12 @@ function changeVolume() {
 }
 
 
-/*setting t changes the time for the circle to fully draw*/
 var loader = document.getElementById('loader')
   , border = document.getElementById('border')
   , α = 0
   , π = Math.PI 
   , αReverse = 0;
-/*haven't gotten around to modifying code to correctly start/stop with timer*/
+
 function draw() {
     let t = workTime * 60 * 1000/360
     α++;
@@ -349,9 +351,7 @@ function drawReverse(breakType) {
             + mid + ' 1 ' 
             +  x  + ' ' 
             +  y  + ' z';
-    //[x,y].forEach(function( d ){
-    //  d = Math.round( d * 1e3 ) / 1e3;
-    //});
+
 
     document.getElementById("animation").style.zIndex = 2
     
