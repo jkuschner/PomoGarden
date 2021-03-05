@@ -181,6 +181,7 @@ body {
     text-align: center;
     width: 100%;
     font-size: 3vw;
+    z-index: 5;
 }
 
 #entirePomoTimer {
@@ -333,7 +334,7 @@ body {
 }
 
 #loader 
-{ fill: white}
+{ fill: white }
 
-#border 
+#border
 { fill: white }

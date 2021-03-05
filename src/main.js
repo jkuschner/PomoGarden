@@ -61,7 +61,7 @@ function startTimerVisual(id) {
 
         //originally was based on id, changed to this since we want the center button to both start pomos and breaks
         if (pomoOrBreak == 'pomo') {
-            startTimer(workTime * 60-1, true)
+            startTimer(workTime * 60 - 1, true)
             document.getElementById('end').innerHTML = 'Skip'
             document.getElementById('title').innerHTML = 'Focus'
 
@@ -70,10 +70,13 @@ function startTimerVisual(id) {
             pomoOrBreak = 'break'
         } else {
             if (count == 4) {
-                startTimer(longBreakTime * 60, false)
+                startTimer(longBreakTime * 60 - 1, false)
+                drawReverse(longBreakTime)
             } else {
-                startTimer(breakTime * 60, false)
+                startTimer(breakTime * 60 - 1, false)
+                drawReverse(breakTime)
             }
+
 
             document.getElementById('end').innerHTML = 'Stop'
             document.getElementById('title').innerHTML = 'Relax'
@@ -306,11 +309,11 @@ function changeVolume() {
 var loader = document.getElementById('loader')
   , border = document.getElementById('border')
   , α = 0
-  , π = Math.PI
-  , t = workTime * 60 * 1000/360;
+  , π = Math.PI 
+  , αReverse = 0;
 /*haven't gotten around to modifying code to correctly start/stop with timer*/
 function draw() {
-  
+    let t = workTime * 60 * 1000/360
     α++;
     α %= 360;
     var r = ( α * π / 180 )
@@ -330,8 +333,32 @@ function draw() {
     loader.setAttribute( 'd', anim );
     border.setAttribute( 'd', anim );
 
-  
     fruitAnimation = setTimeout(draw, t); // Redraw
+}
+
+function drawReverse(breakType) {
+    let t = breakType * 60 * 1000/360
+    α++;
+    α %= 360;
+    αReverse = 360 - α
+    var r = ( αReverse * π / 180 )
+        , x = Math.sin( r ) * 125
+        , y = Math.cos( r ) * - 125
+        , mid = ( αReverse > 180 ) ? 1 : 0
+        , anim = 'M 0 0 v -125 A 125 125 1 ' 
+            + mid + ' 1 ' 
+            +  x  + ' ' 
+            +  y  + ' z';
+    //[x,y].forEach(function( d ){
+    //  d = Math.round( d * 1e3 ) / 1e3;
+    //});
+
+    document.getElementById("animation").style.zIndex = 2
+    
+    loader.setAttribute( 'd', anim );
+    border.setAttribute( 'd', anim );
+  
+    fruitAnimation = setTimeout(drawReverse, t, breakType); // Redraw
 }
 
 function endFruitAnimation() {
