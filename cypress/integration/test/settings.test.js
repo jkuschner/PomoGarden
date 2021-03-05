@@ -38,6 +38,6 @@ describe('Break Tests', () => {
 
         cy.get('#end').click();
 
-        cy.get('#timerStart').should('have.text', 'Start');
+        cy.get('#timerStart').should('have.text', 'Break');
     })
 })
