@@ -249,6 +249,18 @@ input[type='range']::-webkit-slider-thumb {
     left: -1.5vw;
 }
 
+#timerButtons > button {
+    margin: auto;
+    display: block;
+    background-color: var(--main-light-color);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1vw;
+}
+
+#timerButtons > button:disabled {
+    display: none;
+}
+
 .time {
     float: left;
 }
@@ -260,23 +272,8 @@ input[type='range']::-webkit-slider-thumb {
     align-self: center;
 }
 
-#break {
-    margin: auto;
-    display: none;
-    background-color: var(--main-light-color);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1vw;
-}
-
-#end {
-    margin: auto;
-    display: none;
-    background-color: var(--main-light-color);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1vw;
-}
-
 #fruitIcon {
+    cursor: auto;
     content: var(--fruit-url);
     margin: 0;
     position: absolute;

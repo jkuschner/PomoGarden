@@ -129,6 +129,9 @@ function showNav() {
 
 // User starts timer in inner circle
 const innerCircle = document.getElementById('innerCircle')
+const title = document.getElementById('title')
+const endButton = document.getElementById('end')
+const breakButton = document.getElementById('break')
 let checkTimerStart = false
 
 //this is a bit of a garbage solution but I'm creating a variable to check if starting pomo or break since the current check with id won't quite fit
@@ -137,14 +140,11 @@ let pomoOrBreak = 'pomo'
 function startTimerVisual(id) {
     console.log(pomoOrBreak)
     if (!checkTimerStart) {
-        innerCircle.style.backgroundColor = 'var(--main-bg-color)'
-        innerCircle.style.cursor = 'auto'
-
         //originally was based on id, changed to this since we want the center button to both start pomos and breaks
         if (pomoOrBreak == 'pomo') {
             startTimer(workTime() * 60, true)
-            document.getElementById('end').innerHTML = 'Skip'
-            document.getElementById('title').innerHTML = 'Focus'
+            endButton.innerHTML = 'Skip'
+            title.innerHTML = 'Focus'
             pomoOrBreak = 'break'
         } else {
             if (count == 4) {
@@ -153,13 +153,13 @@ function startTimerVisual(id) {
                 startTimer(breakTime() * 60, false)
             }
 
-            document.getElementById('end').innerHTML = 'Stop'
-            document.getElementById('title').innerHTML = 'Relax'
+            endButton.innerHTML = 'Stop'
+            title.innerHTML = 'Relax'
             pomoOrBreak = 'pomo'
         }
 
-        document.getElementById('break').style.display = 'none'
-        document.getElementById('end').style.display = 'block'
+        breakButton.disabled = true
+        endButton.disabled = false
         checkTimerStart = true
     }
 }
@@ -207,10 +207,10 @@ function startTimer(seconds, increment) {
             if (increment) {
                 //break can effectively be deleted if the issue I'm working on is correct
                 //document.getElementById('break').style.display = 'block'
-                document.getElementById('end').style.display = 'none'
+                endButton.disabled = true
             } else {
-                document.getElementById('break').style.display = 'none'
-                document.getElementById('end').style.display = 'none'
+                breakButton.disabled = true
+                endButton.disabled = true
             }
         } else {
             time -= 1
@@ -235,7 +235,7 @@ function displayTime(time) {
 
 function endPomo() {
     endTimer()
-    document.getElementById('end').style.display = 'none'
+    endButton.disabled = true
 }
 
 function updatePomo() {
@@ -250,36 +250,17 @@ function endTimer() {
     clearInterval(timer)
     checkTimerStart = false
 
-    innerCircle.style.backgroundColor = 'var(--main-light-color)'
-    innerCircle.style.cursor = 'pointer'
-
     //another if else to deal with updated central button
     if (pomoOrBreak == 'break') {
-        document.getElementById('title').innerHTML = 'Time For a Break'
+        title.innerHTML = 'Time For a Break'
         timerStart.innerHTML = 'Break'
     } else {
-        document.getElementById('title').innerHTML = 'Ready to Work?'
+        title.innerHTML = 'Ready to Work?'
         timerStart.innerHTML = 'Start'
     }
     timeDisplay.style.visibility = 'hidden'
     fruitIcon.style.visibility = 'hidden'
     timerStart.style.visibility = 'visible'
-}
-
-function toggleBreak() {
-    if (document.getElementById('break').style.display === 'none') {
-        document.getElementById('break').style.display = 'block'
-    } else {
-        document.getElementById('break').style.display = 'none'
-    }
-}
-
-function toggleEnd() {
-    if (document.getElementById('end').style.display === 'none') {
-        document.getElementById('end').style.display = 'block'
-    } else {
-        document.getElementById('end').style.display = 'none'
-    }
 }
 
 const skipPopup = document.getElementById('skip-popup')
@@ -296,7 +277,7 @@ skipCancel.addEventListener('click', () => {
 })
 
 function skipOrStop() {
-    if (document.getElementById('end').innerHTML == 'Skip') {
+    if (endButton.innerHTML == 'Skip') {
         skipPopup.style.display = 'block'
     } else {
         endPomo()
