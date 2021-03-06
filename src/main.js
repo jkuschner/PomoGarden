@@ -37,7 +37,8 @@ window.addEventListener('DOMContentLoaded', () => {
 })
 
 // Navigation Bar
-var navBar = document.getElementById('navBar')
+const navBar = document.getElementById('navBar')
+
 function showNav() {
     if (navBar.style.width < '19vw') {
         navBar.style.width = '19vw'
@@ -47,11 +48,11 @@ function showNav() {
 }
 
 // User starts timer in inner circle
-var innerCircle = document.getElementById('innerCircle')
-var checkTimerStart = false
+const innerCircle = document.getElementById('innerCircle')
+let checkTimerStart = false
 
 //this is a bit of a garbage solution but I'm creating a variable to check if starting pomo or break since the current check with id won't quite fit
-var pomoOrBreak = 'pomo'
+let pomoOrBreak = 'pomo'
 
 function startTimerVisual(id) {
     console.log(pomoOrBreak)
@@ -84,22 +85,22 @@ function startTimerVisual(id) {
 }
 
 // Pomodoro Timer
-var timer
-var count = 0
-var workTime = 0.1
-var breakTime = 0.1
-var longBreakTime = 0.3
+let timer = undefined
+let count = 0
+const workTime = 0.1
+const breakTime = 0.1
+let longBreakTime = 0.3
 
-var firstPomo = document.getElementById('first-pomo')
-var secondPomo = document.getElementById('second-pomo')
-var thirdPomo = document.getElementById('third-pomo')
-var fourthPomo = document.getElementById('fourth-pomo')
-var pomo = document.getElementsByClassName('pomo')
-var timeDisplay = document.getElementById('time')
-var fruitIcon = document.getElementById('fruitIcon')
-var timerStart = document.getElementById('timerStart')
+const firstPomo = document.getElementById('first-pomo')
+const secondPomo = document.getElementById('second-pomo')
+const thirdPomo = document.getElementById('third-pomo')
+const fourthPomo = document.getElementById('fourth-pomo')
+const pomo = document.getElementsByClassName('pomo')
+const timeDisplay = document.getElementById('time')
+const fruitIcon = document.getElementById('fruitIcon')
+const timerStart = document.getElementById('timerStart')
 
-var alarm = document.getElementById('alarm')
+const alarm = document.getElementById('alarm')
 
 function startTimer(seconds, increment) {
     let time = seconds
@@ -163,14 +164,7 @@ function displayTime(time) {
 }
 
 function endPomo() {
-    if (document.getElementById('end').innerHTML == 'Skip') {
-        if (!confirmSkip()) {
-            return
-        }
-    }
-
     endTimer()
-
     document.getElementById('end').style.display = 'none'
 }
 
@@ -231,15 +225,31 @@ function toggleEnd() {
     }
 }
 
-function confirmSkip() {
-    var decision = confirm('Are you sure you want to break this work session?')
-    return decision
+const skipPopup = document.getElementById('skip-popup')
+const skipConfirm = document.getElementById('skip-confirm')
+const skipCancel = document.getElementById('skip-cancel')
+
+skipConfirm.addEventListener('click', () => {
+    skipPopup.style.display = 'none'
+    endPomo()
+})
+
+skipCancel.addEventListener('click', () => {
+    skipPopup.style.display = 'none'
+})
+
+function skipOrStop() {
+    if (document.getElementById('end').innerHTML == 'Skip') {
+        skipPopup.style.display = 'block'
+    } else {
+        endPomo()
+    }
 }
 
 function changeLongBreak(id) {
-    let tenElement = document.getElementById('longBreakTen')
-    let fifteenElement = document.getElementById('longBreakFifteen')
-    let twentyElement = document.getElementById('longBreakTwenty')
+    const tenElement = document.getElementById('longBreakTen')
+    const fifteenElement = document.getElementById('longBreakFifteen')
+    const twentyElement = document.getElementById('longBreakTwenty')
     if (id == 'longBreakTen') {
         longBreakTime = 0.2
         localStorage.setItem('longBreakTime', longBreakTime)
@@ -267,8 +277,7 @@ function changeLongBreak(id) {
 function changeTheme(id) {
     document.documentElement.className = id
 
-    var currentTheme = localStorage.getItem('theme')
-    console.log("curTheme: " + currentTheme);
+    const currentTheme = localStorage.getItem('theme')
     document.getElementById(currentTheme).style.backgroundColor =
         'var(--main-bg-color)'
 
@@ -277,9 +286,10 @@ function changeTheme(id) {
         'var(--main-light-color)'
 }
 
-var volumeSlider = document.getElementById('volume-slider')
-var volumeNumber = document.getElementById('volume-number')
-var volumeImage = document.getElementById('volume-image')
+const volumeSlider = document.getElementById('volume-slider')
+const volumeNumber = document.getElementById('volume-number')
+const volumeImage = document.getElementById('volume-image')
+
 function changeVolume() {
     localStorage.setItem('volume', volumeSlider.value)
 
@@ -296,7 +306,7 @@ function changeVolume() {
         volumeImage.src = './images/volume-level-3.svg'
     }
 
-    var value =
+    const value =
         ((volumeSlider.value - volumeSlider.min) /
             (volumeSlider.max - volumeSlider.min)) *
         100

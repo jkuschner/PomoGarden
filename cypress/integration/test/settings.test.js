@@ -50,9 +50,23 @@ describe('Alert Tests', () => {
 
         cy.get('#timerStart').click();
 
-        cy.get('#end').click();
+        cy.get('#skip-confirm').click({ force: true });
 
         cy.get('#timerStart').should('have.text', 'Break');
+    });
+});
+
+describe('Alert Tests', () => {
+    it('test cancel skip pomo', () => {
+        cy.on('uncaught:exception', (err, runnable) => {
+            return false;
+        });
+
+        cy.get('#timerStart').click();
+
+        cy.get('#skip-cancel').click({ force: true });
+
+        cy.get('#time').should('have.css', 'visibility', 'visible');
     });
 });
 
@@ -86,9 +100,9 @@ describe('Counter Tests', () => {
             return false;
         });
     
-        cy.get('#timerStart').click();
+        /*cy.get('#timerStart').click();
     
-        cy.wait(8000);
+        cy.wait(8000);*/
        
     });
 
