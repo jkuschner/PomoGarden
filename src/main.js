@@ -317,17 +317,17 @@ function changeVolume() {
 
 
 // animation 
-var loader = document.getElementById('loader')
+const loader = document.getElementById('loader')
   , border = document.getElementById('border')
   , α = 0
   , π = Math.PI 
   , αReverse = 0;
 
 function draw() {
-    let t = workTime * 60 * 1000/360
+    const t = workTime * 60 * 1000/360
     α++;
     α %= 360;
-    var r = ( α * π / 180 )
+    const r = ( α * π / 180 )
         , x = Math.sin( r ) * 125
         , y = Math.cos( r ) * - 125
         , mid = ( α > 180 ) ? 1 : 0
@@ -344,15 +344,15 @@ function draw() {
     loader.setAttribute( 'd', anim );
     border.setAttribute( 'd', anim );
 
-    fruitAnimation = setTimeout(draw, t); // Redraw
+    const fruitAnimation = setTimeout(draw, t); // Redraw
 }
 
 function drawReverse(breakType) {
-    let t = breakType * 60 * 1000/360
+    const t = breakType * 60 * 1000/360
     α++;
     α %= 360;
     αReverse = 360 - α
-    var r = ( αReverse * π / 180 )
+    const r = ( αReverse * π / 180 )
         , x = Math.sin( r ) * 125
         , y = Math.cos( r ) * - 125
         , mid = ( αReverse > 180 ) ? 1 : 0
