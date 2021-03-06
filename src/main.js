@@ -196,7 +196,7 @@ function updatePomo() {
 function endTimer() { 
     /*ensures that if 365 degrees haven't been drawn the circle will be reset*/
     while(α%365 != 0){
-        clearTimeout(fruitAnimation);
+        endFruitAnimation()
         draw();
     }
 
@@ -319,10 +319,9 @@ function changeVolume() {
 // animation 
 const loader = document.getElementById('loader')
   , border = document.getElementById('border')
-  , α = 0
   , π = Math.PI 
-  , αReverse = 0;
-
+  var αReverse = 0;
+  var α = 0
 function draw() {
     const t = workTime * 60 * 1000/360
     α++;
@@ -367,7 +366,7 @@ function drawReverse(breakType) {
     loader.setAttribute( 'd', anim );
     border.setAttribute( 'd', anim );
   
-    fruitAnimation = setTimeout(drawReverse, t, breakType); // Redraw
+    const fruitAnimation = setTimeout(drawReverse, t, breakType); // Redraw
 }
 
 function endFruitAnimation() {
