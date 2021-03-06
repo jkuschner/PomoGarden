@@ -1,0 +1,71 @@
+{
+    "name": "cse110-w21-team19",
+    "version": "1.0.0",
+    "description": "Pomodoro Timer",
+    "main": "index.js",
+    "scripts": {
+        "test": "jest",
+        "lint": "eslint . --ext .js",
+        "prettier": "prettier --write src/ test/ *.json",
+        "gen-docs": "jsdoc -c config/docs-conf.json",
+        "clean": "rimraf build/",
+        "build": "npm run clean && copyfiles -u 1 \"src/**/*\" build/ && npm run gen-docs",
+        "deploy": "npm run build && gh-pages -d build/"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jkuschner/cse110-w21-team19.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/jkuschner/cse110-w21-team19/issues"
+    },
+    "homepage": "https://github.com/jkuschner/cse110-w21-team19#readme",
+    "devDependencies": {
+        "copyfiles": "^2.4.1",
+        "eslint": "^7.19.0",
+        "gh-pages": "^3.1.0",
+        "jest": "^26.6.3",
+        "jsdoc": "^3.6.6",
+        "rimraf": "^3.0.2"
+    },
+    "dependencies": {
+        "prettier": "^2.2.1",
+        "prettier-eslint": "^12.0.0",
+        "prettier-eslint-cli": "^5.0.0"
+    },
+    "jest": {
+        "moduleDirectories": [
+            "node_modules/",
+            "src/"
+        ]
+    },
+    "prettier": {
+        "tabWidth": 4,
+        "semi": false,
+        "singleQuote": true
+    },
+    "eslintConfig": {
+        "env": {
+            "browser": true,
+            "commonjs": true,
+            "es2021": true,
+            "node": true,
+            "jest": true
+        },
+        "extends": "eslint:recommended",
+        "parserOptions": {
+            "ecmaVersion": 12
+        },
+        "rules": {
+            "no-unused-vars": "off",
+            "prefer-const": "error",
+            "no-var": "error"
+        },
+        "ignorePatterns": [
+            "build/",
+            "node_modules/"
+        ]
+    }
+}

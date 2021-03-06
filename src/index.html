@@ -13,7 +13,6 @@
     </head>
 
     <body>
-        <div id="fillCircle"></div>
         <div id="entirePomoTimer">
             <h1 id="title">Ready to Work?</h1>
 
@@ -22,13 +21,9 @@
             <div id="outerCircle">
                 
                 <span id="innerCircle" onclick="startTimerVisual(id)">
-                    
-                    <div id="fruitIcon" alt="Fruit"></div>
-                   
+                    <div id="fruitIcon" alt="Fruit"></div>       
                     <div id="timerStart">Start</div>
                 </span>
-            
-                
 
                 <!-- removed height/width and put it in css for now -->
                 <svg id="animation" viewbox="0 0 250 250">
@@ -45,7 +40,7 @@
             </div>
 
             <div id="timerButtons">
-                <button id="end" class="navRectangle" onclick="endPomo()">
+                <button id="end" class="navRectangle" onclick="skipOrStop()">
                     Stop
                 </button>
                 <button
@@ -55,6 +50,14 @@
                 >
                     Break
                 </button>
+
+                <div class="modal" id="skip-popup">
+                    <div class="content vertical-align-middle">
+                        <p>Are you sure you want to break this work session?</p>
+                        <span class="confirm" id="skip-confirm">Confirm</span>
+                        <span class="cancel" id="skip-cancel">Cancel</span>
+                    </div>
+                </div>
             </div>
         </div>
 
