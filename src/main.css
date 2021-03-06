@@ -167,8 +167,6 @@ body {
     height: 1vw;
     top: 0.15vw;
     left: 7vw;
-<<<<<<< HEAD
-=======
 
     background: linear-gradient(
         to right,
@@ -188,7 +186,6 @@ input[type='range']::-webkit-slider-thumb {
     height: 1vw;
     background: black;
     border-radius: 1vw;
->>>>>>> main
 }
 
 #volume-number {
@@ -206,19 +203,11 @@ input[type='range']::-webkit-slider-thumb {
     text-align: center;
     width: 100%;
     font-size: 3vw;
-<<<<<<< HEAD
-    z-index: 5;
-}
-
-#entirePomoTimer {
-    top: 20%;
-=======
     top: 1vw;
 }
 
 #entirePomoTimer {
     top: 50%;
->>>>>>> main
     margin: auto;
     width: 100%;
 }
@@ -235,8 +224,6 @@ input[type='range']::-webkit-slider-thumb {
     margin: auto;
     /* left: 6%; */
     top: -10%;
-    /*messing around with z-index since circle wasn't showing up in front*/
-    z-index: 1
 }
 
 #innerCircle {
@@ -252,7 +239,7 @@ input[type='range']::-webkit-slider-thumb {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /*messing around with z-index since circle wasn't showing up in front*/
+    
     z-index: 1;
 }
 
@@ -319,7 +306,7 @@ input[type='range']::-webkit-slider-thumb {
     transform: translate(-50%, -50%);
     width: 100%;
     visibility: hidden;
-    /*messing around with z-index since circle wasn't showing up in front*/
+    
     z-index: 3
 }
 
@@ -343,21 +330,7 @@ input[type='range']::-webkit-slider-thumb {
     visibility: visible;
 }
 
-/*cursor: pointer;
-    height: 90%;
-    width: 90%;
-    background-color: var(--main-light-color);
-    border-radius: 50%;
-    display: inline-block;
-    font-family: 'Montserrat', sans-serif;
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);*/
-/*positioning is off so I'm currently trying to figure out if the problem is the css*/
 #animation {
- 
   transform: translate(-50%, -50%);
   position: absolute;
   top: 50%;
@@ -372,6 +345,7 @@ input[type='range']::-webkit-slider-thumb {
 
 #border
 { fill: white }
+
 .modal {
     display: none;
     position: fixed;

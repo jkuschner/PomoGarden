@@ -194,12 +194,12 @@ function updatePomo() {
 }
 
 function endTimer() { 
-    
     /*ensures that if 365 degrees haven't been drawn the circle will be reset*/
     while(α%365 != 0){
         clearTimeout(fruitAnimation);
         draw();
     }
+
     endFruitAnimation()
     clearInterval(timer)
     checkTimerStart = false
@@ -220,21 +220,6 @@ function endTimer() {
     timerStart.style.visibility = 'visible'
 }
 
-function toggleBreak() {
-    if (document.getElementById('break').style.display === 'none') {
-        document.getElementById('break').style.display = 'block'
-    } else {
-        document.getElementById('break').style.display = 'none'
-    }
-}
-
-function toggleEnd() {
-    if (document.getElementById('end').style.display === 'none') {
-        document.getElementById('end').style.display = 'block'
-    } else {
-        document.getElementById('end').style.display = 'none'
-    }
-}
 
 const skipPopup = document.getElementById('skip-popup')
 const skipConfirm = document.getElementById('skip-confirm')
@@ -330,6 +315,8 @@ function changeVolume() {
         '%, white 100%)'
 }
 
+
+// animation 
 var loader = document.getElementById('loader')
   , border = document.getElementById('border')
   , α = 0
