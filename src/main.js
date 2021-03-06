@@ -136,7 +136,6 @@ function loadVolume() {
 
 // Navigation Bar
 const navBar = document.getElementById('navBar')
-
 function showNav() {
     if (navBar.style.width < '19vw') {
         navBar.style.width = '19vw'
@@ -160,15 +159,18 @@ function startTimerVisual(id) {
     if (!checkTimerStart) {
         //originally was based on id, changed to this since we want the center button to both start pomos and breaks
         if (pomoOrBreak == 'pomo') {
-            startTimer(workTime() * 60, true)
+            startTimer(workTime() * 60 - 1, true)
             endButton.innerHTML = 'Skip'
             title.innerHTML = 'Focus'
+            draw()
             pomoOrBreak = 'break'
         } else {
             if (count == 4) {
-                startTimer(longBreakTime() * 60, false)
+                startTimer(longBreakTime() * 60 - 1, false)
+                drawReverse(longBreakTime())
             } else {
-                startTimer(breakTime() * 60, false)
+                startTimer(breakTime() * 60 - 1, false)
+                drawReverse(breakTime())
             }
 
             endButton.innerHTML = 'Stop'
@@ -205,7 +207,6 @@ function startTimer(seconds, increment) {
     if (count == 4) {
         count = 0
         localStorage.setItem('count', count)
-
         updatePomo()
     }
 
@@ -263,17 +264,27 @@ function updatePomo() {
     }
 }
 
+let fruitAnimation = undefined;
+
 function endTimer() {
-    console.log('timer ending, pomoOrBreak = ' + pomoOrBreak)
+    /*ensures that if 365 degrees haven't been drawn the circle will be reset*/
+    while (α % 365 != 0) {
+        clearTimeout(fruitAnimation)
+        draw()
+    }
+    endFruitAnimation()
     clearInterval(timer)
     checkTimerStart = false
 
+    innerCircle.style.backgroundColor = 'var(--main-light-color)'
+    innerCircle.style.cursor = 'pointer'
+
     //another if else to deal with updated central button
     if (pomoOrBreak == 'break') {
-        title.innerHTML = 'Time For a Break'
+        document.getElementById('title').innerHTML = 'Time For a Break'
         timerStart.innerHTML = 'Break'
     } else {
-        title.innerHTML = 'Ready to Work?'
+        document.getElementById('title').innerHTML = 'Ready to Work?'
         timerStart.innerHTML = 'Start'
     }
     timeDisplay.style.visibility = 'hidden'
@@ -325,4 +336,55 @@ function changeVolume() {
     const value = ((volumeSlider.value - volumeSlider.min) / (volumeSlider.max - volumeSlider.min)) * 100
     volumeSlider.style.background =
         'linear-gradient(to right, var(--main-light-color) 0%, var(--main-light-color) ' + value + '%, #fff ' + value + '%, white 100%)'
+}
+
+const loader = document.getElementById('loader'),
+    border = document.getElementById('border')
+let α = 0,
+    π = Math.PI,
+    αReverse = 0
+
+function draw() {
+    let t = (workTime() * 60 * 1000) / 360
+    α++
+    α %= 360
+    var r = (α * π) / 180,
+        x = Math.sin(r) * 125,
+        y = Math.cos(r) * -125,
+        mid = α > 180 ? 1 : 0,
+        anim = 'M 0 0 v -125 A 125 125 1 ' + mid + ' 1 ' + x + ' ' + y + ' z'
+    //[x,y].forEach(function( d ){
+    //  d = Math.round( d * 1e3 ) / 1e3;
+    //});
+
+    document.getElementById('animation').style.zIndex = 2
+
+    loader.setAttribute('d', anim)
+    border.setAttribute('d', anim)
+
+    fruitAnimation = setTimeout(draw, t) // Redraw
+}
+
+function drawReverse(breakTime) {
+    let t = (breakTime * 60 * 1000) / 360
+    α++
+    α %= 360
+    αReverse = 360 - α
+    var r = (αReverse * π) / 180,
+        x = Math.sin(r) * 125,
+        y = Math.cos(r) * -125,
+        mid = αReverse > 180 ? 1 : 0,
+        anim = 'M 0 0 v -125 A 125 125 1 ' + mid + ' 1 ' + x + ' ' + y + ' z'
+
+    document.getElementById('animation').style.zIndex = 2
+
+    loader.setAttribute('d', anim)
+    border.setAttribute('d', anim)
+
+    fruitAnimation = setTimeout(drawReverse, t, breakTime) // Redraw
+}
+
+function endFruitAnimation() {
+    document.getElementById('animation').style.zIndex = 0
+    clearTimeout(fruitAnimation)
 }

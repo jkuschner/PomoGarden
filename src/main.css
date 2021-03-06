@@ -134,7 +134,6 @@ body {
     height: 1vw;
     top: 0.15vw;
     left: 7vw;
-
     background: linear-gradient(to right, var(--main-heavy-color) 0%, var(--main-heavy-color) 50%, #fff 50%, #fff 100%);
     border: solid 1px var(--main-heavy-color);
     border-radius: 8px;
@@ -168,7 +167,8 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 #entirePomoTimer {
-    top: 50%;
+    z-index: 5;
+    top: 20%;
     margin: auto;
     width: 100%;
 }
@@ -184,6 +184,9 @@ input[type='range']::-webkit-slider-thumb {
     position: relative;
     margin: auto;
     /* left: 6%; */
+    top: -10%;
+    /*messing around with z-index since circle wasn't showing up in front*/
+    z-index: 1
 }
 
 #innerCircle {
@@ -199,6 +202,8 @@ input[type='range']::-webkit-slider-thumb {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    /*messing around with z-index since circle wasn't showing up in front*/
+    z-index: 1;
 }
 
 #allPomos {
@@ -239,7 +244,7 @@ input[type='range']::-webkit-slider-thumb {
 #timerButtons {
     position: relative;
     margin: auto;
-    top: 4.5vw;
+    top: 4vw;
     left: -1.5vw;
 }
 
@@ -277,6 +282,8 @@ input[type='range']::-webkit-slider-thumb {
     transform: translate(-50%, -50%);
     width: 100%;
     visibility: hidden;
+    /*messing around with z-index since circle wasn't showing up in front*/
+    z-index: 3
 }
 
 #time {
@@ -349,4 +356,23 @@ input[type='range']::-webkit-slider-thumb {
     padding: 5px;
     cursor: pointer;
     color: red;
+}
+
+#animation {
+ 
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  height: 90%;
+  z-index: 0;
+}
+
+#loader { 
+    fill: white 
+}
+
+#border{
+    fill: white 
 }
