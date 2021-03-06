@@ -78,24 +78,7 @@ body {
     padding: 8px 8px 8px 32px;
 }
 
-.navRectangle {
-    position: relative;
-    left: 1.5vw;
-    height: 3.5vw;
-    width: 5vw;
-    border: 2px solid var(--main-heavy-color);
-    border-radius: 1vw;
-    text-align: center;
-    line-height: 3.5vw;
-    cursor: pointer;
-    background-color: var(--main-bg-color);
-    white-space: nowrap;
-    display: inline-block;
-    font-size: 1vw;
-    margin: auto;
-}
-
-#navContainer {
+.navContainer {
     position: absolute;
     justify-content: space-evenly;
     width: 100%;
@@ -105,17 +88,18 @@ body {
     left: -1.2vw;
 }
 
-#navContainer > label {
+.navContainer > label {
     display: block;
     width: 100%;
 }
 
-#navContainer > label > input {
+.navContainer > label > input {
     visibility: hidden;
     position: absolute;
 }
 
-#navContainer > label > input + div {
+.navContainer > label > input + span,
+.navRectangle {
     position: relative;
     left: 1.5vw;
     height: 3.5vw;
@@ -132,7 +116,7 @@ body {
     margin: auto;
 }
 
-#navContainer > label > input:checked + div {
+.navContainer > label > input:checked + span {
     background-color: var(--main-light-color);
 }
 
@@ -150,14 +134,7 @@ body {
     height: 1vw;
     top: 0.15vw;
     left: 7vw;
-
-    background: linear-gradient(
-        to right,
-        var(--main-heavy-color) 0%,
-        var(--main-heavy-color) 50%,
-        #fff 50%,
-        #fff 100%
-    );
+    background: linear-gradient(to right, var(--main-heavy-color) 0%, var(--main-heavy-color) 50%, #fff 50%, #fff 100%);
     border: solid 1px var(--main-heavy-color);
     border-radius: 8px;
     -webkit-appearance: none;
@@ -190,7 +167,8 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 #entirePomoTimer {
-    top: 50%;
+    z-index: 5;
+    top: 20%;
     margin: auto;
     width: 100%;
 }
@@ -206,6 +184,9 @@ input[type='range']::-webkit-slider-thumb {
     position: relative;
     margin: auto;
     /* left: 6%; */
+    top: -10%;
+    /*messing around with z-index since circle wasn't showing up in front*/
+    z-index: 1;
 }
 
 #innerCircle {
@@ -221,6 +202,8 @@ input[type='range']::-webkit-slider-thumb {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    /*messing around with z-index since circle wasn't showing up in front*/
+    z-index: 1;
 }
 
 #allPomos {
@@ -232,7 +215,18 @@ input[type='range']::-webkit-slider-thumb {
     width: 12vw;
 }
 
-.pomo {
+#allPomos > label {
+    display: block;
+}
+
+#allPomos > label > input {
+    visibility: hidden;
+    position: absolute;
+    pointer-events: none;
+}
+
+#allPomos > label > input + span {
+    pointer-events: none;
     height: 1vw;
     width: 1vw;
     background-color: var(--main-bg-color);
@@ -242,11 +236,28 @@ input[type='range']::-webkit-slider-thumb {
     visibility: visible;
 }
 
+#allPomos > label > input:checked + span {
+    pointer-events: none;
+    background-color: var(--main-heavy-color);
+}
+
 #timerButtons {
     position: relative;
     margin: auto;
-    top: 4.5vw;
+    top: 4vw;
     left: -1.5vw;
+}
+
+#timerButtons > button {
+    margin: auto;
+    display: block;
+    background-color: var(--main-light-color);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1vw;
+}
+
+#timerButtons > button:disabled {
+    display: none;
 }
 
 .time {
@@ -260,23 +271,8 @@ input[type='range']::-webkit-slider-thumb {
     align-self: center;
 }
 
-#break {
-    margin: auto;
-    display: none;
-    background-color: var(--main-light-color);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1vw;
-}
-
-#end {
-    margin: auto;
-    display: none;
-    background-color: var(--main-light-color);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1vw;
-}
-
 #fruitIcon {
+    cursor: auto;
     content: var(--fruit-url);
     margin: 0;
     position: absolute;
@@ -286,6 +282,8 @@ input[type='range']::-webkit-slider-thumb {
     transform: translate(-50%, -50%);
     width: 100%;
     visibility: hidden;
+    /*messing around with z-index since circle wasn't showing up in front*/
+    z-index: 3;
 }
 
 #time {
@@ -358,4 +356,22 @@ input[type='range']::-webkit-slider-thumb {
     padding: 5px;
     cursor: pointer;
     color: red;
+}
+
+#animation {
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 90%;
+    height: 90%;
+    z-index: 0;
+}
+
+#loader {
+    fill: white;
+}
+
+#border {
+    fill: white;
 }
