@@ -25,7 +25,6 @@ window.addEventListener('DOMContentLoaded', () => {
  * Theme name is saved when a theme option is clicked
  */
 function loadTheme() {
-    /* global getTheme, setTheme, saveTheme */
     const currentTheme = setTheme(getTheme() || 'themeOrange', false)
     const themeRadios = document.forms['themeOptions'].elements['themeOption']
     for (let i = 0; i < themeRadios.length; i++) {
@@ -53,6 +52,14 @@ function setTheme(theme, save) {
     return theme
 }
 
+function getTheme() {
+    return localStorage.getItem('theme')
+}
+
+function saveTheme(theme) {
+    localStorage.setItem('theme', theme)
+}
+
 // load work, break, long break times
 
 let timerVals = undefined
@@ -64,7 +71,7 @@ let longBreakType = 'break15'
  * Break type is saved when a new break type is selected
  */
 async function loadTimerValues() {
-    /* global getTimerValues, getLongBreak, saveLongBreak */
+    /* global getTimerValues */
     timerVals = await getTimerValues()
     longBreakType = getLongBreak() || longBreakType
     const longBreakRadios = document.forms['breakOptions'].elements['breakOption']
@@ -78,6 +85,18 @@ async function loadTimerValues() {
             saveLongBreak(longBreakType)
         }
     }
+}
+
+function getLongBreak() {
+    return localStorage.getItem('longBreakType')
+}
+
+function saveLongBreak(longBreakType) {
+    localStorage.setItem('longBreakType', longBreakType)
+}
+
+function getVolume(volume) {
+    return localStorage.getItem('volume')
 }
 
 /**

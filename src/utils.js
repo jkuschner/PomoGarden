@@ -15,23 +15,3 @@ async function getTimerValues() {
         }
     }
 }
-
-function getTheme() {
-    return localStorage.getItem('theme')
-}
-
-function saveTheme(theme) {
-    localStorage.setItem('theme', theme)
-}
-
-function getLongBreak() {
-    return localStorage.getItem('longBreakType')
-}
-
-function saveLongBreak(longBreakType) {
-    localStorage.setItem('longBreakType', longBreakType)
-}
-
-function getVolume(volume) {
-    return localStorage.getItem('volume')
-}
