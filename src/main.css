@@ -186,7 +186,7 @@ input[type='range']::-webkit-slider-thumb {
     /* left: 6%; */
     top: -10%;
     /*messing around with z-index since circle wasn't showing up in front*/
-    z-index: 1
+    z-index: 1;
 }
 
 #innerCircle {
@@ -283,7 +283,7 @@ input[type='range']::-webkit-slider-thumb {
     width: 100%;
     visibility: hidden;
     /*messing around with z-index since circle wasn't showing up in front*/
-    z-index: 3
+    z-index: 3;
 }
 
 #time {
@@ -359,20 +359,19 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 #animation {
- 
-  transform: translate(-50%, -50%);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 90%;
-  height: 90%;
-  z-index: 0;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 90%;
+    height: 90%;
+    z-index: 0;
 }
 
-#loader { 
-    fill: white 
+#loader {
+    fill: white;
 }
 
-#border{
-    fill: white 
+#border {
+    fill: white;
 }

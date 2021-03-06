@@ -264,7 +264,7 @@ function updatePomo() {
     }
 }
 
-let fruitAnimation = undefined;
+let fruitAnimation = undefined
 
 function endTimer() {
     /*ensures that if 365 degrees haven't been drawn the circle will be reset*/
@@ -338,17 +338,17 @@ function changeVolume() {
         'linear-gradient(to right, var(--main-light-color) 0%, var(--main-light-color) ' + value + '%, #fff ' + value + '%, white 100%)'
 }
 
-const loader = document.getElementById('loader'),
-    border = document.getElementById('border')
-let α = 0,
-    π = Math.PI,
-    αReverse = 0
+const loader = document.getElementById('loader')
+const border = document.getElementById('border')
+const π = Math.PI
+let α = 0
+let αReverse = 0
 
 function draw() {
-    let t = (workTime() * 60 * 1000) / 360
+    const t = (workTime() * 60 * 1000) / 360
     α++
     α %= 360
-    var r = (α * π) / 180,
+    const r = (α * π) / 180,
         x = Math.sin(r) * 125,
         y = Math.cos(r) * -125,
         mid = α > 180 ? 1 : 0,
@@ -366,11 +366,11 @@ function draw() {
 }
 
 function drawReverse(breakTime) {
-    let t = (breakTime * 60 * 1000) / 360
+    const t = (breakTime * 60 * 1000) / 360
     α++
     α %= 360
     αReverse = 360 - α
-    var r = (αReverse * π) / 180,
+    const r = (αReverse * π) / 180,
         x = Math.sin(r) * 125,
         y = Math.cos(r) * -125,
         mid = αReverse > 180 ? 1 : 0,
