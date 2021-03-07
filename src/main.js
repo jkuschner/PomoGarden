@@ -9,36 +9,133 @@ window.addEventListener('DOMContentLoaded', () => {
     //updatePomo()
 
     // Store theme on refresh
-    if (localStorage.getItem('theme') == null) {
-        localStorage.setItem('theme', 'themeOrange')
-        changeTheme('themeOrange')
-    } else {
-        changeTheme(localStorage.getItem('theme'))
-    }
+    loadTheme()
 
     // Store long break time on refresh
-    if (localStorage.getItem('longBreakTime') == null) {
-        changeLongBreak('longBreakFifteen')
-    } else {
-        if (localStorage.getItem('longBreakTime') == 0.2) {
-            changeLongBreak('longBreakTen')
-        } else if (localStorage.getItem('longBreakTime') == 0.3) {
-            changeLongBreak('longBreakFifteen')
-        } else {
-            changeLongBreak('longBreakTwenty')
-        }
-    }
+    loadTimerValues()
 
     // Store volume on refresh
-    if (localStorage.getItem('volume') != null) {
-        volumeSlider.value = localStorage.getItem('volume')
+    loadVolume()
+})
+
+// load theme
+
+/**
+ * Load the selected theme from local storage, or default to 'themeOrange'
+ * Theme name is saved when a theme option is clicked
+ */
+function loadTheme() {
+    const currentTheme = setTheme(getTheme() || 'themeOrange', false)
+    const themeRadios = document.forms['themeOptions'].elements['themeOption']
+    for (let i = 0; i < themeRadios.length; i++) {
+        const radio = themeRadios[i]
+        if (radio.value == currentTheme) {
+            radio.checked = true
+        }
+        radio.onclick = () => {
+            setTheme(radio.value, true)
+        }
+    }
+}
+
+/**
+ * Changes the theme of the entire timer
+ * @param {String} theme CSS class name of the theme to set
+ * @param {Boolean} save whether to save to local storage
+ * @returns the new theme
+ */
+function setTheme(theme, save) {
+    document.documentElement.className = theme
+    if (save) {
+        saveTheme(theme)
+    }
+    return theme
+}
+
+function getTheme() {
+    return localStorage.getItem('theme')
+}
+
+function saveTheme(theme) {
+    localStorage.setItem('theme', theme)
+}
+
+// load work, break, long break times
+
+let timerVals = undefined
+let longBreakType = 'break15'
+
+/**
+ * Load timer values (work time, break time...) to use later
+ * Load the long break type selected, which is used to access the correct break time in the loaded timer values
+ * Break type is saved when a new break type is selected
+ */
+async function loadTimerValues() {
+    /* global getTimerValues */
+    timerVals = await getTimerValues()
+    longBreakType = getLongBreak() || longBreakType
+    const longBreakRadios = document.forms['breakOptions'].elements['breakOption']
+    for (let i = 0; i < longBreakRadios.length; i++) {
+        const radio = longBreakRadios[i]
+        if (radio.value == longBreakType) {
+            radio.checked = true
+        }
+        radio.onclick = () => {
+            longBreakType = radio.value
+            saveLongBreak(longBreakType)
+        }
+    }
+}
+
+function getLongBreak() {
+    return localStorage.getItem('longBreakType')
+}
+
+function saveLongBreak(longBreakType) {
+    localStorage.setItem('longBreakType', longBreakType)
+}
+
+function getVolume(volume) {
+    return localStorage.getItem('volume')
+}
+
+/**
+ * Gets the long break time from the timerVals object
+ * @returns long break time
+ */
+function longBreakTime() {
+    return timerVals.longBreakTimes[longBreakType]
+}
+
+/**
+ * Gets the break time from the timerVals object
+ * @returns break time
+ */
+function breakTime() {
+    return timerVals.breakTime
+}
+
+/**
+ * Gets the work time from the timerVals object
+ * @returns work time
+ */
+function workTime() {
+    return timerVals.workTime
+}
+
+// load volume
+
+function loadVolume() {
+    /* global getVolume */
+    const currentVolume = getVolume()
+    if (currentVolume != null) {
+        volumeSlider.value = currentVolume
         changeVolume()
     }
-})
+}
 
 // Navigation Bar
 const navBar = document.getElementById('navBar')
-
 function showNav() {
     if (navBar.style.width < '19vw') {
         navBar.style.width = '19vw'
@@ -49,6 +146,9 @@ function showNav() {
 
 // User starts timer in inner circle
 const innerCircle = document.getElementById('innerCircle')
+const title = document.getElementById('title')
+const endButton = document.getElementById('end')
+const breakButton = document.getElementById('break')
 let checkTimerStart = false
 
 //this is a bit of a garbage solution but I'm creating a variable to check if starting pomo or break since the current check with id won't quite fit
@@ -57,29 +157,29 @@ let pomoOrBreak = 'pomo'
 function startTimerVisual(id) {
     console.log(pomoOrBreak)
     if (!checkTimerStart) {
-        innerCircle.style.backgroundColor = 'var(--main-bg-color)'
-        innerCircle.style.cursor = 'auto'
-
         //originally was based on id, changed to this since we want the center button to both start pomos and breaks
         if (pomoOrBreak == 'pomo') {
-            startTimer(workTime * 60, true)
-            document.getElementById('end').innerHTML = 'Skip'
-            document.getElementById('title').innerHTML = 'Focus'
+            startTimer(workTime() * 60 - 1, true)
+            endButton.innerHTML = 'Skip'
+            title.innerHTML = 'Focus'
+            draw()
             pomoOrBreak = 'break'
         } else {
             if (count == 4) {
-                startTimer(longBreakTime * 60, false)
+                startTimer(longBreakTime() * 60 - 1, false)
+                drawReverse(longBreakTime())
             } else {
-                startTimer(breakTime * 60, false)
+                startTimer(breakTime() * 60 - 1, false)
+                drawReverse(breakTime())
             }
 
-            document.getElementById('end').innerHTML = 'Stop'
-            document.getElementById('title').innerHTML = 'Relax'
+            endButton.innerHTML = 'Stop'
+            title.innerHTML = 'Relax'
             pomoOrBreak = 'pomo'
         }
 
-        document.getElementById('break').style.display = 'none'
-        document.getElementById('end').style.display = 'block'
+        breakButton.disabled = true
+        endButton.disabled = false
         checkTimerStart = true
     }
 }
@@ -87,15 +187,8 @@ function startTimerVisual(id) {
 // Pomodoro Timer
 let timer = undefined
 let count = 0
-const workTime = 0.1
-const breakTime = 0.1
-let longBreakTime = 0.3
 
-const firstPomo = document.getElementById('first-pomo')
-const secondPomo = document.getElementById('second-pomo')
-const thirdPomo = document.getElementById('third-pomo')
-const fourthPomo = document.getElementById('fourth-pomo')
-const pomo = document.getElementsByClassName('pomo')
+const pomo = document.forms['pomoDisplay'].elements['pomo']
 const timeDisplay = document.getElementById('time')
 const fruitIcon = document.getElementById('fruitIcon')
 const timerStart = document.getElementById('timerStart')
@@ -114,11 +207,7 @@ function startTimer(seconds, increment) {
     if (count == 4) {
         count = 0
         localStorage.setItem('count', count)
-
-        firstPomo.style.backgroundColor = 'var(--main-bg-color)'
-        secondPomo.style.backgroundColor = 'var(--main-bg-color)'
-        thirdPomo.style.backgroundColor = 'var(--main-bg-color)'
-        fourthPomo.style.backgroundColor = 'var(--main-bg-color)'
+        updatePomo()
     }
 
     timer = setInterval(function () {
@@ -137,10 +226,10 @@ function startTimer(seconds, increment) {
             if (increment) {
                 //break can effectively be deleted if the issue I'm working on is correct
                 //document.getElementById('break').style.display = 'block'
-                document.getElementById('end').style.display = 'none'
+                endButton.disabled = true
             } else {
-                document.getElementById('break').style.display = 'none'
-                document.getElementById('end').style.display = 'none'
+                breakButton.disabled = true
+                endButton.disabled = true
             }
         } else {
             time -= 1
@@ -165,31 +254,25 @@ function displayTime(time) {
 
 function endPomo() {
     endTimer()
-    document.getElementById('end').style.display = 'none'
+    endButton.disabled = true
 }
 
 function updatePomo() {
     // Fill in pomo based on count
-    if (count == 1) {
-        firstPomo.style.backgroundColor = 'var(--main-light-color)'
-    } else if (count == 2) {
-        firstPomo.style.backgroundColor = 'var(--main-light-color)'
-        secondPomo.style.backgroundColor = 'var(--main-light-color)'
-    } else if (count == 3) {
-        firstPomo.style.backgroundColor = 'var(--main-light-color)'
-        secondPomo.style.backgroundColor = 'var(--main-light-color)'
-        thirdPomo.style.backgroundColor = 'var(--main-light-color)'
-    } else if (count == 4) {
-        firstPomo.style.backgroundColor = 'var(--main-light-color)'
-        secondPomo.style.backgroundColor = 'var(--main-light-color)'
-        thirdPomo.style.backgroundColor = 'var(--main-light-color)'
-        fourthPomo.style.backgroundColor = 'var(--main-light-color)'
-        // document.getElementById("break").innerHTML = "Long Break"
+    for (let i = 0; i < pomo.length; i++) {
+        pomo[i].checked = i < count
     }
 }
 
+let fruitAnimation = undefined
+
 function endTimer() {
-    console.log('timer ending, pomoOrBreak = ' + pomoOrBreak)
+    /*ensures that if 365 degrees haven't been drawn the circle will be reset*/
+    while (α % 365 != 0) {
+        clearTimeout(fruitAnimation)
+        draw()
+    }
+    endFruitAnimation()
     clearInterval(timer)
     checkTimerStart = false
 
@@ -209,22 +292,6 @@ function endTimer() {
     timerStart.style.visibility = 'visible'
 }
 
-function toggleBreak() {
-    if (document.getElementById('break').style.display === 'none') {
-        document.getElementById('break').style.display = 'block'
-    } else {
-        document.getElementById('break').style.display = 'none'
-    }
-}
-
-function toggleEnd() {
-    if (document.getElementById('end').style.display === 'none') {
-        document.getElementById('end').style.display = 'block'
-    } else {
-        document.getElementById('end').style.display = 'none'
-    }
-}
-
 const skipPopup = document.getElementById('skip-popup')
 const skipConfirm = document.getElementById('skip-confirm')
 const skipCancel = document.getElementById('skip-cancel')
@@ -239,51 +306,11 @@ skipCancel.addEventListener('click', () => {
 })
 
 function skipOrStop() {
-    if (document.getElementById('end').innerHTML == 'Skip') {
+    if (endButton.innerHTML == 'Skip') {
         skipPopup.style.display = 'block'
     } else {
         endPomo()
     }
-}
-
-function changeLongBreak(id) {
-    const tenElement = document.getElementById('longBreakTen')
-    const fifteenElement = document.getElementById('longBreakFifteen')
-    const twentyElement = document.getElementById('longBreakTwenty')
-    if (id == 'longBreakTen') {
-        longBreakTime = 0.2
-        localStorage.setItem('longBreakTime', longBreakTime)
-
-        tenElement.style.backgroundColor = 'var(--main-light-color)'
-        fifteenElement.style.backgroundColor = 'var(--main-bg-color)'
-        twentyElement.style.backgroundColor = 'var(--main-bg-color)'
-    } else if (id == 'longBreakFifteen') {
-        longBreakTime = 0.3
-        localStorage.setItem('longBreakTime', longBreakTime)
-
-        tenElement.style.backgroundColor = 'var(--main-bg-color)'
-        fifteenElement.style.backgroundColor = 'var(--main-light-color)'
-        twentyElement.style.backgroundColor = 'var(--main-bg-color)'
-    } else {
-        longBreakTime = 0.4
-        localStorage.setItem('longBreakTime', longBreakTime)
-
-        tenElement.style.backgroundColor = 'var(--main-bg-color)'
-        fifteenElement.style.backgroundColor = 'var(--main-bg-color)'
-        twentyElement.style.backgroundColor = 'var(--main-light-color)'
-    }
-}
-
-function changeTheme(id) {
-    document.documentElement.className = id
-
-    const currentTheme = localStorage.getItem('theme')
-    document.getElementById(currentTheme).style.backgroundColor =
-        'var(--main-bg-color)'
-
-    localStorage.setItem('theme', id)
-    document.getElementById(id).style.backgroundColor =
-        'var(--main-light-color)'
 }
 
 const volumeSlider = document.getElementById('volume-slider')
@@ -306,14 +333,58 @@ function changeVolume() {
         volumeImage.src = './images/volume-level-3.svg'
     }
 
-    const value =
-        ((volumeSlider.value - volumeSlider.min) /
-            (volumeSlider.max - volumeSlider.min)) *
-        100
+    const value = ((volumeSlider.value - volumeSlider.min) / (volumeSlider.max - volumeSlider.min)) * 100
     volumeSlider.style.background =
-        'linear-gradient(to right, var(--main-light-color) 0%, var(--main-light-color) ' +
-        value +
-        '%, #fff ' +
-        value +
-        '%, white 100%)'
+        'linear-gradient(to right, var(--main-light-color) 0%, var(--main-light-color) ' + value + '%, #fff ' + value + '%, white 100%)'
+}
+
+const loader = document.getElementById('loader')
+const border = document.getElementById('border')
+const π = Math.PI
+let α = 0
+let αReverse = 0
+
+function draw() {
+    const t = (workTime() * 60 * 1000) / 360
+    α++
+    α %= 360
+    const r = (α * π) / 180,
+        x = Math.sin(r) * 125,
+        y = Math.cos(r) * -125,
+        mid = α > 180 ? 1 : 0,
+        anim = 'M 0 0 v -125 A 125 125 1 ' + mid + ' 1 ' + x + ' ' + y + ' z'
+    //[x,y].forEach(function( d ){
+    //  d = Math.round( d * 1e3 ) / 1e3;
+    //});
+
+    document.getElementById('animation').style.zIndex = 2
+
+    loader.setAttribute('d', anim)
+    border.setAttribute('d', anim)
+
+    fruitAnimation = setTimeout(draw, t) // Redraw
+}
+
+function drawReverse(breakTime) {
+    const t = (breakTime * 60 * 1000) / 360
+    α++
+    α %= 360
+    αReverse = 360 - α
+    const r = (αReverse * π) / 180,
+        x = Math.sin(r) * 125,
+        y = Math.cos(r) * -125,
+        mid = αReverse > 180 ? 1 : 0,
+        anim = 'M 0 0 v -125 A 125 125 1 ' + mid + ' 1 ' + x + ' ' + y + ' z'
+
+    document.getElementById('animation').style.zIndex = 2
+
+    loader.setAttribute('d', anim)
+    border.setAttribute('d', anim)
+
+    fruitAnimation = setTimeout(drawReverse, t, breakTime) // Redraw
+}
+
+function endFruitAnimation() {
+    document.getElementById('animation').style.zIndex = 0
+    clearTimeout(fruitAnimation)
 }
