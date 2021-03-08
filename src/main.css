@@ -345,7 +345,9 @@ input[type='range']::-webkit-slider-thumb {
 
 #animation {
     background-image: var(--fruit-url);
-    background-size: contain;
+    background-size: 99% 99%;
+    background-repeat: no-repeat;
+    background-position: center;
     transform: translate(-50%, -50%);
     position: absolute;
     top: 50%;

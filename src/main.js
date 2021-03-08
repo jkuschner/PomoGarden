@@ -104,6 +104,7 @@ function getVolume(volume) {
  * @returns long break time
  */
 function longBreakTime() {
+    console.log("Long break time: " + timerVals.longBreakTimes[longBreakType])
     return timerVals.longBreakTimes[longBreakType]
 }
 
@@ -159,17 +160,20 @@ function startTimerVisual(id) {
     if (!checkTimerStart) {
         //originally was based on id, changed to this since we want the center button to both start pomos and breaks
         if (pomoOrBreak == 'pomo') {
-            startTimer(workTime() * 60 - 1, true)
+            startTimer(workTime() - 1, true)
             endButton.innerHTML = 'Skip'
             title.innerHTML = 'Focus'
+            innerCircle.style.backgroundColor = 'inherit'
             draw()
             pomoOrBreak = 'break'
         } else {
-            if (count == 4) {
-                startTimer(longBreakTime() * 60 - 1, false)
+            if (count == NUM_POMOS) {
+                startTimer(longBreakTime() - 1, false)
+                innerCircle.style.backgroundColor = 'inherit'
                 drawReverse(longBreakTime())
             } else {
-                startTimer(breakTime() * 60 - 1, false)
+                startTimer(breakTime() - 1, false)
+                innerCircle.style.backgroundColor = 'inherit'
                 drawReverse(breakTime())
             }
 
@@ -188,6 +192,7 @@ function startTimerVisual(id) {
 let timer = undefined
 let count = 0
 
+const NUM_POMOS = 4
 const pomo = document.forms['pomoDisplay'].elements['pomo']
 const timeDisplay = document.getElementById('time')
 const timerStart = document.getElementById('timerStart')
@@ -202,7 +207,7 @@ function startTimer(seconds, increment) {
     displayTime(time)
 
     // reset # of pomos if full
-    if (count == 4) {
+    if (count == NUM_POMOS) {
         count = 0
         localStorage.setItem('count', count)
         updatePomo()
@@ -239,15 +244,8 @@ function startTimer(seconds, increment) {
 //Takes in time value, converts into MM:SS format
 //sets time element in html accordingly
 function displayTime(time) {
-    let seconds = time % 60
-    let minutes = Math.floor(time / 60)
-    if (minutes < 10) {
-        minutes = '0' + minutes
-    }
-    if (seconds < 10) {
-        seconds = '0' + seconds
-    }
-    document.getElementById('time').innerHTML = minutes + ':' + seconds
+    /* global formatTime */
+    timeDisplay.innerHTML = formatTime(time)
 }
 
 function endPomo() {
@@ -341,7 +339,7 @@ let α = 0
 let αReverse = 0
 
 function draw() {
-    const t = (workTime() * 60 * 1000) / 360
+    const t = (workTime() * 1000) / 360
     α++
     α %= 360
     const tangent = Math.sqrt(2 * 125 * 125)
@@ -359,7 +357,7 @@ function draw() {
 }
 
 function drawReverse(breakTime) {
-    const t = (breakTime * 60 * 1000) / 360
+    const t = (breakTime * 1000) / 360
     α++
     α %= 360
     αReverse = 360 - α
