@@ -190,7 +190,6 @@ let count = 0
 
 const pomo = document.forms['pomoDisplay'].elements['pomo']
 const timeDisplay = document.getElementById('time')
-const fruitIcon = document.getElementById('fruitIcon')
 const timerStart = document.getElementById('timerStart')
 
 const alarm = document.getElementById('alarm')
@@ -199,7 +198,6 @@ function startTimer(seconds, increment) {
     let time = seconds
 
     timeDisplay.style.visibility = 'visible'
-    fruitIcon.style.visibility = 'visible'
     timerStart.style.visibility = 'hidden'
     displayTime(time)
 
@@ -288,7 +286,6 @@ function endTimer() {
         timerStart.innerHTML = 'Start'
     }
     timeDisplay.style.visibility = 'hidden'
-    fruitIcon.style.visibility = 'hidden'
     timerStart.style.visibility = 'visible'
 }
 
@@ -325,9 +322,9 @@ function changeVolume() {
 
     if (volumeSlider.value == 0) {
         volumeImage.src = './images/volume-level-0.svg'
-    } else if (volumeSlider.value >= 1 && volumeSlider.value <= 33) {
+    } else if (volumeSlider.value <= 33) {
         volumeImage.src = './images/volume-level-1.svg'
-    } else if (volumeSlider.value >= 34 && volumeSlider.value <= 66) {
+    } else if (volumeSlider.value <= 66) {
         volumeImage.src = './images/volume-level-2.svg'
     } else {
         volumeImage.src = './images/volume-level-3.svg'

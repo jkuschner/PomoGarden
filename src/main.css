@@ -271,21 +271,6 @@ input[type='range']::-webkit-slider-thumb {
     align-self: center;
 }
 
-#fruitIcon {
-    cursor: auto;
-    content: var(--fruit-url);
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    width: 100%;
-    visibility: hidden;
-    /*messing around with z-index since circle wasn't showing up in front*/
-    z-index: 3;
-}
-
 #time {
     position: relative;
     text-align: center;
@@ -359,6 +344,8 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 #animation {
+    background-image: var(--fruit-url);
+    background-size: contain;
     transform: translate(-50%, -50%);
     position: absolute;
     top: 50%;
@@ -369,9 +356,9 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 #loader {
-    fill: white;
+    fill: var(--main-bg-color);
 }
 
 #border {
-    fill: white;
+    fill: var(--main-bg-color);
 }
