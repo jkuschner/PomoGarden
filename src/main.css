@@ -167,7 +167,6 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 #entirePomoTimer {
-    z-index: 5;
     top: 20%;
     margin: auto;
     width: 100%;
@@ -179,14 +178,10 @@ input[type='range']::-webkit-slider-thumb {
     background-color: var(--main-bg-color);
     border-radius: 10vw;
     border: 1.3vw solid var(--main-heavy-color);
-    /* display: inline-block; */
     visibility: visible;
     position: relative;
     margin: auto;
-    /* left: 6%; */
     top: -10%;
-    /*messing around with z-index since circle wasn't showing up in front*/
-    z-index: 2;
 }
 
 #innerCircle {
@@ -208,8 +203,7 @@ input[type='range']::-webkit-slider-thumb {
     font-family: 'Montserrat', sans-serif;
     color: inherit;
     visibility: visible;
-    /*messing around with z-index since circle wasn't showing up in front*/
-    z-index: 1;
+    z-index: 1; /* show before fruit */
 }
 
 #innerCircle:disabled {
@@ -355,7 +349,6 @@ input[type='range']::-webkit-slider-thumb {
     left: 50%;
     width: 90%;
     height: 90%;
-    z-index: 0;
 }
 
 #border {

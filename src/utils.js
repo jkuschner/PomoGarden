@@ -16,6 +16,7 @@ async function getTimerValues() {
     }
 }
 
+//Takes in time value, converts into MM:SS format
 function formatTime(totalSeconds) {
     let seconds = totalSeconds % 60
     let minutes = Math.floor(totalSeconds / 60)
@@ -26,4 +27,21 @@ function formatTime(totalSeconds) {
         seconds = '0' + seconds
     }
     return minutes + ':' + seconds
+}
+
+const SECONDS_TO_MS = 1000;
+function startTimer(seconds, callback) {
+    let countDown = seconds - 1;
+    const interval = setInterval(() => {
+        if (countDown <= 0) {
+            callback(0);
+            clearInterval(interval)
+            return;
+        }
+        callback(countDown)
+        countDown--
+    }, SECONDS_TO_MS)
+
+    callback(seconds) // callback immediately for the first second
+    return interval
 }
