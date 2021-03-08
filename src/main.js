@@ -175,26 +175,32 @@ function showNav() {
 // User starts timer in inner circle
 const innerCircle = document.getElementById('innerCircle')
 const title = document.getElementById('title')
+const skipButton = document.getElementById('skip')
 const resetButton = document.getElementById('reset')
 const timerStart = document.getElementById('timerStart')
+const modalText = document.getElementById('modal-text')
 
-let timerFunc = undefined
+let timerFunc = undefined, stopFunc = undefined
 function setPomoMode(isPomo) {
     if (isPomo) {
         innerCircle.style.backgroundColor = 'var(--main-light-color)'
         title.innerHTML = 'Ready to Work?'
         timerStart.innerHTML = 'Start'
+        modalText.innerHTML = 'Are you sure you want to break this work session?'
         timerFunc = () => {
             startPomoTimer(workTime())
         }
+        stopFunc = skipPomo
     } else {
         innerCircle.style.backgroundColor = 'inherit'
         title.innerHTML = 'Time For a Break'
         timerStart.innerHTML = 'Break'
+        modalText.innerHTML = 'Are you sure you want to reset the entire Pomo?'
         timerFunc = () => {
             const bt = (count == NUM_POMOS) ? longBreakTime() : breakTime()
             startBreakTimer(bt)
         }
+        stopFunc = resetPomo
     }
 }
 
@@ -216,10 +222,8 @@ const alarm = document.getElementById('alarm')
 function startPomoTimer(seconds) {
     title.innerHTML = 'Focus'
     timeDisplay.style.visibility = 'visible'
+    skipButton.disabled = false
     displayTime(seconds)
-    if (count == 0) {
-        resetButton.disabled = false
-    }
 
     /* global startTimer */
     timer = startTimer(seconds, secondsRemaining => {
@@ -231,6 +235,7 @@ function startPomoTimer(seconds) {
             alarm.play()
             endTimer()
             setPomoMode(false)
+            skipButton.disabled = true
         } else {
             draw(secondsRemaining, seconds, 1, false)
         }
@@ -240,6 +245,7 @@ function startPomoTimer(seconds) {
 function startBreakTimer(seconds) {
     title.innerHTML = 'Relax'
     timeDisplay.style.visibility = 'visible'
+    resetButton.disabled = false
     displayTime(seconds)
 
     /* global startTimer */
@@ -249,12 +255,12 @@ function startBreakTimer(seconds) {
         if (secondsRemaining <= 0) {
             if (count == NUM_POMOS) {
                 setCount(0)
-                resetButton.disabled = true
             }
 
             alarm.play()
             endTimer()
             setPomoMode(true)
+            resetButton.disabled = true
         } else {
             draw(secondsRemaining, seconds, 1, true)
         }
@@ -326,24 +332,35 @@ function endTimer() {
     clearInterval(timer)
 
     innerCircle.disabled = false
+    skipButton.disabled = true
+    resetButton.disabled = true
     timeDisplay.style.visibility = 'hidden'
 }
 
-const resetPopup = document.getElementById('reset-popup')
-const resetConfirm = document.getElementById('reset-confirm')
-const resetCancel = document.getElementById('reset-cancel')
+const modalPopup = document.getElementById('modal-popup')
+const modalConfirm = document.getElementById('modal-confirm')
+const modalCancel = document.getElementById('modal-cancel')
 
-resetConfirm.addEventListener('click', () => {
-    resetPopup.style.display = 'none'
+modalConfirm.addEventListener('click', () => {
+    modalPopup.style.display = 'none'
+    stopFunc()
+})
+
+modalCancel.addEventListener('click', () => {
+    modalPopup.style.display = 'none'
+})
+
+function skipPomo() {
+    setPomoMode(false)
+    endTimer()
+}
+
+function resetPomo() {
     setCount(0)
     setPomoMode(true)
     endTimer()
-})
+}
 
-resetCancel.addEventListener('click', () => {
-    resetPopup.style.display = 'none'
-})
-
-function resetPomo() {
-    resetPopup.style.display = 'block'
+function skipOrReset() {
+    modalPopup.style.display = 'block'
 }
