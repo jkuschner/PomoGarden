@@ -251,6 +251,18 @@ input[type='range']::-webkit-slider-thumb {
     display: none;
 }
 
+#timerStart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: min(50px, 6.25vh);
+    height: min(60px, 10vh);
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+    visibility: visible;
+}
+
 #allPomos {
     
     position: absolute;
