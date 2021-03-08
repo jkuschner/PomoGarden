@@ -49,8 +49,12 @@
             </form>
 
             <div id="timerButtons">
-                <button id="end" class="navRectangle" onclick="skipOrStop()" disabled="disabled">Stop</button>
-                <button id="break" class="navRectangle" onclick="startTimerVisual(id)" disabled="disabled">Skip</button>
+                <button id="end" class="skipResetButton" onclick="skipOrStop()" disabled="disabled"> NMSL
+<!--                    <span class="skipResetText" id="skipText"> Skip </span>-->
+<!--                    <div id="skipText">Skip</div>-->
+                </button>
+                <button id="break" onclick="startTimerVisual(id)" disabled="disabled">
+                </button>
 
                 <div class="modal" id="skip-popup">
                     <div class="content vertical-align-middle">
