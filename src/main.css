@@ -195,15 +195,26 @@ input[type='range']::-webkit-slider-thumb {
     width: 90%;
     background-color: var(--main-light-color);
     border-radius: 50%;
+    border: none;
     display: inline-block;
+    outline-style: none;
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    font-size: 2vw;
+    font-family: 'Montserrat', sans-serif;
+    color: inherit;
+    visibility: visible;
     /*messing around with z-index since circle wasn't showing up in front*/
     z-index: 1;
+}
+
+#innerCircle:disabled {
+    cursor: none;
+    display: none;
 }
 
 #allPomos {
@@ -279,16 +290,6 @@ input[type='range']::-webkit-slider-thumb {
     width: 100%;
     margin-bottom: 0.5vw;
     visibility: hidden;
-}
-
-#timerStart {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 2vw;
-    font-family: 'Montserrat', sans-serif;
-    visibility: visible;
 }
 
 .modal {

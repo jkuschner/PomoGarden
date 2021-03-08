@@ -159,21 +159,19 @@ function startTimerVisual(id) {
     console.log(pomoOrBreak)
     if (!checkTimerStart) {
         //originally was based on id, changed to this since we want the center button to both start pomos and breaks
+        innerCircle.disabled = true
         if (pomoOrBreak == 'pomo') {
             startTimer(workTime() - 1, true)
             endButton.innerHTML = 'Skip'
             title.innerHTML = 'Focus'
-            innerCircle.style.backgroundColor = 'inherit'
             draw()
             pomoOrBreak = 'break'
         } else {
             if (count == NUM_POMOS) {
                 startTimer(longBreakTime() - 1, false)
-                innerCircle.style.backgroundColor = 'inherit'
                 drawReverse(longBreakTime())
             } else {
                 startTimer(breakTime() - 1, false)
-                innerCircle.style.backgroundColor = 'inherit'
                 drawReverse(breakTime())
             }
 
@@ -195,7 +193,6 @@ let count = 0
 const NUM_POMOS = 4
 const pomo = document.forms['pomoDisplay'].elements['pomo']
 const timeDisplay = document.getElementById('time')
-const timerStart = document.getElementById('timerStart')
 
 const alarm = document.getElementById('alarm')
 
@@ -203,7 +200,6 @@ function startTimer(seconds, increment) {
     let time = seconds
 
     timeDisplay.style.visibility = 'visible'
-    timerStart.style.visibility = 'hidden'
     displayTime(time)
 
     // reset # of pomos if full
@@ -272,19 +268,17 @@ function endTimer() {
     clearInterval(timer)
     checkTimerStart = false
 
-    innerCircle.style.backgroundColor = 'var(--main-light-color)'
-    innerCircle.style.cursor = 'pointer'
+    innerCircle.disabled = false
 
     //another if else to deal with updated central button
     if (pomoOrBreak == 'break') {
         document.getElementById('title').innerHTML = 'Time For a Break'
-        timerStart.innerHTML = 'Break'
+        innerCircle.innerHTML = 'Break'
     } else {
         document.getElementById('title').innerHTML = 'Ready to Work?'
-        timerStart.innerHTML = 'Start'
+        innerCircle.innerHTML = 'Start'
     }
     timeDisplay.style.visibility = 'hidden'
-    timerStart.style.visibility = 'visible'
 }
 
 const skipPopup = document.getElementById('skip-popup')
