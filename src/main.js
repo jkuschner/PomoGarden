@@ -95,10 +95,6 @@ function saveLongBreak(longBreakType) {
     localStorage.setItem('longBreakType', longBreakType)
 }
 
-function getVolume(volume) {
-    return localStorage.getItem('volume')
-}
-
 /**
  * Gets the long break time from the timerVals object
  * @returns long break time
@@ -132,6 +128,35 @@ function loadVolume() {
         volumeSlider.value = currentVolume
         changeVolume()
     }
+}
+
+function getVolume() {
+    return localStorage.getItem('volume')
+}
+
+const volumeSlider = document.getElementById('volume-slider')
+const volumeNumber = document.getElementById('volume-number')
+const volumeImage = document.getElementById('volume-image')
+
+function changeVolume() {
+    localStorage.setItem('volume', volumeSlider.value)
+
+    volumeNumber.innerHTML = volumeSlider.value
+    alarm.volume = volumeSlider.value / 100
+
+    if (volumeSlider.value == 0) {
+        volumeImage.src = './images/volume-level-0.svg'
+    } else if (volumeSlider.value <= 33) {
+        volumeImage.src = './images/volume-level-1.svg'
+    } else if (volumeSlider.value <= 66) {
+        volumeImage.src = './images/volume-level-2.svg'
+    } else {
+        volumeImage.src = './images/volume-level-3.svg'
+    }
+
+    const value = ((volumeSlider.value - volumeSlider.min) / (volumeSlider.max - volumeSlider.min)) * 100
+    volumeSlider.style.background =
+        'linear-gradient(to right, var(--main-light-color) 0%, var(--main-light-color) ' + value + '%, #fff ' + value + '%, white 100%)'
 }
 
 // Navigation Bar
@@ -319,29 +344,4 @@ function skipOrStop() {
     } else {
         endTimer()
     }
-}
-
-const volumeSlider = document.getElementById('volume-slider')
-const volumeNumber = document.getElementById('volume-number')
-const volumeImage = document.getElementById('volume-image')
-
-function changeVolume() {
-    localStorage.setItem('volume', volumeSlider.value)
-
-    volumeNumber.innerHTML = volumeSlider.value
-    alarm.volume = volumeSlider.value / 100
-
-    if (volumeSlider.value == 0) {
-        volumeImage.src = './images/volume-level-0.svg'
-    } else if (volumeSlider.value <= 33) {
-        volumeImage.src = './images/volume-level-1.svg'
-    } else if (volumeSlider.value <= 66) {
-        volumeImage.src = './images/volume-level-2.svg'
-    } else {
-        volumeImage.src = './images/volume-level-3.svg'
-    }
-
-    const value = ((volumeSlider.value - volumeSlider.min) / (volumeSlider.max - volumeSlider.min)) * 100
-    volumeSlider.style.background =
-        'linear-gradient(to right, var(--main-light-color) 0%, var(--main-light-color) ' + value + '%, #fff ' + value + '%, white 100%)'
 }
