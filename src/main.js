@@ -192,6 +192,7 @@ const pomo = document.forms['pomoDisplay'].elements['pomo']
 const timeDisplay = document.getElementById('time')
 const fruitIcon = document.getElementById('fruitIcon')
 const timerStart = document.getElementById('timerStart')
+const pulseCircle = document.getElementById('pulseCircle')
 
 const alarm = document.getElementById('alarm')
 
@@ -201,6 +202,8 @@ function startTimer(seconds, increment) {
     timeDisplay.style.visibility = 'visible'
     fruitIcon.style.visibility = 'visible'
     timerStart.style.visibility = 'hidden'
+    pulseCircle.style.visibility = 'hidden'
+
     displayTime(time)
 
     // reset # of pomos if full
@@ -272,12 +275,15 @@ function endTimer() {
         clearTimeout(fruitAnimation)
         draw()
     }
+
     endFruitAnimation()
+
     clearInterval(timer)
     checkTimerStart = false
 
-    innerCircle.style.backgroundColor = 'var(--main-light-color)'
+    //innerCircle.style.backgroundColor = 'var(--main-light-color)'
     innerCircle.style.cursor = 'pointer'
+    pulseCircle.style.visibility = 'visible'
 
     //another if else to deal with updated central button
     if (pomoOrBreak == 'break') {
