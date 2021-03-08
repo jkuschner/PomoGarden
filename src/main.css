@@ -1,40 +1,53 @@
 /* Colors for each theme, change these to change the theme */
-
+.themeTomato {
+    --main-bg-color: white;
+    --main-heavy-color: #FF2C52;
+    --main-light-color: #ffC7C7;
+    --fruit-url: url('images/Tomato.svg');
+}
 .themeOrange {
     --main-bg-color: white;
     --main-heavy-color: #ffb422;
     --main-light-color: #ffd074;
     --fruit-url: url('images/Orange.svg');
 }
-
-.themeBlue {
+.themeLemon {
     --main-bg-color: white;
-    --main-heavy-color: #23c6fa;
-    --main-light-color: #95ecff;
-    --fruit-url: url('images/Onion.svg');
-}
-
-.themeGreen {
-    --main-bg-color: white;
-    --main-heavy-color: #66e466;
-    --main-light-color: #b5ffae;
-    --fruit-url: url('images/Tomato.svg');
-}
-
-.themePurple {
-    --main-bg-color: white;
-    --main-heavy-color: #f68de6;
-    --main-light-color: #ffdceb;
-    --fruit-url: url('images/Grape.svg');
-}
-
-.themeYellow {
-    --main-bg-color: white;
-    --main-heavy-color: #fbe843;
-    --main-light-color: #f9fbaa;
+    --main-heavy-color: #fbe842;
+    --main-light-color: #FFF389;
     --fruit-url: url('images/Lemon.svg');
 }
-
+.themeWatermelon {
+    --main-bg-color: white;
+    --main-heavy-color: #22893F;
+    --main-light-color: #FF7575;
+    --fruit-url: url('images/Watermelon.svg');
+}
+.themeOnion {
+    --main-bg-color: white;
+    --main-heavy-color: #8f5a88;
+    --main-light-color: #c1a8b4;
+    --fruit-url: url('images/Onion.svg');
+}
+.themeGrape {
+    --main-bg-color: white;
+    --main-heavy-color: #9332CF;
+    --main-light-color: #CCA4FF;
+    --fruit-url: url('images/Grape.svg');
+}
+.themeKiwi {
+    --main-bg-color: white;
+    --main-heavy-color: #B8985E;
+    --main-light-color: #A9C77E;
+    --fruit-url: url('images/Kiwi.svg');
+}
+.themeCoconut {
+    --main-bg-color: white;
+    --main-heavy-color: #9E7B67;
+    --main-light-color: #EBE8E1;
+    --fruit-url: url('images/Coconut.svg');
+}
+/*
 .themeGrey {
     --main-bg-color: #121212;
     --main-heavy-color: #565656;
@@ -42,7 +55,7 @@
     color: #ffffff;
     --fruit-url: url('images/Coconut.svg');
 }
-
+*/
 body {
     background-color: var(--main-bg-color);
 }
@@ -363,8 +376,8 @@ input[type='range']::-webkit-slider-thumb {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 90%;
-    height: 90%;
+    width: 95%;
+    height: 95%;
     z-index: 0;
 }
 
