@@ -17,15 +17,11 @@
             <p id="time">00:00</p>
 
             <div id="outerCircle">
-                <span id="innerCircle" onclick="startTimerVisual(id)">
-                    <div id="fruitIcon" alt="Fruit"></div>
-                    <div id="timerStart">Start</div>
-                </span>
-
+                <button id="innerCircle" onclick="startTimerVisual(id)">Start</button>
+                
                 <!-- removed height/width and put it in css for now -->
                 <svg id="animation" viewbox="0 0 250 250">
                     <path id="border" transform="translate(125, 125)" />
-                    <path id="loader" transform="translate(125, 125) scale(.84)" />
                 </svg>
             </div>
 
@@ -50,7 +46,6 @@
 
             <div id="timerButtons">
                 <button id="end" class="navRectangle" onclick="skipOrStop()" disabled="disabled">Stop</button>
-                <button id="break" class="navRectangle" onclick="startTimerVisual(id)" disabled="disabled">Break</button>
 
                 <div class="modal" id="skip-popup">
                     <div class="content vertical-align-middle">

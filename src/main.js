@@ -148,39 +148,30 @@ function showNav() {
 const innerCircle = document.getElementById('innerCircle')
 const title = document.getElementById('title')
 const endButton = document.getElementById('end')
-const breakButton = document.getElementById('break')
-let checkTimerStart = false
 
 //this is a bit of a garbage solution but I'm creating a variable to check if starting pomo or break since the current check with id won't quite fit
 let pomoOrBreak = 'pomo'
 
-function startTimerVisual(id) {
+function startTimerVisual() {
     console.log(pomoOrBreak)
-    if (!checkTimerStart) {
-        //originally was based on id, changed to this since we want the center button to both start pomos and breaks
-        if (pomoOrBreak == 'pomo') {
-            startTimer(workTime() * 60 - 1, true)
-            endButton.innerHTML = 'Skip'
-            title.innerHTML = 'Focus'
-            draw()
-            pomoOrBreak = 'break'
-        } else {
-            if (count == 4) {
-                startTimer(longBreakTime() * 60 - 1, false)
-                drawReverse(longBreakTime())
-            } else {
-                startTimer(breakTime() * 60 - 1, false)
-                drawReverse(breakTime())
-            }
+    innerCircle.disabled = true
+    endButton.disabled = false
 
-            endButton.innerHTML = 'Stop'
-            title.innerHTML = 'Relax'
-            pomoOrBreak = 'pomo'
+    if (pomoOrBreak == 'pomo') {
+        startPomoTimer(workTime())
+        endButton.innerHTML = 'Skip'
+        title.innerHTML = 'Focus'
+        pomoOrBreak = 'break'
+    } else {
+        if (count == NUM_POMOS) {
+            startBreakTimer(longBreakTime())
+        } else {
+            startBreakTimer(breakTime())
         }
 
-        breakButton.disabled = true
-        endButton.disabled = false
-        checkTimerStart = true
+        endButton.innerHTML = 'Stop'
+        title.innerHTML = 'Relax'
+        pomoOrBreak = 'pomo'
     }
 }
 
@@ -188,73 +179,101 @@ function startTimerVisual(id) {
 let timer = undefined
 let count = 0
 
+const NUM_POMOS = 4
 const pomo = document.forms['pomoDisplay'].elements['pomo']
 const timeDisplay = document.getElementById('time')
-const fruitIcon = document.getElementById('fruitIcon')
-const timerStart = document.getElementById('timerStart')
 
 const alarm = document.getElementById('alarm')
 
-function startTimer(seconds, increment) {
-    let time = seconds
-
+function startPomoTimer(seconds) {
     timeDisplay.style.visibility = 'visible'
-    fruitIcon.style.visibility = 'visible'
-    timerStart.style.visibility = 'hidden'
-    displayTime(time)
+    displayTime(seconds)
 
-    // reset # of pomos if full
-    if (count == 4) {
-        count = 0
-        localStorage.setItem('count', count)
-        updatePomo()
-    }
+    /* global startTimer */
+    timer = startTimer(seconds, secondsRemaining => {
+        displayTime(secondsRemaining)
 
-    timer = setInterval(function () {
-        if (time <= 0) {
-            if (increment) {
-                count++
+        if (secondsRemaining <= 0) {
+            count++
+            localStorage.setItem('count', count)
+
+            alarm.play()
+            updatePomo()
+            endTimer()
+        } else {
+            draw(secondsRemaining, seconds, 1, false)
+        }
+    })
+}
+
+function startBreakTimer(seconds) {
+    timeDisplay.style.visibility = 'visible'
+    drawFrame(0)
+
+    /* global startTimer */
+    timer = startTimer(seconds, secondsRemaining => {
+        displayTime(secondsRemaining)
+
+        if (secondsRemaining <= 0) {
+            if (count == NUM_POMOS) {
+                count = 0
                 localStorage.setItem('count', count)
+                updatePomo()
             }
 
             alarm.play()
-
-            updatePomo()
-
             endTimer()
-
-            if (increment) {
-                //break can effectively be deleted if the issue I'm working on is correct
-                //document.getElementById('break').style.display = 'block'
-                endButton.disabled = true
-            } else {
-                breakButton.disabled = true
-                endButton.disabled = true
-            }
         } else {
-            time -= 1
-            displayTime(time)
+            draw(secondsRemaining, seconds, 1, true)
         }
-    }, 1000)
+    })
 }
 
-//Takes in time value, converts into MM:SS format
+// Fruit animation
+const MS_PER_SECOND = 1000, FPS = 60, DELAY = MS_PER_SECOND / FPS
+let fruitAnimation = undefined
+
+function draw(start, total, duration, reverse) {
+    const frameCount = duration * FPS
+    const dAlpha = 2 * Math.PI * DELAY / (total * MS_PER_SECOND)
+    let frame = 1, alpha = 2 * Math.PI
+    if (reverse) {
+        alpha *= (start / total)
+    } else {
+        alpha *= (1 - start / total)
+    }
+    drawFrame(alpha) // draw first frame immediately
+
+    const anim = setInterval(() => {
+        if (frame >= frameCount) {
+            clearInterval(anim)
+        } else {
+            drawFrame(alpha)
+            if (reverse) {
+                alpha -= dAlpha
+            } else {
+                alpha += dAlpha
+            }
+            frame++
+        }
+    }, DELAY)
+    fruitAnimation = anim
+}
+
+const border = document.getElementById('border')
+function drawFrame(alpha) {
+    const x = Math.sin(alpha) * 125,
+    y = Math.cos(alpha) * -125,
+    mid = alpha > Math.PI ? 1 : 0,
+    anim = 'M 0 0 v -125 A 125 125 1 ' + mid + ' 1 ' + x + ' ' + y + ' z'
+
+    border.setAttribute('d', anim)
+}
+
 //sets time element in html accordingly
 function displayTime(time) {
-    let seconds = time % 60
-    let minutes = Math.floor(time / 60)
-    if (minutes < 10) {
-        minutes = '0' + minutes
-    }
-    if (seconds < 10) {
-        seconds = '0' + seconds
-    }
-    document.getElementById('time').innerHTML = minutes + ':' + seconds
-}
-
-function endPomo() {
-    endTimer()
-    endButton.disabled = true
+    /* global formatTime */
+    timeDisplay.innerHTML = formatTime(time)
 }
 
 function updatePomo() {
@@ -264,32 +283,22 @@ function updatePomo() {
     }
 }
 
-let fruitAnimation = undefined
-
 function endTimer() {
-    /*ensures that if 365 degrees haven't been drawn the circle will be reset*/
-    while (α % 365 != 0) {
-        clearTimeout(fruitAnimation)
-        draw()
-    }
-    endFruitAnimation()
+    clearInterval(fruitAnimation)
     clearInterval(timer)
-    checkTimerStart = false
 
-    innerCircle.style.backgroundColor = 'var(--main-light-color)'
-    innerCircle.style.cursor = 'pointer'
+    innerCircle.disabled = false
+    endButton.disabled = true
 
     //another if else to deal with updated central button
     if (pomoOrBreak == 'break') {
         document.getElementById('title').innerHTML = 'Time For a Break'
-        timerStart.innerHTML = 'Break'
+        innerCircle.innerHTML = 'Break'
     } else {
         document.getElementById('title').innerHTML = 'Ready to Work?'
-        timerStart.innerHTML = 'Start'
+        innerCircle.innerHTML = 'Start'
     }
     timeDisplay.style.visibility = 'hidden'
-    fruitIcon.style.visibility = 'hidden'
-    timerStart.style.visibility = 'visible'
 }
 
 const skipPopup = document.getElementById('skip-popup')
@@ -298,7 +307,7 @@ const skipCancel = document.getElementById('skip-cancel')
 
 skipConfirm.addEventListener('click', () => {
     skipPopup.style.display = 'none'
-    endPomo()
+    endTimer()
 })
 
 skipCancel.addEventListener('click', () => {
@@ -309,7 +318,7 @@ function skipOrStop() {
     if (endButton.innerHTML == 'Skip') {
         skipPopup.style.display = 'block'
     } else {
-        endPomo()
+        endTimer()
     }
 }
 
@@ -325,9 +334,9 @@ function changeVolume() {
 
     if (volumeSlider.value == 0) {
         volumeImage.src = './images/volume-level-0.svg'
-    } else if (volumeSlider.value >= 1 && volumeSlider.value <= 33) {
+    } else if (volumeSlider.value <= 33) {
         volumeImage.src = './images/volume-level-1.svg'
-    } else if (volumeSlider.value >= 34 && volumeSlider.value <= 66) {
+    } else if (volumeSlider.value <= 66) {
         volumeImage.src = './images/volume-level-2.svg'
     } else {
         volumeImage.src = './images/volume-level-3.svg'
@@ -336,55 +345,4 @@ function changeVolume() {
     const value = ((volumeSlider.value - volumeSlider.min) / (volumeSlider.max - volumeSlider.min)) * 100
     volumeSlider.style.background =
         'linear-gradient(to right, var(--main-light-color) 0%, var(--main-light-color) ' + value + '%, #fff ' + value + '%, white 100%)'
-}
-
-const loader = document.getElementById('loader')
-const border = document.getElementById('border')
-const π = Math.PI
-let α = 0
-let αReverse = 0
-
-function draw() {
-    const t = (workTime() * 60 * 1000) / 360
-    α++
-    α %= 360
-    const r = (α * π) / 180,
-        x = Math.sin(r) * 125,
-        y = Math.cos(r) * -125,
-        mid = α > 180 ? 1 : 0,
-        anim = 'M 0 0 v -125 A 125 125 1 ' + mid + ' 1 ' + x + ' ' + y + ' z'
-    //[x,y].forEach(function( d ){
-    //  d = Math.round( d * 1e3 ) / 1e3;
-    //});
-
-    document.getElementById('animation').style.zIndex = 2
-
-    loader.setAttribute('d', anim)
-    border.setAttribute('d', anim)
-
-    fruitAnimation = setTimeout(draw, t) // Redraw
-}
-
-function drawReverse(breakTime) {
-    const t = (breakTime * 60 * 1000) / 360
-    α++
-    α %= 360
-    αReverse = 360 - α
-    const r = (αReverse * π) / 180,
-        x = Math.sin(r) * 125,
-        y = Math.cos(r) * -125,
-        mid = αReverse > 180 ? 1 : 0,
-        anim = 'M 0 0 v -125 A 125 125 1 ' + mid + ' 1 ' + x + ' ' + y + ' z'
-
-    document.getElementById('animation').style.zIndex = 2
-
-    loader.setAttribute('d', anim)
-    border.setAttribute('d', anim)
-
-    fruitAnimation = setTimeout(drawReverse, t, breakTime) // Redraw
-}
-
-function endFruitAnimation() {
-    document.getElementById('animation').style.zIndex = 0
-    clearTimeout(fruitAnimation)
 }

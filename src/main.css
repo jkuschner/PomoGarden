@@ -76,7 +76,7 @@ body {
     position: fixed;
     top: 5vw;
     right: 0%;
-    background-color: var(--main-bg-color);
+    background-color: inherit;
     /*
     transition: 0.5s;
     */
@@ -122,7 +122,7 @@ body {
     text-align: center;
     line-height: 3.5vw;
     cursor: pointer;
-    background-color: transparent;
+    background-color: inherit;
     white-space: nowrap;
     display: inline-block;
     font-size: 1vw;
@@ -180,7 +180,6 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 #entirePomoTimer {
-    z-index: 5;
     top: 20%;
     margin: auto;
     width: 100%;
@@ -192,31 +191,37 @@ input[type='range']::-webkit-slider-thumb {
     background-color: var(--main-bg-color);
     border-radius: 10vw;
     border: 1.3vw solid var(--main-heavy-color);
-    /* display: inline-block; */
     visibility: visible;
     position: relative;
     margin: auto;
-    /* left: 6%; */
     top: -10%;
-    /*messing around with z-index since circle wasn't showing up in front*/
-    z-index: 1;
 }
 
 #innerCircle {
     cursor: pointer;
-    height: 90%;
-    width: 90%;
+    height: 95%;
+    width: 95%;
     background-color: var(--main-light-color);
     border-radius: 50%;
+    border: none;
     display: inline-block;
+    outline-style: none;
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /*messing around with z-index since circle wasn't showing up in front*/
-    z-index: 1;
+    font-size: 2vw;
+    font-family: 'Montserrat', sans-serif;
+    color: inherit;
+    visibility: visible;
+    z-index: 1; /* show before fruit */
+}
+
+#innerCircle:disabled {
+    cursor: none;
+    display: none;
 }
 
 #allPomos {
@@ -284,21 +289,6 @@ input[type='range']::-webkit-slider-thumb {
     align-self: center;
 }
 
-#fruitIcon {
-    cursor: auto;
-    content: var(--fruit-url);
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    width: 100%;
-    visibility: hidden;
-    /*messing around with z-index since circle wasn't showing up in front*/
-    z-index: 3;
-}
-
 #time {
     position: relative;
     text-align: center;
@@ -307,16 +297,6 @@ input[type='range']::-webkit-slider-thumb {
     width: 100%;
     margin-bottom: 0.5vw;
     visibility: hidden;
-}
-
-#timerStart {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 2vw;
-    font-family: 'Montserrat', sans-serif;
-    visibility: visible;
 }
 
 .modal {
@@ -372,6 +352,10 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 #animation {
+    background-image: var(--fruit-url);
+    background-size: 99% 99%;
+    background-repeat: no-repeat;
+    background-position: center;
     transform: translate(-50%, -50%);
     position: absolute;
     top: 50%;
@@ -381,10 +365,6 @@ input[type='range']::-webkit-slider-thumb {
     z-index: 0;
 }
 
-#loader {
-    fill: white;
-}
-
 #border {
-    fill: white;
+    fill: var(--main-bg-color);
 }
