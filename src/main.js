@@ -137,10 +137,10 @@ function loadVolume() {
 // Navigation Bar
 const navBar = document.getElementById('navBar')
 function showNav() {
-    if (navBar.style.width < '19vw') {
-        navBar.style.width = '19vw'
+    if (navBar.style.right < '1vw') {
+        navBar.style.right = '1vw'
     } else {
-        navBar.style.width = '0%'
+        navBar.style.right = '-19vw'
     }
 }
 

@@ -53,7 +53,7 @@
     --main-heavy-color: #565656;
     --main-light-color: #565656;
     color: #ffffff;
-    --fruit-url: url('images/Coconut.svg');
+    --svg-filter: invert(100%);
 }
 */
 body {
@@ -66,23 +66,22 @@ body {
     font-size: 3vw;
     cursor: pointer;
     position: absolute;
-    left: 95%;
-    top: 1%;
+    right: 1vw;
+    top: 1vw;
 }
 
 #navBar {
     height: 50vw;
-    width: 0vw;
+    width: 19vw;
     position: fixed;
     top: 5vw;
-    right: 0%;
+    right: -19vw;
     background-color: inherit;
-    /*
     transition: 0.5s;
-    */
     white-space: nowrap;
     display: inline-block;
     font-family: 'Montserrat', sans-serif;
+    text-align: right;
 }
 
 .navText {
@@ -98,7 +97,6 @@ body {
     display: grid;
     grid-template-columns: 30% 30% 30%;
     grid-template-rows: 60%;
-    left: -1.2vw;
 }
 
 .navContainer > label {
@@ -114,7 +112,6 @@ body {
 .navContainer > label > input + span,
 .navRectangle {
     position: relative;
-    left: 1.5vw;
     height: 3.5vw;
     width: 5vw;
     border: 2px solid var(--main-heavy-color);
@@ -139,6 +136,7 @@ body {
     left: 2.5vw;
     height: 2vw;
     width: 2vw;
+    filter: var(--svg-filter);
 }
 
 #volume-slider {
@@ -302,7 +300,7 @@ input[type='range']::-webkit-slider-thumb {
 
 #allPomos > label > input:checked + span {
     pointer-events: none;
-    background-color: var(--main-heavy-color);
+    background-color: var(--main-light-color);
 }
 
 .skipResetButton {
