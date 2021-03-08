@@ -47,13 +47,13 @@
             </form>
 
             <div id="timerButtons">
-                <button id="end" class="skipResetButton" onclick="skipOrStop()" disabled="disabled">Stop</button>
+                <button id="reset" class="skipResetButton" onclick="resetPomo()" disabled="disabled">Reset</button>
 
-                <div class="modal" id="skip-popup">
+                <div class="modal" id="reset-popup">
                     <div class="content vertical-align-middle">
                         <p>Are you sure you want to break this work session?</p>
-                        <span class="confirm" id="skip-confirm">Confirm</span>
-                        <span class="cancel" id="skip-cancel">Cancel</span>
+                        <span class="confirm" id="reset-confirm">Confirm</span>
+                        <span class="cancel" id="reset-cancel">Cancel</span>
                     </div>
                 </div>
             </div>

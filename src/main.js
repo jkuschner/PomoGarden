@@ -16,6 +16,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Store volume on refresh
     loadVolume()
+
+    // set mode to Pomo on start
+    setPomoMode(true)
 })
 
 // load theme
@@ -172,33 +175,32 @@ function showNav() {
 // User starts timer in inner circle
 const innerCircle = document.getElementById('innerCircle')
 const title = document.getElementById('title')
-const endButton = document.getElementById('end')
+const resetButton = document.getElementById('reset')
 const timerStart = document.getElementById('timerStart')
 
-//this is a bit of a garbage solution but I'm creating a variable to check if starting pomo or break since the current check with id won't quite fit
-let pomoOrBreak = 'pomo'
+let timerFunc = undefined
+function setPomoMode(isPomo) {
+    if (isPomo) {
+        innerCircle.style.backgroundColor = 'var(--main-light-color)'
+        title.innerHTML = 'Ready to Work?'
+        timerStart.innerHTML = 'Start'
+        timerFunc = () => {
+            startPomoTimer(workTime())
+        }
+    } else {
+        innerCircle.style.backgroundColor = 'inherit'
+        title.innerHTML = 'Time For a Break'
+        timerStart.innerHTML = 'Break'
+        timerFunc = () => {
+            const bt = (count == NUM_POMOS) ? longBreakTime() : breakTime()
+            startBreakTimer(bt)
+        }
+    }
+}
 
 function startTimerVisual() {
-    console.log(pomoOrBreak)
     innerCircle.disabled = true
-    endButton.disabled = false
-
-    if (pomoOrBreak == 'pomo') {
-        startPomoTimer(workTime())
-        endButton.innerHTML = 'Skip'
-        title.innerHTML = 'Focus'
-        pomoOrBreak = 'break'
-    } else {
-        if (count == NUM_POMOS) {
-            startBreakTimer(longBreakTime())
-        } else {
-            startBreakTimer(breakTime())
-        }
-
-        endButton.innerHTML = 'Stop'
-        title.innerHTML = 'Relax'
-        pomoOrBreak = 'pomo'
-    }
+    timerFunc()
 }
 
 // Pomodoro Timer
@@ -212,6 +214,31 @@ const timeDisplay = document.getElementById('time')
 const alarm = document.getElementById('alarm')
 
 function startPomoTimer(seconds) {
+    title.innerHTML = 'Focus'
+    timeDisplay.style.visibility = 'visible'
+    displayTime(seconds)
+    if (count == 0) {
+        resetButton.disabled = false
+    }
+
+    /* global startTimer */
+    timer = startTimer(seconds, secondsRemaining => {
+        displayTime(secondsRemaining)
+
+        if (secondsRemaining <= 0) {
+            setCount(count + 1)
+
+            alarm.play()
+            endTimer()
+            setPomoMode(false)
+        } else {
+            draw(secondsRemaining, seconds, 1, false)
+        }
+    })
+}
+
+function startBreakTimer(seconds) {
+    title.innerHTML = 'Relax'
     timeDisplay.style.visibility = 'visible'
     displayTime(seconds)
 
@@ -220,38 +247,24 @@ function startPomoTimer(seconds) {
         displayTime(secondsRemaining)
 
         if (secondsRemaining <= 0) {
-            count++
-            localStorage.setItem('count', count)
-
-            alarm.play()
-            updatePomo()
-            endTimer()
-        } else {
-            draw(secondsRemaining, seconds, 1, false)
-        }
-    })
-}
-
-function startBreakTimer(seconds) {
-    timeDisplay.style.visibility = 'visible'
-
-    /* global startTimer */
-    timer = startTimer(seconds, secondsRemaining => {
-        displayTime(secondsRemaining)
-
-        if (secondsRemaining <= 0) {
             if (count == NUM_POMOS) {
-                count = 0
-                localStorage.setItem('count', count)
-                updatePomo()
+                setCount(0)
+                resetButton.disabled = true
             }
 
             alarm.play()
             endTimer()
+            setPomoMode(true)
         } else {
             draw(secondsRemaining, seconds, 1, true)
         }
     })
+}
+
+function setCount(newCount) {
+    count = newCount
+    updatePomo()
+    localStorage.setItem('count', count)
 }
 
 // Fruit animation
@@ -313,38 +326,24 @@ function endTimer() {
     clearInterval(timer)
 
     innerCircle.disabled = false
-    endButton.disabled = true
-
-    //another if else to deal with updated central button
-    if (pomoOrBreak == 'break') {
-        innerCircle.style.backgroundColor = 'var(--main-bg-color)'
-        document.getElementById('title').innerHTML = 'Time For a Break'
-        timerStart.innerHTML = 'Break'
-    } else {
-        innerCircle.style.backgroundColor = 'var(--main-light-color)'
-        document.getElementById('title').innerHTML = 'Ready to Work?'
-        timerStart.innerHTML = 'Start'
-    }
     timeDisplay.style.visibility = 'hidden'
 }
 
-const skipPopup = document.getElementById('skip-popup')
-const skipConfirm = document.getElementById('skip-confirm')
-const skipCancel = document.getElementById('skip-cancel')
+const resetPopup = document.getElementById('reset-popup')
+const resetConfirm = document.getElementById('reset-confirm')
+const resetCancel = document.getElementById('reset-cancel')
 
-skipConfirm.addEventListener('click', () => {
-    skipPopup.style.display = 'none'
+resetConfirm.addEventListener('click', () => {
+    resetPopup.style.display = 'none'
+    setCount(0)
+    setPomoMode(true)
     endTimer()
 })
 
-skipCancel.addEventListener('click', () => {
-    skipPopup.style.display = 'none'
+resetCancel.addEventListener('click', () => {
+    resetPopup.style.display = 'none'
 })
 
-function skipOrStop() {
-    if (endButton.innerHTML == 'Skip') {
-        skipPopup.style.display = 'block'
-    } else {
-        endTimer()
-    }
+function resetPomo() {
+    resetPopup.style.display = 'block'
 }
