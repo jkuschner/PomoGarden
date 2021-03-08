@@ -276,14 +276,16 @@ function endTimer() {
     clearInterval(timer)
     checkTimerStart = false
 
-    innerCircle.style.backgroundColor = 'var(--main-light-color)'
+    
     innerCircle.style.cursor = 'pointer'
 
     //another if else to deal with updated central button
     if (pomoOrBreak == 'break') {
+        innerCircle.style.backgroundColor = 'var(--main-bg-color)'
         document.getElementById('title').innerHTML = 'Time For a Break'
         timerStart.innerHTML = 'Break'
     } else {
+        innerCircle.style.backgroundColor = 'var(--main-light-color)'
         document.getElementById('title').innerHTML = 'Ready to Work?'
         timerStart.innerHTML = 'Start'
     }

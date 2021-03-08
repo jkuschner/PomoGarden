@@ -319,6 +319,7 @@ input[type='range']::-webkit-slider-thumb {
     visibility: visible;
 }
 
+
 .modal {
     display: none;
     position: fixed;
@@ -348,11 +349,31 @@ input[type='range']::-webkit-slider-thumb {
     background-color: var(--main-bg-color);
     box-sizing: border-box;
     position: relative;
-    max-width: 30vw;
+    min-width: 400px;
+    max-width: 35vw;
     padding: 20px;
-    border-radius: 1vw;
-    font-size: 1vw;
+    border-radius: 10px;
+    font-size: calc(16px + 0.2vw);
     font-family: 'Montserrat', sans-serif;
+}
+
+.cancel {
+    float: right;
+    font-size: calc(16px + 0.2vw);
+    font-weight: bolder;
+    padding: 5px;
+    margin-right: 5px;
+    cursor: pointer;
+    color: #189CD4;
+}
+
+.confirm {
+    float: right;
+    font-size: calc(16px + 0.2vw);
+    font-weight: bolder;
+    padding: 5px;
+    cursor: pointer;
+    color: #F41111;
 }
 
 .cancel {
