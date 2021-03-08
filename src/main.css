@@ -75,6 +75,7 @@ body {
     width: 19vw;
     position: fixed;
     top: 5vw;
+    /* Starts off outside screen region, slides in if nav button is pressed, showNav() in js*/
     right: -19vw;
     background-color: inherit;
     transition: 0.5s;
@@ -96,7 +97,7 @@ body {
     width: 100%;
     display: grid;
     grid-template-columns: 30% 30% 30%;
-    grid-template-rows: 60%;
+    grid-template-rows: 30% 30% 30%;
 }
 
 .navContainer > label {
