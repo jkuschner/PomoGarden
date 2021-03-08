@@ -227,8 +227,6 @@ input[type='range']::-webkit-slider-thumb {
 
 #innerCircle {
     cursor: pointer;
-    height: 95%;
-    width: 95%;
     background-color: var(--main-light-color);
     border-radius: 50%;
     border: none;
@@ -248,6 +246,11 @@ input[type='range']::-webkit-slider-thumb {
 #innerCircle:disabled {
     cursor: none;
     display: none;
+}
+
+.innerDimens {
+    height: 95%;
+    width: 95%;
 }
 
 #timerStart {
@@ -410,8 +413,6 @@ input[type='range']::-webkit-slider-thumb {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 95%;
-    height: 95%;
     z-index: 0;
 }
 
