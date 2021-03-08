@@ -228,22 +228,27 @@ input[type='range']::-webkit-slider-thumb {
 
 #innerCircle {
     cursor: pointer;
-    height: 90%;
-    width: 90%;
+    height: 95%;
+    width: 95%;
     background-color: var(--main-light-color);
     border-radius: 50%;
+    border: none;
     display: inline-block;
+    outline-style: none;
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    color: inherit;
+    visibility: visible;
+    z-index: 1; /* show before fruit */
 }
 
 #innerCircle:disabled {
-     cursor: none;
-     display: none;
+    cursor: none;
+    display: none;
 }
 
 #allPomos {
@@ -329,9 +334,6 @@ input[type='range']::-webkit-slider-thumb {
     align-self: center;
 }
 
-
-
-
 .modal {
     display: none;
     position: fixed;
@@ -401,7 +403,6 @@ input[type='range']::-webkit-slider-thumb {
     height: 95%;
     z-index: 0;
 }
-
 
 #border {
     fill: var(--main-bg-color);
