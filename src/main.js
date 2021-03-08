@@ -208,7 +208,6 @@ function startPomoTimer(seconds) {
 
 function startBreakTimer(seconds) {
     timeDisplay.style.visibility = 'visible'
-    drawFrame(0)
 
     /* global startTimer */
     timer = startTimer(seconds, secondsRemaining => {
@@ -248,12 +247,12 @@ function draw(start, total, duration, reverse) {
         if (frame >= frameCount) {
             clearInterval(anim)
         } else {
-            drawFrame(alpha)
             if (reverse) {
                 alpha -= dAlpha
             } else {
                 alpha += dAlpha
             }
+            drawFrame(alpha)
             frame++
         }
     }, DELAY)
