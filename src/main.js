@@ -335,6 +335,7 @@ function endTimer() {
     skipButton.disabled = true
     resetButton.disabled = true
     timeDisplay.style.visibility = 'hidden'
+    modalPopup.style.display = 'none'
 }
 
 const modalPopup = document.getElementById('modal-popup')
