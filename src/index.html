@@ -18,13 +18,12 @@
 
             <div id="outerCircle">
                 <span id="innerCircle" onclick="startTimerVisual(id)">
-                    <div id="timerStart">Start</div>
+                    <span id="timerStart">Start</span>
                 </span>
-
+                
                 <!-- removed height/width and put it in css for now -->
                 <svg id="animation" viewbox="0 0 250 250">
-                    <path id="border" transform="translate(125, 125)" />
-                    <path id="loader" transform="translate(125, 125) scale(.84)" />
+                    <path id="border" transform="translate(125, 125) scale(1.01)" />
                 </svg>
             </div>
 

@@ -335,7 +335,6 @@ function changeVolume() {
         'linear-gradient(to right, var(--main-light-color) 0%, var(--main-light-color) ' + value + '%, #fff ' + value + '%, white 100%)'
 }
 
-const loader = document.getElementById('loader')
 const border = document.getElementById('border')
 const π = Math.PI
 let α = 0
@@ -345,18 +344,15 @@ function draw() {
     const t = (workTime() * 60 * 1000) / 360
     α++
     α %= 360
+    const tangent = Math.sqrt(2 * 125 * 125)
     const r = (α * π) / 180,
         x = Math.sin(r) * 125,
         y = Math.cos(r) * -125,
         mid = α > 180 ? 1 : 0,
         anim = 'M 0 0 v -125 A 125 125 1 ' + mid + ' 1 ' + x + ' ' + y + ' z'
-    //[x,y].forEach(function( d ){
-    //  d = Math.round( d * 1e3 ) / 1e3;
-    //});
 
     document.getElementById('animation').style.zIndex = 2
 
-    loader.setAttribute('d', anim)
     border.setAttribute('d', anim)
 
     fruitAnimation = setTimeout(draw, t) // Redraw
@@ -375,7 +371,6 @@ function drawReverse(breakTime) {
 
     document.getElementById('animation').style.zIndex = 2
 
-    loader.setAttribute('d', anim)
     border.setAttribute('d', anim)
 
     fruitAnimation = setTimeout(drawReverse, t, breakTime) // Redraw

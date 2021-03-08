@@ -63,7 +63,7 @@ body {
     position: fixed;
     top: 5vw;
     right: 0%;
-    background-color: var(--main-bg-color);
+    background-color: inherit;
     /*
     transition: 0.5s;
     */
@@ -109,7 +109,7 @@ body {
     text-align: center;
     line-height: 3.5vw;
     cursor: pointer;
-    background-color: transparent;
+    background-color: inherit;
     white-space: nowrap;
     display: inline-block;
     font-size: 1vw;
@@ -186,7 +186,7 @@ input[type='range']::-webkit-slider-thumb {
     /* left: 6%; */
     top: -10%;
     /*messing around with z-index since circle wasn't showing up in front*/
-    z-index: 1;
+    z-index: 2;
 }
 
 #innerCircle {
@@ -353,10 +353,6 @@ input[type='range']::-webkit-slider-thumb {
     width: 90%;
     height: 90%;
     z-index: 0;
-}
-
-#loader {
-    fill: var(--main-bg-color);
 }
 
 #border {
