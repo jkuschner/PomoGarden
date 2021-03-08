@@ -76,7 +76,7 @@ body {
     position: fixed;
     top: 5vw;
     right: 0%;
-    background-color: var(--main-bg-color);
+    background-color: inherit;
     /*
     transition: 0.5s;
     */
@@ -122,7 +122,7 @@ body {
     text-align: center;
     line-height: 3.5vw;
     cursor: pointer;
-    background-color: transparent;
+    background-color: inherit;
     white-space: nowrap;
     display: inline-block;
     font-size: 1vw;
@@ -239,20 +239,11 @@ input[type='range']::-webkit-slider-thumb {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /*messing around with z-index since circle wasn't showing up in front*/
-    z-index: 1;
 }
 
-#timerStart {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: min(50px, 6.25vh);
-    height: min(60px, 10vh);
-    font-weight: bold;
-    font-family: 'Montserrat', sans-serif;
-    visibility: visible;
+#innerCircle:disabled {
+     cursor: none;
+     display: none;
 }
 
 #allPomos {
@@ -338,21 +329,6 @@ input[type='range']::-webkit-slider-thumb {
     align-self: center;
 }
 
-#fruitIcon {
-    cursor: auto;
-    content: var(--fruit-url);
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    width: 100%;
-    visibility: hidden;
-    /*messing around with z-index since circle wasn't showing up in front*/
-    z-index: 3;
-}
-
 
 
 
@@ -413,6 +389,10 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 #animation {
+    background-image: var(--fruit-url);
+    background-size: 99% 99%;
+    background-repeat: no-repeat;
+    background-position: center;
     transform: translate(-50%, -50%);
     position: absolute;
     top: 50%;
@@ -422,10 +402,7 @@ input[type='range']::-webkit-slider-thumb {
     z-index: 0;
 }
 
-#loader {
-    fill: white;
-}
 
 #border {
-    fill: white;
+    fill: var(--main-bg-color);
 }
