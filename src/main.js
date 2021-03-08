@@ -173,6 +173,7 @@ function showNav() {
 const innerCircle = document.getElementById('innerCircle')
 const title = document.getElementById('title')
 const endButton = document.getElementById('end')
+const timerStart = document.getElementById('timerStart')
 
 //this is a bit of a garbage solution but I'm creating a variable to check if starting pomo or break since the current check with id won't quite fit
 let pomoOrBreak = 'pomo'
@@ -316,11 +317,13 @@ function endTimer() {
 
     //another if else to deal with updated central button
     if (pomoOrBreak == 'break') {
+        innerCircle.style.backgroundColor = 'var(--main-bg-color)'
         document.getElementById('title').innerHTML = 'Time For a Break'
-        innerCircle.innerHTML = 'Break'
+        timerStart.innerHTML = 'Break'
     } else {
+        innerCircle.style.backgroundColor = 'var(--main-light-color)'
         document.getElementById('title').innerHTML = 'Ready to Work?'
-        innerCircle.innerHTML = 'Start'
+        timerStart.innerHTML = 'Start'
     }
     timeDisplay.style.visibility = 'hidden'
 }
