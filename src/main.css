@@ -76,7 +76,7 @@ body {
     position: fixed;
     top: 7vh;
     /* Starts off outside screen region, slides in if nav button is pressed, showNav() in js*/
-    right: -35vh;
+    right: -36vh;
     background-color: inherit;
     transition: 0.5s;
     font-family: 'Montserrat', sans-serif;
