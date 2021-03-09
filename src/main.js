@@ -192,8 +192,7 @@ const pomo = document.forms['pomoDisplay'].elements['pomo']
 const timeDisplay = document.getElementById('time')
 const fruitIcon = document.getElementById('fruitIcon')
 const timerStart = document.getElementById('timerStart')
-const pulseCircle = document.getElementById('pulseCircle')
-
+const pulseCircle = document.getElementsByClassName('pulseCircle')
 const alarm = document.getElementById('alarm')
 
 function startTimer(seconds, increment) {
@@ -202,7 +201,10 @@ function startTimer(seconds, increment) {
     timeDisplay.style.visibility = 'visible'
     fruitIcon.style.visibility = 'visible'
     timerStart.style.visibility = 'hidden'
-    pulseCircle.style.visibility = 'hidden'
+    pulseCircle[0].style.visibility = 'hidden'
+    pulseCircle[1].style.visibility = 'hidden'
+    pulseCircle[2].style.visibility = 'hidden'
+    pulseCircle[3].style.visibility = 'hidden'
 
     displayTime(time)
 
@@ -283,7 +285,10 @@ function endTimer() {
 
     //innerCircle.style.backgroundColor = 'var(--main-light-color)'
     innerCircle.style.cursor = 'pointer'
-    pulseCircle.style.visibility = 'visible'
+    pulseCircle[0].style.visibility = 'visible'
+    pulseCircle[1].style.visibility = 'visible'
+    pulseCircle[2].style.visibility = 'visible'
+    pulseCircle[3].style.visibility = 'visible'
 
     //another if else to deal with updated central button
     if (pomoOrBreak == 'break') {
