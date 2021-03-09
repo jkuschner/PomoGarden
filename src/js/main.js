@@ -1,7 +1,7 @@
 // PWA service worker
-// if ('serviceWorker' in navigator) {
-//     navigator.serviceWorker.register("js/service-worker.js")
-// }
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register("/pomo-sw.js")
+}
 
 window.addEventListener('DOMContentLoaded', () => {
     // Store number of pomos on refresh
