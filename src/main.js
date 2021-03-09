@@ -52,7 +52,16 @@ function setTheme(theme, save) {
     if (save) {
         saveTheme(theme)
     }
+    setFavicon(theme.substr(5))
     return theme
+}
+
+/**
+ * Changes the favicon
+ * @param {String} fruitName name of fruit to set the favicon to
+ */
+function setFavicon(fruitName){
+    document.getElementById('favicon').href = './images/favicon/'+ fruitName + '_favicon.png';
 }
 
 function getTheme() {
