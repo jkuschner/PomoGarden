@@ -175,7 +175,7 @@ function showNav() {
     if (navBar.style.right < '1vh') {
         navBar.style.right = '1vh'
     } else {
-        navBar.style.right = '-35vh'
+        navBar.style.right = '-36vh'
     }
 }
 
