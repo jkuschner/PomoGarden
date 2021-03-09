@@ -52,7 +52,16 @@ function setTheme(theme, save) {
     if (save) {
         saveTheme(theme)
     }
+    setFavicon(theme)
     return theme
+}
+
+/**
+ * Changes the favicon
+ * @param {String} theme CSS class name of the theme to set the favicon to
+ */
+function setFavicon(theme){
+    document.getElementById('favicon').href = './images/favicon/'+ theme.substr(5) + '_favicon.png';
 }
 
 function getTheme() {
