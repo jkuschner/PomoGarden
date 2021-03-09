@@ -292,13 +292,11 @@ function drawCircle(seconds, reverse) {
             return
         }
 
-        let alpha = 2 * Math.PI
         if (reverse) {
-            alpha *= (1 - elapsed / durationMS)
+            drawFrame(2 * Math.PI * (1 - elapsed / durationMS))
         } else {
-            alpha *= (elapsed / durationMS)
+            drawFrame(2 * Math.PI * (elapsed / durationMS))
         }
-        drawFrame(alpha)
         
         fruitAnimation = window.requestAnimationFrame(draw)
     }
