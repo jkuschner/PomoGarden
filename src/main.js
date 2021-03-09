@@ -6,8 +6,6 @@ window.addEventListener('DOMContentLoaded', () => {
     //     count = localStorage.getItem('count')
     // }
 
-    //updatePomo()
-
     // Store theme on refresh
     loadTheme()
 
