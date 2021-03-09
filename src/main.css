@@ -1,8 +1,8 @@
 /* Colors for each theme, change these to change the theme */
 .themeTomato {
     --main-bg-color: white;
-    --main-heavy-color: #FF2C52;
-    --main-light-color: #FFA4A9;
+    --main-heavy-color: #ff2c52;
+    --main-light-color: #ffa4a9;
     --fruit-url: url('images/Tomato.svg');
 }
 .themeOrange {
@@ -14,13 +14,13 @@
 .themeLemon {
     --main-bg-color: white;
     --main-heavy-color: #fbe842;
-    --main-light-color: #FFF389;
+    --main-light-color: #fff389;
     --fruit-url: url('images/Lemon.svg');
 }
 .themeWatermelon {
     --main-bg-color: white;
-    --main-heavy-color: #22893F;
-    --main-light-color: #FF7575;
+    --main-heavy-color: #22893f;
+    --main-light-color: #ff7575;
     --fruit-url: url('images/Watermelon.svg');
 }
 .themeOnion {
@@ -31,20 +31,20 @@
 }
 .themeGrape {
     --main-bg-color: white;
-    --main-heavy-color: #9332CF;
-    --main-light-color: #CCA4FF;
+    --main-heavy-color: #9332cf;
+    --main-light-color: #cca4ff;
     --fruit-url: url('images/Grape.svg');
 }
 .themeKiwi {
     --main-bg-color: white;
-    --main-heavy-color: #B8985E;
-    --main-light-color: #A9C77E;
+    --main-heavy-color: #b8985e;
+    --main-light-color: #a9c77e;
     --fruit-url: url('images/Kiwi.svg');
 }
 .themeCoconut {
     --main-bg-color: white;
-    --main-heavy-color: #9E7B67;
-    --main-light-color: #EBE8E1;
+    --main-heavy-color: #9e7b67;
+    --main-light-color: #ebe8e1;
     --fruit-url: url('images/Coconut.svg');
 }
 /*
@@ -175,7 +175,7 @@ input[type='range']::-webkit-slider-thumb {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
-    
+
     text-align: center;
     font-family: 'Montserrat', sans-serif;
     font-size: min(40px, 5vh);
@@ -184,18 +184,17 @@ input[type='range']::-webkit-slider-thumb {
 
 #time {
     visibility: hidden;
-    
+
     position: absolute;
     top: 15%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
-    
+
     text-align: center;
     font-family: 'Montserrat', sans-serif;
     font-size: min(30px, 3.75vh);
     height: calc(30px + 1.5vh);
-    
 }
 
 /*#entirePomoTimer {*/
@@ -216,7 +215,7 @@ input[type='range']::-webkit-slider-thumb {
     /* display: inline-block; */
     visibility: visible;
     position: absolute;
-/*    margin: auto;*/
+    /*    margin: auto;*/
     /* left: 6%; */
     top: 45%;
     left: 50%;
@@ -266,7 +265,6 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 #allPomos {
-    
     position: absolute;
     top: 75%;
     left: 50%;
@@ -321,7 +319,6 @@ input[type='range']::-webkit-slider-thumb {
     border: min(5px, 0.9vh) solid var(--main-heavy-color);
     cursor: pointer;
 }
-
 
 #timerButtons > button {
     margin: auto;
@@ -392,7 +389,7 @@ input[type='range']::-webkit-slider-thumb {
     padding: 5px;
     margin-right: 5px;
     cursor: pointer;
-    color: #189CD4;
+    color: #189cd4;
 }
 
 .confirm {
@@ -401,7 +398,7 @@ input[type='range']::-webkit-slider-thumb {
     font-weight: bolder;
     padding: 5px;
     cursor: pointer;
-    color: #F41111;
+    color: #f41111;
 }
 
 #animation {

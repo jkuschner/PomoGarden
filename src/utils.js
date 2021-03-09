@@ -29,14 +29,14 @@ function formatTime(totalSeconds) {
     return minutes + ':' + seconds
 }
 
-const SECONDS_TO_MS = 1000;
+const SECONDS_TO_MS = 1000
 function startTimer(seconds, callback) {
-    let countDown = seconds - 1;
+    let countDown = seconds - 1
     const interval = setInterval(() => {
         if (countDown <= 0) {
-            callback(0);
+            callback(0)
             clearInterval(interval)
-            return;
+            return
         }
         callback(countDown)
         countDown--

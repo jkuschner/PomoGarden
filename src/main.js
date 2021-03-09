@@ -180,7 +180,8 @@ const resetButton = document.getElementById('reset')
 const timerStart = document.getElementById('timerStart')
 const modalText = document.getElementById('modal-text')
 
-let timerFunc = undefined, stopFunc = undefined
+let timerFunc = undefined,
+    stopFunc = undefined
 function setPomoMode(isPomo) {
     if (isPomo) {
         innerCircle.style.backgroundColor = 'var(--main-light-color)'
@@ -197,7 +198,7 @@ function setPomoMode(isPomo) {
         timerStart.innerHTML = 'Break'
         modalText.innerHTML = 'Are you sure you want to reset the entire Pomo?'
         timerFunc = () => {
-            const bt = (count == NUM_POMOS) ? longBreakTime() : breakTime()
+            const bt = count == NUM_POMOS ? longBreakTime() : breakTime()
             startBreakTimer(bt)
         }
         stopFunc = resetPomo
@@ -226,7 +227,7 @@ function startPomoTimer(seconds) {
     displayTime(seconds)
 
     /* global startTimer */
-    timer = startTimer(seconds, secondsRemaining => {
+    timer = startTimer(seconds, (secondsRemaining) => {
         displayTime(secondsRemaining)
 
         if (secondsRemaining <= 0) {
@@ -236,8 +237,6 @@ function startPomoTimer(seconds) {
             endTimer()
             setPomoMode(false)
             skipButton.disabled = true
-        } else {
-            // draw(secondsRemaining, seconds, 1, false)
         }
     })
     drawCircle(seconds, false)
@@ -249,8 +248,7 @@ function startBreakTimer(seconds) {
     resetButton.disabled = false
     displayTime(seconds)
 
-    /* global startTimer */
-    timer = startTimer(seconds, secondsRemaining => {
+    timer = startTimer(seconds, (secondsRemaining) => {
         displayTime(secondsRemaining)
 
         if (secondsRemaining <= 0) {
@@ -262,8 +260,6 @@ function startBreakTimer(seconds) {
             endTimer()
             setPomoMode(true)
             resetButton.disabled = true
-        } else {
-            // draw(secondsRemaining, seconds, 1, true)
         }
     })
     drawCircle(seconds, true)
@@ -276,7 +272,7 @@ function setCount(newCount) {
 }
 
 // Fruit animation
-const MS_PER_SECOND = 1000, FPS = 60, DELAY = MS_PER_SECOND / FPS
+const MS_PER_SECOND = 1000
 let fruitAnimation = undefined
 
 function drawCircle(seconds, reverse) {
@@ -297,19 +293,19 @@ function drawCircle(seconds, reverse) {
         } else {
             drawFrame(2 * Math.PI * (elapsed / durationMS))
         }
-        
+
         fruitAnimation = window.requestAnimationFrame(draw)
     }
-    
+
     fruitAnimation = window.requestAnimationFrame(draw)
 }
 
 const border = document.getElementById('border')
 function drawFrame(alpha) {
     const x = Math.sin(alpha) * 125,
-    y = Math.cos(alpha) * -125,
-    mid = alpha > Math.PI ? 1 : 0,
-    anim = 'M 0 0 v -125 A 125 125 1 ' + mid + ' 1 ' + x + ' ' + y + ' z'
+        y = Math.cos(alpha) * -125,
+        mid = alpha > Math.PI ? 1 : 0,
+        anim = 'M 0 0 v -125 A 125 125 1 ' + mid + ' 1 ' + x + ' ' + y + ' z'
 
     border.setAttribute('d', anim)
 }
