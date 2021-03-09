@@ -237,9 +237,10 @@ function startPomoTimer(seconds) {
             setPomoMode(false)
             skipButton.disabled = true
         } else {
-            draw(secondsRemaining, seconds, 1, false)
+            // draw(secondsRemaining, seconds, 1, false)
         }
     })
+    drawCircle(seconds, false)
 }
 
 function startBreakTimer(seconds) {
@@ -262,9 +263,10 @@ function startBreakTimer(seconds) {
             setPomoMode(true)
             resetButton.disabled = true
         } else {
-            draw(secondsRemaining, seconds, 1, true)
+            // draw(secondsRemaining, seconds, 1, true)
         }
     })
+    drawCircle(seconds, true)
 }
 
 function setCount(newCount) {
@@ -277,31 +279,31 @@ function setCount(newCount) {
 const MS_PER_SECOND = 1000, FPS = 60, DELAY = MS_PER_SECOND / FPS
 let fruitAnimation = undefined
 
-function draw(start, total, duration, reverse) {
-    const frameCount = duration * FPS
-    const dAlpha = 2 * Math.PI * DELAY / (total * MS_PER_SECOND)
-    let frame = 1, alpha = 2 * Math.PI
-    if (reverse) {
-        alpha *= (start / total)
-    } else {
-        alpha *= (1 - start / total)
-    }
-    drawFrame(alpha) // draw first frame immediately
+function drawCircle(seconds, reverse) {
+    const durationMS = seconds * MS_PER_SECOND
+    let start = undefined
 
-    const anim = setInterval(() => {
-        if (frame >= frameCount) {
-            clearInterval(anim)
-        } else {
-            if (reverse) {
-                alpha -= dAlpha
-            } else {
-                alpha += dAlpha
-            }
-            drawFrame(alpha)
-            frame++
+    function draw(timestamp) {
+        if (start == undefined) {
+            start = timestamp
         }
-    }, DELAY)
-    fruitAnimation = anim
+        const elapsed = timestamp - start
+        if (elapsed >= durationMS) {
+            return
+        }
+
+        let alpha = 2 * Math.PI
+        if (reverse) {
+            alpha *= (1 - elapsed / durationMS)
+        } else {
+            alpha *= (elapsed / durationMS)
+        }
+        drawFrame(alpha)
+        
+        fruitAnimation = window.requestAnimationFrame(draw)
+    }
+    
+    fruitAnimation = window.requestAnimationFrame(draw)
 }
 
 const border = document.getElementById('border')
@@ -328,7 +330,7 @@ function updatePomo() {
 }
 
 function endTimer() {
-    clearInterval(fruitAnimation)
+    window.cancelAnimationFrame(fruitAnimation)
     clearInterval(timer)
 
     innerCircle.disabled = false
