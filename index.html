@@ -17,15 +17,13 @@
             <p id="time">00:00</p>
 
             <div id="outerCircle">
-                <span id="innerCircle" onclick="startTimerVisual(id)">
-                    <div id="fruitIcon" alt="Fruit"></div>
+                <button id="innerCircle" class="innerDimens" onclick="startTimerVisual(id)">
                     <div id="timerStart">Start</div>
-                </span>
+                </button>
 
                 <!-- removed height/width and put it in css for now -->
-                <svg id="animation" viewbox="0 0 250 250">
+                <svg id="animation" class="innerDimens" viewbox="0 0 250 250">
                     <path id="border" transform="translate(125, 125)" />
-                    <path id="loader" transform="translate(125, 125) scale(.84)" />
                 </svg>
             </div>
 
@@ -49,14 +47,14 @@
             </form>
 
             <div id="timerButtons">
-                <button id="end" class="navRectangle" onclick="skipOrStop()" disabled="disabled">Stop</button>
-                <button id="break" class="navRectangle" onclick="startTimerVisual(id)" disabled="disabled">Break</button>
+                <button id="skip" class="skipResetButton" onclick="skipOrReset()" disabled="disabled">Skip</button>
+                <button id="reset" class="skipResetButton" onclick="skipOrReset()" disabled="disabled">Reset</button>
 
-                <div class="modal" id="skip-popup">
+                <div class="modal" id="modal-popup">
                     <div class="content vertical-align-middle">
-                        <p>Are you sure you want to break this work session?</p>
-                        <span class="confirm" id="skip-confirm">Confirm</span>
-                        <span class="cancel" id="skip-cancel">Cancel</span>
+                        <p id="modal-text">Are you sure you want to break this work session?</p>
+                        <span class="confirm" id="modal-confirm">Confirm</span>
+                        <span class="cancel" id="modal-cancel">Cancel</span>
                     </div>
                 </div>
             </div>
@@ -91,31 +89,42 @@
 
             <form class="navContainer" name="themeOptions">
                 <label>
-                    <input type="radio" name="themeOption" value="themeBlue" />
-                    <span class="themeBlue"></span>
-                </label>
-                <label>
-                    <input type="radio" name="themeOption" value="themeGreen" />
-                    <span class="themeGreen"></span>
+                    <input type="radio" name="themeOption" value="themeTomato" />
+                    <span class="themeTomato"></span>
                 </label>
                 <label>
                     <input type="radio" name="themeOption" value="themeOrange" />
                     <span class="themeOrange"></span>
                 </label>
                 <label>
-                    <input type="radio" name="themeOption" value="themePurple" />
-                    <span class="themePurple"></span>
+                    <input type="radio" name="themeOption" value="themeLemon" />
+                    <span class="themeLemon"></span>
                 </label>
                 <label>
-                    <input type="radio" name="themeOption" value="themeYellow" />
-                    <span class="themeYellow"></span>
+                    <input type="radio" name="themeOption" value="themeWatermelon" />
+                    <span class="themeWatermelon"></span>
                 </label>
                 <label>
-                    <input type="radio" name="themeOption" value="themeGrey" />
-                    <span class="themeGrey"></span>
+                    <input type="radio" name="themeOption" value="themeOnion" />
+                    <span class="themeOnion"></span>
+                </label>
+                <label>
+                    <input type="radio" name="themeOption" value="themeGrape" />
+                    <span class="themeGrape"></span>
+                </label>
+                <label>
+                    <input type="radio" name="themeOption" value="themeKiwi" />
+                    <span class="themeKiwi"></span>
+                </label>
+                <label>
+                    <input type="radio" name="themeOption" value="themeCoconut" />
+                    <span class="themeCoconut"></span>
                 </label>
             </form>
 
+            <br />
+            <br />
+            <br />
             <br />
             <br />
             <br />

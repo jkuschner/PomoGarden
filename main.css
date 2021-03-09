@@ -1,48 +1,61 @@
 /* Colors for each theme, change these to change the theme */
-
+.themeTomato {
+    --main-bg-color: white;
+    --main-heavy-color: #ff2c52;
+    --main-light-color: #ffa4a9;
+    --fruit-url: url('images/Tomato.svg');
+}
 .themeOrange {
     --main-bg-color: white;
     --main-heavy-color: #ffb422;
     --main-light-color: #ffd074;
     --fruit-url: url('images/Orange.svg');
 }
-
-.themeBlue {
+.themeLemon {
     --main-bg-color: white;
-    --main-heavy-color: #23c6fa;
-    --main-light-color: #95ecff;
-    --fruit-url: url('images/Onion.svg');
-}
-
-.themeGreen {
-    --main-bg-color: white;
-    --main-heavy-color: #66e466;
-    --main-light-color: #b5ffae;
-    --fruit-url: url('images/Tomato.svg');
-}
-
-.themePurple {
-    --main-bg-color: white;
-    --main-heavy-color: #f68de6;
-    --main-light-color: #ffdceb;
-    --fruit-url: url('images/Grape.svg');
-}
-
-.themeYellow {
-    --main-bg-color: white;
-    --main-heavy-color: #fbe843;
-    --main-light-color: #f9fbaa;
+    --main-heavy-color: #fbe842;
+    --main-light-color: #fff389;
     --fruit-url: url('images/Lemon.svg');
 }
-
+.themeWatermelon {
+    --main-bg-color: white;
+    --main-heavy-color: #22893f;
+    --main-light-color: #ff7575;
+    --fruit-url: url('images/Watermelon.svg');
+}
+.themeOnion {
+    --main-bg-color: white;
+    --main-heavy-color: #8f5a88;
+    --main-light-color: #c1a8b4;
+    --fruit-url: url('images/Onion.svg');
+}
+.themeGrape {
+    --main-bg-color: white;
+    --main-heavy-color: #9332cf;
+    --main-light-color: #cca4ff;
+    --fruit-url: url('images/Grape.svg');
+}
+.themeKiwi {
+    --main-bg-color: white;
+    --main-heavy-color: #b8985e;
+    --main-light-color: #a9c77e;
+    --fruit-url: url('images/Kiwi.svg');
+}
+.themeCoconut {
+    --main-bg-color: white;
+    --main-heavy-color: #9e7b67;
+    --main-light-color: #ebe8e1;
+    --fruit-url: url('images/Coconut.svg');
+}
+/*
 .themeGrey {
     --main-bg-color: #121212;
     --main-heavy-color: #565656;
     --main-light-color: #565656;
     color: #ffffff;
-    --fruit-url: url('images/Coconut.svg');
+    --svg-filter: invert(100%);
 }
-
+*/
 body {
     background-color: var(--main-bg-color);
 }
@@ -53,23 +66,23 @@ body {
     font-size: 3vw;
     cursor: pointer;
     position: absolute;
-    left: 95%;
-    top: 1%;
+    right: 1vw;
+    top: 1vw;
 }
 
 #navBar {
     height: 50vw;
-    width: 0vw;
+    width: 19vw;
     position: fixed;
     top: 5vw;
-    right: 0%;
-    background-color: var(--main-bg-color);
-    /*
+    /* Starts off outside screen region, slides in if nav button is pressed, showNav() in js*/
+    right: -19vw;
+    background-color: inherit;
     transition: 0.5s;
-    */
     white-space: nowrap;
     display: inline-block;
     font-family: 'Montserrat', sans-serif;
+    text-align: right;
 }
 
 .navText {
@@ -84,8 +97,7 @@ body {
     width: 100%;
     display: grid;
     grid-template-columns: 30% 30% 30%;
-    grid-template-rows: 60%;
-    left: -1.2vw;
+    grid-template-rows: 30% 30% 30%;
 }
 
 .navContainer > label {
@@ -101,7 +113,6 @@ body {
 .navContainer > label > input + span,
 .navRectangle {
     position: relative;
-    left: 1.5vw;
     height: 3.5vw;
     width: 5vw;
     border: 2px solid var(--main-heavy-color);
@@ -109,7 +120,7 @@ body {
     text-align: center;
     line-height: 3.5vw;
     cursor: pointer;
-    background-color: transparent;
+    background-color: inherit;
     white-space: nowrap;
     display: inline-block;
     font-size: 1vw;
@@ -126,6 +137,7 @@ body {
     left: 2.5vw;
     height: 2vw;
     width: 2vw;
+    filter: var(--svg-filter);
 }
 
 #volume-slider {
@@ -158,61 +170,111 @@ input[type='range']::-webkit-slider-thumb {
 /* Pomodoro Timer*/
 
 #title {
-    position: relative;
-    font-family: 'Montserrat', sans-serif;
-    text-align: center;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 100%;
-    font-size: 3vw;
-    top: 1vw;
+
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: min(40px, 5vh);
+    height: calc(40px + 2vh);
 }
 
-#entirePomoTimer {
-    z-index: 5;
-    top: 20%;
-    margin: auto;
+#time {
+    visibility: hidden;
+
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 100%;
+
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: min(30px, 3.75vh);
+    height: calc(30px + 1.5vh);
 }
+
+/*#entirePomoTimer {*/
+/*    z-index: 5;*/
+/*    top: 20%;*/
+/*    margin: auto;*/
+/*    width: 100%;*/
+/*}*/
 
 #outerCircle {
-    height: 17vw;
-    width: 17vw;
+    height: calc(30px + 30vh);
+    width: calc(30px + 30vh);
+    max-width: 300px;
+    max-height: 300px;
     background-color: var(--main-bg-color);
-    border-radius: 10vw;
-    border: 1.3vw solid var(--main-heavy-color);
+    border-radius: 50%;
+    border: min(20px, 3vh) solid var(--main-heavy-color);
     /* display: inline-block; */
     visibility: visible;
-    position: relative;
-    margin: auto;
-    /* left: 6%; */
-    top: -10%;
-    /*messing around with z-index since circle wasn't showing up in front*/
-    z-index: 1;
-}
-
-#innerCircle {
-    cursor: pointer;
-    height: 90%;
-    width: 90%;
-    background-color: var(--main-light-color);
-    border-radius: 50%;
-    display: inline-block;
-    font-family: 'Montserrat', sans-serif;
-    margin: 0;
     position: absolute;
-    top: 50%;
+    /*    margin: auto;*/
+    /* left: 6%; */
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
     /*messing around with z-index since circle wasn't showing up in front*/
     z-index: 1;
 }
 
+#innerCircle {
+    cursor: pointer;
+    background-color: var(--main-light-color);
+    border-radius: 50%;
+    border: none;
+    display: inline-block;
+    outline-style: none;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: inherit;
+    visibility: visible;
+    z-index: 1; /* show before fruit */
+}
+
+#innerCircle:disabled {
+    cursor: none;
+    display: none;
+}
+
+.innerDimens {
+    height: 95%;
+    width: 95%;
+}
+
+#timerStart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: min(50px, 6.25vh);
+    height: min(60px, 10vh);
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+    visibility: visible;
+}
+
 #allPomos {
-    position: relative;
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(25px + 25vh);
+    max-height: 250px;
+
     margin: auto;
-    top: 3vw;
     display: flex;
     justify-content: space-evenly;
-    width: 12vw;
 }
 
 #allPomos > label {
@@ -227,8 +289,10 @@ input[type='range']::-webkit-slider-thumb {
 
 #allPomos > label > input + span {
     pointer-events: none;
-    height: 1vw;
-    width: 1vw;
+    height: calc(1.5px + 1.5vh);
+    width: calc(1.5px + 1.5vh);
+    max-height: 15px;
+    max-width: 15px;
     background-color: var(--main-bg-color);
     border-radius: 50%;
     border: 2px solid var(--main-heavy-color);
@@ -238,14 +302,22 @@ input[type='range']::-webkit-slider-thumb {
 
 #allPomos > label > input:checked + span {
     pointer-events: none;
-    background-color: var(--main-heavy-color);
+    background-color: var(--main-light-color);
 }
 
-#timerButtons {
-    position: relative;
-    margin: auto;
-    top: 4vw;
-    left: -1.5vw;
+.skipResetButton {
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+    max-height: 50px;
+    max-width: 130px;
+    height: calc(10px + 5vh);
+    width: calc(20px + 13vh);
+    background-color: var(--main-light-color);
+    border: min(5px, 0.9vh) solid var(--main-heavy-color);
+    cursor: pointer;
 }
 
 #timerButtons > button {
@@ -253,7 +325,9 @@ input[type='range']::-webkit-slider-thumb {
     display: block;
     background-color: var(--main-light-color);
     font-family: 'Montserrat', sans-serif;
-    font-size: 1vw;
+    font-size: min(20px, 3vh);
+    height: calc(10px + 5vh);
+    width: calc(20px + 13vh);
 }
 
 #timerButtons > button:disabled {
@@ -269,41 +343,6 @@ input[type='range']::-webkit-slider-thumb {
     /* text-align: center; */
     width: 63%;
     align-self: center;
-}
-
-#fruitIcon {
-    cursor: auto;
-    content: var(--fruit-url);
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    width: 100%;
-    visibility: hidden;
-    /*messing around with z-index since circle wasn't showing up in front*/
-    z-index: 3;
-}
-
-#time {
-    position: relative;
-    text-align: center;
-    font-size: 2vw;
-    font-family: 'Montserrat', sans-serif;
-    width: 100%;
-    margin-bottom: 0.5vw;
-    visibility: hidden;
-}
-
-#timerStart {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 2vw;
-    font-family: 'Montserrat', sans-serif;
-    visibility: visible;
 }
 
 .modal {
@@ -335,43 +374,45 @@ input[type='range']::-webkit-slider-thumb {
     background-color: var(--main-bg-color);
     box-sizing: border-box;
     position: relative;
-    max-width: 30vw;
+    min-width: 400px;
+    max-width: 35vw;
     padding: 20px;
-    border-radius: 1vw;
-    font-size: 1vw;
+    border-radius: 10px;
+    font-size: calc(16px + 0.2vw);
     font-family: 'Montserrat', sans-serif;
 }
 
 .cancel {
     float: right;
-    font-size: 1vw;
+    font-size: calc(16px + 0.2vw);
+    font-weight: bolder;
     padding: 5px;
+    margin-right: 5px;
     cursor: pointer;
-    color: blue;
+    color: #189cd4;
 }
 
 .confirm {
     float: right;
-    font-size: 1vw;
+    font-size: calc(16px + 0.2vw);
+    font-weight: bolder;
     padding: 5px;
     cursor: pointer;
-    color: red;
+    color: #f41111;
 }
 
 #animation {
+    background-image: var(--fruit-url);
+    background-size: 99% 99%;
+    background-repeat: no-repeat;
+    background-position: center;
     transform: translate(-50%, -50%);
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 90%;
-    height: 90%;
     z-index: 0;
 }
 
-#loader {
-    fill: white;
-}
-
 #border {
-    fill: white;
+    fill: var(--main-bg-color);
 }
