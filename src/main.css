@@ -63,41 +63,41 @@ body {
 /* Navigation Bar*/
 
 #navButton {
-    font-size: 3vw;
+    font-size: min(40px, 5vh);
     cursor: pointer;
     position: absolute;
-    right: 1vw;
-    top: 1vw;
+    right: 2vh;
+    top: 1vh;
 }
 
 #navBar {
-    height: 50vw;
-    width: 19vw;
+    height: 80vh;
+    width: 34vh;
     position: fixed;
-    top: 5vw;
+    top: 7vh;
     /* Starts off outside screen region, slides in if nav button is pressed, showNav() in js*/
-    right: -19vw;
+    right: -35vh;
     background-color: inherit;
     transition: 0.5s;
-    white-space: nowrap;
-    display: inline-block;
     font-family: 'Montserrat', sans-serif;
     text-align: right;
+    z-index: 5;
+    padding-right: 1.5vh;
 }
 
 .navText {
-    font-size: 1.5vw;
+    font-size: min(30px, 3vh);
+    height: min(30px, 3vh);
     white-space: nowrap;
-    padding: 8px 8px 8px 32px;
+    padding: 0.5vh 0vh 0vh 0px;
 }
 
 .navContainer {
-    position: absolute;
+    position: relative;
     justify-content: space-evenly;
     width: 100%;
     display: grid;
     grid-template-columns: 30% 30% 30%;
-    grid-template-rows: 30% 30% 30%;
 }
 
 .navContainer > label {
@@ -108,44 +108,47 @@ body {
 .navContainer > label > input {
     visibility: hidden;
     position: absolute;
+    
 }
 
 .navContainer > label > input + span,
 .navRectangle {
     position: relative;
-    height: 3.5vw;
-    width: 5vw;
-    border: 2px solid var(--main-heavy-color);
-    border-radius: 1vw;
+    width: 9vh;
+    height: 6vh;
+    
+    border: min(4px, 0.8vh) solid var(--main-heavy-color);
+    border-radius: min(12px, 2.4vh);
     text-align: center;
-    line-height: 3.5vw;
     cursor: pointer;
     background-color: inherit;
-    white-space: nowrap;
     display: inline-block;
-    font-size: 1vw;
-    margin: auto;
+    font-size: min(40px, 4vh);
+    font-weight: bold;
+    line-height: calc(5.5px + 5.5vh);
+    margin-left: 1.5vh;
+    margin-bottom: 0.5vh;
 }
+
 
 .navContainer > label > input:checked + span {
     background-color: var(--main-light-color);
 }
 
 #volume-image {
-    position: absolute;
-    top: -0.2vw;
-    left: 2.5vw;
-    height: 2vw;
-    width: 2vw;
+    position: relative;
+    display: inline-block;
+    height: 4vh;
+    width: 4vh;
     filter: var(--svg-filter);
 }
 
 #volume-slider {
-    position: absolute;
-    width: 12vw;
-    height: 1vw;
-    top: 0.15vw;
-    left: 7vw;
+    position: relative;
+    width: 65%;
+    height: 2vh;
+    margin-right: -1%;
+    transform: translate(0%, -43%);
     background: linear-gradient(to right, var(--main-heavy-color) 0%, var(--main-heavy-color) 50%, #fff 50%, #fff 100%);
     border: solid 1px var(--main-heavy-color);
     border-radius: 8px;
@@ -153,18 +156,22 @@ body {
 }
 
 input[type='range']::-webkit-slider-thumb {
-    width: 1vw;
     -webkit-appearance: none;
-    height: 1vw;
+    width: 2vh;
+    height: 2vh;
     background: black;
-    border-radius: 1vw;
+    border-radius: 50%;
+    font-weight: 2vh;
 }
 
 #volume-number {
-    position: absolute;
-    font-size: 1.1vw;
-    top: -1vw;
-    left: 5vw;
+    position: relative;
+    display: inline-block;
+    font-size: 2vh;
+    width: 10%;
+    margin: auto;
+    text-align: center;
+    transform: translate(0%, -50%);
 }
 
 /* Pomodoro Timer*/
@@ -197,13 +204,6 @@ input[type='range']::-webkit-slider-thumb {
     height: calc(30px + 1.5vh);
 }
 
-/*#entirePomoTimer {*/
-/*    z-index: 5;*/
-/*    top: 20%;*/
-/*    margin: auto;*/
-/*    width: 100%;*/
-/*}*/
-
 #outerCircle {
     height: calc(30px + 30vh);
     width: calc(30px + 30vh);
@@ -212,15 +212,11 @@ input[type='range']::-webkit-slider-thumb {
     background-color: var(--main-bg-color);
     border-radius: 50%;
     border: min(20px, 3vh) solid var(--main-heavy-color);
-    /* display: inline-block; */
     visibility: visible;
     position: absolute;
-    /*    margin: auto;*/
-    /* left: 6%; */
     top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /*messing around with z-index since circle wasn't showing up in front*/
     z-index: 1;
 }
 
@@ -262,6 +258,7 @@ input[type='range']::-webkit-slider-thumb {
     font-weight: bold;
     font-family: 'Montserrat', sans-serif;
     visibility: visible;
+    
 }
 
 #allPomos {
@@ -289,13 +286,13 @@ input[type='range']::-webkit-slider-thumb {
 
 #allPomos > label > input + span {
     pointer-events: none;
-    height: calc(1.5px + 1.5vh);
-    width: calc(1.5px + 1.5vh);
+    height: calc(4px + 1.5vh);
+    width: calc(4px + 1.5vh);
     max-height: 15px;
     max-width: 15px;
     background-color: var(--main-bg-color);
     border-radius: 50%;
-    border: 2px solid var(--main-heavy-color);
+    border: 4px solid var(--main-heavy-color);
     display: inline-block;
     visibility: visible;
 }
@@ -340,7 +337,6 @@ input[type='range']::-webkit-slider-thumb {
 
 #clockDisplay {
     margin: auto;
-    /* text-align: center; */
     width: 63%;
     align-self: center;
 }

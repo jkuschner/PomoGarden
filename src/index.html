@@ -81,10 +81,6 @@
                 </label>
             </form>
 
-            <br />
-            <br />
-            <br />
-            <br />
 
             <h2 class="navText">Theme Color</h2>
 
@@ -113,6 +109,9 @@
                     <input type="radio" name="themeOption" value="themeGrape" />
                     <span class="themeGrape"></span>
                 </label>
+                <label hidden>
+                    <input type="radio" name="themeOption" disabled="disabled" />
+                </label>
                 <label>
                     <input type="radio" name="themeOption" value="themeKiwi" />
                     <span class="themeKiwi"></span>
@@ -123,20 +122,9 @@
                 </label>
             </form>
 
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-
             <h2 class="navText">Volume</h2>
 
-            <div class="navContainer">
+            <div>
                 <img id="volume-image" src="./images/volume-level-2.svg" />
                 <p id="volume-number">50</p>
                 <input id="volume-slider" type="range" min="0" max="100" value="50" oninput="changeVolume()" />

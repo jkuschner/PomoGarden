@@ -174,10 +174,10 @@ function changeVolume() {
 // Navigation Bar
 const navBar = document.getElementById('navBar')
 function showNav() {
-    if (navBar.style.right < '1vw') {
-        navBar.style.right = '1vw'
+    if (navBar.style.right < '1vh') {
+        navBar.style.right = '1vh'
     } else {
-        navBar.style.right = '-19vw'
+        navBar.style.right = '-35vh'
     }
 }
 
