@@ -227,7 +227,7 @@ let count = 0
 const NUM_POMOS = 4
 const pomo = document.forms['pomoDisplay'].elements['pomo']
 const timeDisplay = document.getElementById('time')
-
+const pulseCircle = document.getElementsByClassName('pulseCircle')
 const alarm = document.getElementById('alarm')
 
 function startPomoTimer(seconds) {
@@ -235,6 +235,11 @@ function startPomoTimer(seconds) {
     timeDisplay.style.visibility = 'visible'
     skipButton.disabled = false
     displayTime(seconds)
+
+    // pulseCircle[0].style.visibility = 'hidden'
+    // pulseCircle[1].style.visibility = 'hidden'
+    // pulseCircle[2].style.visibility = 'hidden'
+    // pulseCircle[3].style.visibility = 'hidden'
 
     /* global startTimer */
     timer = startTimer(seconds, (secondsRemaining) => {
@@ -342,6 +347,11 @@ function endTimer() {
     resetButton.disabled = true
     timeDisplay.style.visibility = 'hidden'
     modalPopup.style.display = 'none'
+
+    // pulseCircle[0].style.visibility = 'visible'
+    // pulseCircle[1].style.visibility = 'visible'
+    // pulseCircle[2].style.visibility = 'visible'
+    // pulseCircle[3].style.visibility = 'visible'
 }
 
 const modalPopup = document.getElementById('modal-popup')
