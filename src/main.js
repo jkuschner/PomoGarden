@@ -150,12 +150,15 @@ const title = document.getElementById('title')
 const endButton = document.getElementById('end')
 const breakButton = document.getElementById('break')
 let checkTimerStart = false
+let start = new Date().getTime();
+let time = 0;
 
 //this is a bit of a garbage solution but I'm creating a variable to check if starting pomo or break since the current check with id won't quite fit
 let pomoOrBreak = 'pomo'
 
 function startTimerVisual(id) {
-    console.log(pomoOrBreak)
+    start = new Date().getTime();
+    time = 0;
     if (!checkTimerStart) {
         //originally was based on id, changed to this since we want the center button to both start pomos and breaks
         if (pomoOrBreak == 'pomo') {
@@ -357,6 +360,8 @@ let αReverse = 0
 
 function draw() {
     const t = (workTime() * 60 * 1000) / 360
+    time += t;
+    let diff = (new Date().getTime() - start) - time;
     α++
     α %= 360
     const r = (α * π) / 180,
@@ -373,11 +378,13 @@ function draw() {
     loader.setAttribute('d', anim)
     border.setAttribute('d', anim)
 
-    fruitAnimation = setTimeout(draw, t) // Redraw
+    fruitAnimation = setTimeout(draw, t-diff) // Redraw
 }
 
 function drawReverse(breakTime) {
     const t = (breakTime * 60 * 1000) / 360
+    time += t;
+    let diff = (new Date().getTime() - start) - time;
     α++
     α %= 360
     αReverse = 360 - α
@@ -392,7 +399,7 @@ function drawReverse(breakTime) {
     loader.setAttribute('d', anim)
     border.setAttribute('d', anim)
 
-    fruitAnimation = setTimeout(drawReverse, t, breakTime) // Redraw
+    fruitAnimation = setTimeout(drawReverse, t-diff, breakTime) // Redraw
 }
 
 function endFruitAnimation() {
