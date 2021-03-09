@@ -207,6 +207,7 @@ function setPomoMode(isPomo) {
 
 function startTimerVisual() {
     innerCircle.disabled = true
+    innerCircle.style.backgroundColor = 'inherit'
     timerFunc()
 }
 
