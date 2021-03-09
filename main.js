@@ -52,7 +52,16 @@ function setTheme(theme, save) {
     if (save) {
         saveTheme(theme)
     }
+    setFavicon(theme.substr(5))
     return theme
+}
+
+/**
+ * Changes the favicon
+ * @param {String} fruitName name of fruit to set the favicon to
+ */
+function setFavicon(fruitName){
+    document.getElementById('favicon').href = './images/favicon/'+ fruitName + '_favicon.png';
 }
 
 function getTheme() {
@@ -165,10 +174,10 @@ function changeVolume() {
 // Navigation Bar
 const navBar = document.getElementById('navBar')
 function showNav() {
-    if (navBar.style.right < '1vw') {
-        navBar.style.right = '1vw'
+    if (navBar.style.right < '1vh') {
+        navBar.style.right = '1vh'
     } else {
-        navBar.style.right = '-19vw'
+        navBar.style.right = '-35vh'
     }
 }
 
@@ -207,6 +216,7 @@ function setPomoMode(isPomo) {
 
 function startTimerVisual() {
     innerCircle.disabled = true
+    innerCircle.style.backgroundColor = 'inherit'
     timerFunc()
 }
 
@@ -217,7 +227,7 @@ let count = 0
 const NUM_POMOS = 4
 const pomo = document.forms['pomoDisplay'].elements['pomo']
 const timeDisplay = document.getElementById('time')
-
+const pulseCircle = document.getElementsByClassName('pulseCircle')
 const alarm = document.getElementById('alarm')
 
 function startPomoTimer(seconds) {
@@ -225,6 +235,11 @@ function startPomoTimer(seconds) {
     timeDisplay.style.visibility = 'visible'
     skipButton.disabled = false
     displayTime(seconds)
+
+    // pulseCircle[0].style.visibility = 'hidden'
+    // pulseCircle[1].style.visibility = 'hidden'
+    // pulseCircle[2].style.visibility = 'hidden'
+    // pulseCircle[3].style.visibility = 'hidden'
 
     /* global startTimer */
     timer = startTimer(seconds, (secondsRemaining) => {
@@ -332,6 +347,11 @@ function endTimer() {
     resetButton.disabled = true
     timeDisplay.style.visibility = 'hidden'
     modalPopup.style.display = 'none'
+
+    // pulseCircle[0].style.visibility = 'visible'
+    // pulseCircle[1].style.visibility = 'visible'
+    // pulseCircle[2].style.visibility = 'visible'
+    // pulseCircle[3].style.visibility = 'visible'
 }
 
 const modalPopup = document.getElementById('modal-popup')
