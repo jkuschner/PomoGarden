@@ -59,10 +59,10 @@ self.addEventListener('activate', (e) => {
 self.addEventListener('fetch', (e) => {
     e.respondWith(
         (async () => {
-            const r = await caches.match(e.request)
+            const r = await caches.match(e.request, {ignoreVary: true})
             console.log(`[Service Worker] Fetching resource: ${e.request.url}`)
+            console.log('[Service Worker] Cache response fetched: ' + r)
             if (r) {
-                console.log(`[Service Worker] Returning from cache: ${e.request.url}`)
                 return r
             }
             const response = await fetch(e.request)
