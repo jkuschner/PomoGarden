@@ -4,7 +4,7 @@ const appShellFiles = [
     './index.html',
     './js/main.js',
     './js/utils.js',
-    './css/main.css',
+    './main.css',
     './images/favicon/Coconut_favicon.png',
     './images/favicon/Grape_favicon.png',
     './images/favicon/Kiwi_favicon.png',
