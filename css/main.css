@@ -3,49 +3,49 @@
     --main-bg-color: white;
     --main-heavy-color: #ff2c52;
     --main-light-color: #ffa4a9;
-    --fruit-url: url('../images/Tomato.svg');
+    --fruit-url: url('./images/Tomato.svg');
 }
 .themeOrange {
     --main-bg-color: white;
     --main-heavy-color: #ffb422;
     --main-light-color: #ffd074;
-    --fruit-url: url('../images/Orange.svg');
+    --fruit-url: url('./images/Orange.svg');
 }
 .themeLemon {
     --main-bg-color: white;
     --main-heavy-color: #fbe842;
     --main-light-color: #fff389;
-    --fruit-url: url('../images/Lemon.svg');
+    --fruit-url: url('./images/Lemon.svg');
 }
 .themeWatermelon {
     --main-bg-color: white;
     --main-heavy-color: #22893f;
     --main-light-color: #ff7575;
-    --fruit-url: url('../images/Watermelon.svg');
+    --fruit-url: url('./images/Watermelon.svg');
 }
 .themeOnion {
     --main-bg-color: white;
     --main-heavy-color: #8f5a88;
     --main-light-color: #c1a8b4;
-    --fruit-url: url('../images/Onion.svg');
+    --fruit-url: url('./images/Onion.svg');
 }
 .themeGrape {
     --main-bg-color: white;
     --main-heavy-color: #9332cf;
     --main-light-color: #cca4ff;
-    --fruit-url: url('../images/Grape.svg');
+    --fruit-url: url('./images/Grape.svg');
 }
 .themeKiwi {
     --main-bg-color: white;
     --main-heavy-color: #b8985e;
     --main-light-color: #a9c77e;
-    --fruit-url: url('../images/Kiwi.svg');
+    --fruit-url: url('./images/Kiwi.svg');
 }
 .themeCoconut {
     --main-bg-color: white;
     --main-heavy-color: #9e7b67;
     --main-light-color: #ebe8e1;
-    --fruit-url: url('../images/Coconut.svg');
+    --fruit-url: url('./images/Coconut.svg');
 }
 /*
 .themeGrey {
