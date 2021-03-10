@@ -64,7 +64,7 @@ function setTheme(theme, save) {
  * @param {String} fruitName name of fruit to set the favicon to
  */
 function setFavicon(fruitName) {
-    document.getElementById('favicon').href = '../images/favicon/' + fruitName + '_favicon.png'
+    document.getElementById('favicon').href = './images/favicon/' + fruitName + '_favicon.png'
 }
 
 function getTheme() {
@@ -160,13 +160,13 @@ function changeVolume() {
     alarmFocus.volume = volumeSlider.value / 100
     alarmBreak.volume = volumeSlider.value / 100
     if (volumeSlider.value == 0) {
-        volumeImage.src = '../images/volume-level-0.svg'
+        volumeImage.src = './images/volume-level-0.svg'
     } else if (volumeSlider.value <= 33) {
-        volumeImage.src = '../images/volume-level-1.svg'
+        volumeImage.src = './images/volume-level-1.svg'
     } else if (volumeSlider.value <= 66) {
-        volumeImage.src = '../images/volume-level-2.svg'
+        volumeImage.src = './images/volume-level-2.svg'
     } else {
-        volumeImage.src = '../images/volume-level-3.svg'
+        volumeImage.src = './images/volume-level-3.svg'
     }
 
     const value = ((volumeSlider.value - volumeSlider.min) / (volumeSlider.max - volumeSlider.min)) * 100
