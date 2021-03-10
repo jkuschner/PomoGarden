@@ -1,6 +1,6 @@
 // PWA service worker
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./pomo-sw.js', {scope: './'})
+    navigator.serviceWorker.register('./pomo-sw.js', { scope: './' })
 }
 
 window.addEventListener('DOMContentLoaded', () => {
