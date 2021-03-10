@@ -1,5 +1,10 @@
-// PWA service worker
-if ('serviceWorker' in navigator) {
+// change to true to test caching in development,
+// and remember to clear cache after changing to false
+const forceCache = false
+if (!forceCache && (location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
+    console.log('Local server detected, run without caching')
+} else if ('serviceWorker' in navigator) {
+    // PWA service worker
     navigator.serviceWorker.register('./pomo-sw.js', { scope: './' })
 }
 
