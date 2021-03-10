@@ -3,31 +3,31 @@
     --main-bg-color: white;
     --main-heavy-color: #ff2c52;
     --main-light-color: #ffa4a9;
-    --fruit-url: url('./images/Tomato.svg');
+    --fruit-url: url('../images/Tomato.svg');
 }
 .themeOrange {
     --main-bg-color: white;
     --main-heavy-color: #ffb422;
     --main-light-color: #ffd074;
-    --fruit-url: url('./images/Orange.svg');
+    --fruit-url: url('../images/Orange.svg');
 }
 .themeLemon {
     --main-bg-color: white;
     --main-heavy-color: #fbe842;
     --main-light-color: #fff389;
-    --fruit-url: url('./images/Lemon.svg');
+    --fruit-url: url('../images/Lemon.svg');
 }
 .themeWatermelon {
     --main-bg-color: white;
     --main-heavy-color: #22893f;
     --main-light-color: #ff7575;
-    --fruit-url: url('./images/Watermelon.svg');
+    --fruit-url: url('../images/Watermelon.svg');
 }
 .themeOnion {
     --main-bg-color: white;
     --main-heavy-color: #8f5a88;
     --main-light-color: #c1a8b4;
-    --fruit-url: url('./images/Onion.svg');
+    --fruit-url: url('../images/Onion.svg');
 }
 .themeGrape {
     --main-bg-color: white;
