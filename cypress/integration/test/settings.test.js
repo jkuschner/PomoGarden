@@ -22,7 +22,7 @@ describe('Theme Tests', () => {
 
         cy.get('#navButton').click();
 
-        cy.get('#themeBlue').click();
+        cy.get('[value = "themeBlue"]').click({ force: true });
 
         cy.get('body').should('have.css', 'background-color', 'rgb(255, 255, 255)');
 
@@ -36,7 +36,7 @@ describe('Theme Tests', () => {
 
         cy.get('#navButton').click();
 
-        cy.get('#themeGrey').click();
+        cy.get('[value = "themeGrey"]').click({ force: true });
 
         cy.get('body').should('have.css', 'background-color', 'rgb(18, 18, 18)');
     });
@@ -70,7 +70,7 @@ describe('Alert Tests', () => {
     });
 });
 
-describe('Break Tests', () => {
+/*describe('Break Tests', () => {
     it('test break', () => {
         cy.on('uncaught:exception', (err, runnable) => {
             return false;
@@ -93,7 +93,14 @@ describe('Break Tests', () => {
         //.should('have.css', 'background-color');
         //cy.get('#first-pomo').should('have.css', 'background-color', 'rgb(255, 0, 0)')
     });
+});*/
+
+describe('Force time down', () => {
+    it('make pomo 1 second', () => {
+        
+    });
 });
+
 
 describe('Counter Tests', () => {
     it('Assigning css color', () => {

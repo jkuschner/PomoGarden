@@ -5,10 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Pomo Garden</title>
         <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
-            rel="stylesheet"
-        />
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="./main.css" />
     </head>
 
@@ -20,29 +17,44 @@
 
             <div id="outerCircle">
                 <span id="innerCircle" onclick="startTimerVisual(id)">
-                    <img id="fruitIcon" alt="Fruit" />
+                    <div id="fruitIcon" alt="Fruit"></div>
                     <div id="timerStart">Start</div>
                 </span>
+
+                <div class="pulseCircle" id="pulseCircle1" style="animation-delay: -3s"></div>
+                <div class="pulseCircle" id="pulseCircle2" style="animation-delay: -2s"></div>
+                <div class="pulseCircle" id="pulseCircle3" style="animation-delay: -1s"></div>
+                <div class="pulseCircle" id="pulseCircle4" style="animation-delay: 0s"></div>
+
+                <!-- removed height/width and put it in css for now -->
+                <svg id="animation" viewbox="0 0 250 250">
+                    <path id="border" transform="translate(125, 125)" />
+                    <path id="loader" transform="translate(125, 125) scale(.84)" />
+                </svg>
             </div>
 
-            <div id="allPomos">
-                <span class="pomo" id="first-pomo"></span>
-                <span class="pomo" id="second-pomo"></span>
-                <span class="pomo" id="third-pomo"></span>
-                <span class="pomo" id="fourth-pomo"></span>
-            </div>
+            <form id="allPomos" name="pomoDisplay">
+                <label>
+                    <input type="checkbox" name="pomo" disabled="disabled" />
+                    <span></span>
+                </label>
+                <label>
+                    <input type="checkbox" name="pomo" disabled="disabled" />
+                    <span></span>
+                </label>
+                <label>
+                    <input type="checkbox" name="pomo" disabled="disabled" />
+                    <span></span>
+                </label>
+                <label>
+                    <input type="checkbox" name="pomo" disabled="disabled" />
+                    <span></span>
+                </label>
+            </form>
 
             <div id="timerButtons">
-                <button id="end" class="navRectangle" onclick="skipOrStop()">
-                    Stop
-                </button>
-                <button
-                    id="break"
-                    class="navRectangle"
-                    onclick="startTimerVisual(id)"
-                >
-                    Break
-                </button>
+                <button id="end" class="navRectangle" onclick="skipOrStop()" disabled="disabled">Stop</button>
+                <button id="break" class="navRectangle" onclick="startTimerVisual(id)" disabled="disabled">Break</button>
 
                 <div class="modal" id="skip-popup">
                     <div class="content vertical-align-middle">
@@ -59,29 +71,20 @@
         <div id="navBar">
             <h2 class="navText">Long Break Time</h2>
 
-            <div id="navContainer">
-                <div
-                    class="navRectangle"
-                    id="longBreakTen"
-                    onclick="changeLongBreak(id)"
-                >
-                    10
-                </div>
-                <div
-                    class="navRectangle"
-                    id="longBreakFifteen"
-                    onclick="changeLongBreak(id)"
-                >
-                    15
-                </div>
-                <div
-                    class="navRectangle"
-                    id="longBreakTwenty"
-                    onclick="changeLongBreak(id)"
-                >
-                    20
-                </div>
-            </div>
+            <form class="navContainer" name="breakOptions">
+                <label>
+                    <input type="radio" name="breakOption" value="break10" />
+                    <span>10</span>
+                </label>
+                <label>
+                    <input type="radio" name="breakOption" value="break15" />
+                    <span>15</span>
+                </label>
+                <label>
+                    <input type="radio" name="breakOption" value="break20" />
+                    <span>20</span>
+                </label>
+            </form>
 
             <br />
             <br />
@@ -90,38 +93,32 @@
 
             <h2 class="navText">Theme Color</h2>
 
-            <div id="navContainer">
-                <div
-                    class="navRectangle"
-                    onclick="changeTheme(id)"
-                    id="themeBlue"
-                ></div>
-                <div
-                    class="navRectangle"
-                    onclick="changeTheme(id)"
-                    id="themeGreen"
-                ></div>
-                <div
-                    class="navRectangle"
-                    onclick="changeTheme(id)"
-                    id="themeOrange"
-                ></div>
-                <div
-                    class="navRectangle"
-                    onclick="changeTheme(id)"
-                    id="themePurple"
-                ></div>
-                <div
-                    class="navRectangle"
-                    onclick="changeTheme(id)"
-                    id="themeYellow"
-                ></div>
-                <div
-                    class="navRectangle"
-                    onclick="changeTheme(id)"
-                    id="themeGrey"
-                ></div>
-            </div>
+            <form class="navContainer" name="themeOptions">
+                <label>
+                    <input type="radio" name="themeOption" value="themeBlue" />
+                    <span class="themeBlue"></span>
+                </label>
+                <label>
+                    <input type="radio" name="themeOption" value="themeGreen" />
+                    <span class="themeGreen"></span>
+                </label>
+                <label>
+                    <input type="radio" name="themeOption" value="themeOrange" />
+                    <span class="themeOrange"></span>
+                </label>
+                <label>
+                    <input type="radio" name="themeOption" value="themePurple" />
+                    <span class="themePurple"></span>
+                </label>
+                <label>
+                    <input type="radio" name="themeOption" value="themeYellow" />
+                    <span class="themeYellow"></span>
+                </label>
+                <label>
+                    <input type="radio" name="themeOption" value="themeGrey" />
+                    <span class="themeGrey"></span>
+                </label>
+            </form>
 
             <br />
             <br />
@@ -133,22 +130,16 @@
 
             <h2 class="navText">Volume</h2>
 
-            <div id="navContainer">
+            <div class="navContainer">
                 <img id="volume-image" src="./images/volume-level-2.svg" />
                 <p id="volume-number">50</p>
-                <input
-                    id="volume-slider"
-                    type="range"
-                    min="0"
-                    max="100"
-                    value="50"
-                    oninput="changeVolume()"
-                />
+                <input id="volume-slider" type="range" min="0" max="100" value="50" oninput="changeVolume()" />
             </div>
         </div>
 
         <audio id="alarm" src="./audio/alarm.mp3"></audio>
 
+        <script src="./utils.js"></script>
         <script src="./main.js"></script>
     </body>
 </html>
