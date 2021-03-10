@@ -1,9 +1,0 @@
-{
-    "workTime": 10,
-    "breakTime": 5,
-    "longBreakTimes": {
-        "break10": 10,
-        "break15": 15,
-        "break20": 20
-    }
-}

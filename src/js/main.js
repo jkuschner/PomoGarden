@@ -1,7 +1,8 @@
 // change to true to test caching in development,
 // and remember to clear cache after changing to false
 const forceCache = false
-if (!forceCache && (location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
+if (!forceCache && isLocalHost()) {
+    /* global isLocalHost */
     console.log('Local server detected, run without caching')
 } else if ('serviceWorker' in navigator) {
     // PWA service worker
