@@ -1,10 +1,10 @@
-const cacheName = 'pomo-garden-v2'
+const cacheName = 'pomo-garden-v1'
 const appShellFiles = [
     './',
     './index.html',
     './js/main.js',
     './js/utils.js',
-    './css/main.css',
+    './main.css',
     './images/favicon/Coconut_favicon.png',
     './images/favicon/Grape_favicon.png',
     './images/favicon/Kiwi_favicon.png',
@@ -37,7 +37,7 @@ const appShellFiles = [
 ]
 
 self.addEventListener('install', (e) => {
-    self.skipWaiting();
+    self.skipWaiting()
     e.waitUntil(
         (async () => {
             const cache = await caches.open(cacheName)
