@@ -152,8 +152,8 @@ function changeVolume() {
     localStorage.setItem('volume', volumeSlider.value)
 
     volumeNumber.innerHTML = volumeSlider.value
-    alarm.volume = volumeSlider.value / 100
-
+    alarmFocus.volume = volumeSlider.value / 100
+    alarmBreak.volume = volumeSlider.value / 100
     if (volumeSlider.value == 0) {
         volumeImage.src = './images/volume-level-0.svg'
     } else if (volumeSlider.value <= 33) {
@@ -226,7 +226,8 @@ const NUM_POMOS = 4
 const pomo = document.forms['pomoDisplay'].elements['pomo']
 const timeDisplay = document.getElementById('time')
 const pulseCircle = document.getElementsByClassName('pulseCircle')
-const alarm = document.getElementById('alarm')
+const alarmFocus = document.getElementById('alarm-focus')
+const alarmBreak = document.getElementById('alarm-break')
 
 function startPomoTimer(seconds) {
     title.innerHTML = 'Focus'
@@ -246,7 +247,7 @@ function startPomoTimer(seconds) {
         if (secondsRemaining <= 0) {
             setCount(count + 1)
 
-            alarm.play()
+            alarmFocus.play()
             endTimer()
             setPomoMode(false)
             skipButton.disabled = true
@@ -269,7 +270,7 @@ function startBreakTimer(seconds) {
                 setCount(0)
             }
 
-            alarm.play()
+            alarmBreak.play()
             endTimer()
             setPomoMode(true)
             resetButton.disabled = true
