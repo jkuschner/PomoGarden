@@ -1,4 +1,4 @@
-const cacheName = 'pomo-garden-v1'
+const cacheName = 'pomo-garden-v2'
 const appShellFiles = [
     './',
     './index.html',
@@ -37,6 +37,7 @@ const appShellFiles = [
 ]
 
 self.addEventListener('install', (e) => {
+    self.skipWaiting();
     e.waitUntil(
         (async () => {
             const cache = await caches.open(cacheName)
