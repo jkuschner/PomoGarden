@@ -1,7 +1,8 @@
 // change to true to test caching in development,
 // and remember to clear cache after changing to false
 const forceCache = false
-if (!forceCache && (location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
+/* global isLocalHost */
+if (!forceCache && isLocalHost()) {
     console.log('Local server detected, run without caching')
 } else if ('serviceWorker' in navigator) {
     // PWA service worker
@@ -90,9 +91,9 @@ let longBreakType = 'break15'
  * Load the long break type selected, which is used to access the correct break time in the loaded timer values
  * Break type is saved when a new break type is selected
  */
-async function loadTimerValues() {
+function loadTimerValues() {
     /* global getTimerValues */
-    timerVals = await getTimerValues()
+    timerVals = getTimerValues()
     longBreakType = getLongBreak() || longBreakType
     const longBreakRadios = document.forms['breakOptions'].elements['breakOption']
     for (let i = 0; i < longBreakRadios.length; i++) {

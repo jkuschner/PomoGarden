@@ -1,24 +1,28 @@
-async function getTimerValues() {
-    const defaultTimes = {
-        workTime: 1500,
-        breakTime: 300,
-        longBreakTimes: {
-            break10: 600,
-            break15: 900,
-            break20: 1200,
-        },
-    }
+function isLocalHost() {
+    return location.hostname === 'localhost' || location.hostname === '127.0.0.1'
+}
 
-    try {
-        const response = await fetch('./test-config/times.json')
-        if (response.ok) {
-            const testSettings = await response.json()
-            return testSettings
-        } else {
-            return defaultTimes
+function getTimerValues() {
+    if (isLocalHost()) {
+        return {
+            workTime: 10,
+            breakTime: 5,
+            longBreakTimes: {
+                break10: 10,
+                break15: 15,
+                break20: 20,
+            },
         }
-    } catch (error) {
-        return defaultTimes
+    } else {
+        return {
+            workTime: 1500,
+            breakTime: 300,
+            longBreakTimes: {
+                break10: 600,
+                break15: 900,
+                break20: 1200,
+            },
+        }
     }
 }
 
