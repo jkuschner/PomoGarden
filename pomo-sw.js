@@ -2,6 +2,7 @@ const cacheName = 'pomo-garden-v1'
 const appShellFiles = [
     './',
     './index.html',
+    './pomo-garden.webmanifest',
     './js/main.js',
     './js/utils.js',
     './main.css',
@@ -34,6 +35,7 @@ const appShellFiles = [
     './images/volume-level-3.svg',
     'https://fonts.googleapis.com/css2?family=Montserrat&display=swap',
     'https://fonts.gstatic.com/s/montserrat/v15/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2',
+    'https://fonts.gstatic.com/s/montserrat/v15/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2'
 ]
 
 self.addEventListener('install', (e) => {
@@ -60,9 +62,8 @@ self.addEventListener('fetch', (e) => {
     e.respondWith(
         (async () => {
             const r = await caches.match(e.request, {ignoreVary: true})
-            console.log(`[Service Worker] Fetching resource: ${e.request.url}`)
-            console.log('[Service Worker] Cache response fetched: ' + r)
             if (r) {
+                console.log(`[Service Worker] Returning from cache: ${e.request.url}`)
                 return r
             }
             const response = await fetch(e.request)

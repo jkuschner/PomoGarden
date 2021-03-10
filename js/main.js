@@ -1,6 +1,6 @@
 // change to true to test caching in development,
 // and remember to clear cache after changing to false
-const forceCache = true
+const forceCache = false
 /* global isLocalHost */
 if (!forceCache && isLocalHost()) {
     console.log('Local server detected, run without caching')
