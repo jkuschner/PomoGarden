@@ -1,18 +1,24 @@
 async function getTimerValues() {
-    const response = await fetch('./test-config/times.json')
-    if (response.ok) {
-        const testSettings = await response.json()
-        return testSettings
-    } else {
-        return {
-            workTime: 1500,
-            breakTime: 300,
-            longBreakTimes: {
-                break10: 600,
-                break15: 900,
-                break20: 1200,
-            },
+    const defaultTimes = {
+        workTime: 1500,
+        breakTime: 300,
+        longBreakTimes: {
+            break10: 600,
+            break15: 900,
+            break20: 1200,
+        },
+    }
+
+    try {
+        const response = await fetch('./test-config/times.json')
+        if (response.ok) {
+            const testSettings = await response.json()
+            return testSettings
+        } else {
+            return defaultTimes
         }
+    } catch (error) {
+        return defaultTimes
     }
 }
 

@@ -6,8 +6,9 @@
         <title>Pomo Garden</title>
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="./main.css" />
-        <link rel="icon" type="image" href="./images/favicon/Orange_favicon.png" id="favicon">
+        <link rel="stylesheet" href="./css/main.css" />
+        <link rel="icon" type="image" href="./images/favicon/Orange_favicon.png" id="favicon" />
+        <link rel="manifest" href="./pomo-garden.webmanifest">
     </head>
 
     <body>
@@ -27,10 +28,10 @@
                 </button>
 
                 <div class="pulseCircle" id="pulseCircle1" style="animation-delay: -3s"></div>
-                        <div class="pulseCircle" id="pulseCircle2" style="animation-delay: -2s"></div>
-                        <div class="pulseCircle" id="pulseCircle3" style="animation-delay: -1s"></div>
-                        <div class="pulseCircle" id="pulseCircle4" style="animation-delay: 0s"></div>
-            </div>            
+                <div class="pulseCircle" id="pulseCircle2" style="animation-delay: -2s"></div>
+                <div class="pulseCircle" id="pulseCircle3" style="animation-delay: -1s"></div>
+                <div class="pulseCircle" id="pulseCircle4" style="animation-delay: 0s"></div>
+            </div>
 
             <form id="allPomos" name="pomoDisplay">
                 <label>
@@ -54,7 +55,6 @@
             <div id="timerButtons">
                 <button id="skip" class="skipResetButton" onclick="skipOrReset()" disabled="disabled">Skip</button>
                 <button id="reset" class="skipResetButton" onclick="skipOrReset()" disabled="disabled">Reset</button>
-
                 <div class="modal" id="modal-popup">
                     <div class="modal-content">
                         <p id="modal-text">Are you sure you want to break this work session?</p>
@@ -84,7 +84,6 @@
                     <span>20</span>
                 </label>
             </form>
-
 
             <h2 class="navText">Theme Color</h2>
 
@@ -134,10 +133,10 @@
                 <input id="volume-slider" type="range" min="0" max="100" value="50" oninput="changeVolume()" />
             </div>
         </div>
+        <audio id="alarm-focus" src="./audio/alarm_focus_finished.mp3"></audio>
+        <audio id="alarm-break" src="./audio/alarm_break_finished.mp3"></audio>
 
-        <audio id="alarm" src="./audio/alarm.mp3"></audio>
-
-        <script src="./utils.js"></script>
-        <script src="./main.js"></script>
+        <script src="./js/utils.js"></script>
+        <script src="./js/main.js"></script>
     </body>
 </html>

@@ -3,49 +3,49 @@
     --main-bg-color: white;
     --main-heavy-color: #ff2c52;
     --main-light-color: #ffa4a9;
-    --fruit-url: url('images/Tomato.svg');
+    --fruit-url: url('../images/Tomato.svg');
 }
 .themeOrange {
     --main-bg-color: white;
     --main-heavy-color: #ffb422;
     --main-light-color: #ffd074;
-    --fruit-url: url('images/Orange.svg');
+    --fruit-url: url('../images/Orange.svg');
 }
 .themeLemon {
     --main-bg-color: white;
     --main-heavy-color: #fbe842;
     --main-light-color: #fff389;
-    --fruit-url: url('images/Lemon.svg');
+    --fruit-url: url('../images/Lemon.svg');
 }
 .themeWatermelon {
     --main-bg-color: white;
     --main-heavy-color: #22893f;
     --main-light-color: #ff7575;
-    --fruit-url: url('images/Watermelon.svg');
+    --fruit-url: url('../images/Watermelon.svg');
 }
 .themeOnion {
     --main-bg-color: white;
     --main-heavy-color: #8f5a88;
     --main-light-color: #c1a8b4;
-    --fruit-url: url('images/Onion.svg');
+    --fruit-url: url('../images/Onion.svg');
 }
 .themeGrape {
     --main-bg-color: white;
     --main-heavy-color: #9332cf;
     --main-light-color: #cca4ff;
-    --fruit-url: url('images/Grape.svg');
+    --fruit-url: url('../images/Grape.svg');
 }
 .themeKiwi {
     --main-bg-color: white;
     --main-heavy-color: #b8985e;
     --main-light-color: #a9c77e;
-    --fruit-url: url('images/Kiwi.svg');
+    --fruit-url: url('../images/Kiwi.svg');
 }
 .themeCoconut {
     --main-bg-color: white;
     --main-heavy-color: #9e7b67;
     --main-light-color: #ebe8e1;
-    --fruit-url: url('images/Coconut.svg');
+    --fruit-url: url('../images/Coconut.svg');
 }
 /*
 .themeGrey {
@@ -71,25 +71,28 @@ body {
 }
 
 #navBar {
-    height: 80vh;
+    min-height: 65vh;
     width: 34vh;
     position: fixed;
-    top: 7vh;
-    /* Starts off outside screen region, slides in if nav button is pressed, showNav() in js*/
-    right: -35vh;
+    top: 8vh;
+    right: -38vh;
     background-color: inherit;
     transition: 0.5s;
     font-family: 'Montserrat', sans-serif;
     text-align: right;
     z-index: 5;
-    padding-right: 1.5vh;
+    margin-right: 1vh;
+    padding-left: 1vh;
+    padding-right: 1vh;
+    border: 1px solid var(--main-heavy-color);
+    border-radius: min(12px, 2.4vh);
 }
 
 .navText {
     font-size: min(30px, 3vh);
     height: min(30px, 3vh);
     white-space: nowrap;
-    padding: 0.5vh 0vh 0vh 0px;
+    padding: 0.5vh 1vh 0vh 0px;
 }
 
 .navContainer {
@@ -108,7 +111,6 @@ body {
 .navContainer > label > input {
     visibility: hidden;
     position: absolute;
-    
 }
 
 .navContainer > label > input + span,
@@ -116,9 +118,6 @@ body {
     position: relative;
     width: 9vh;
     height: 6vh;
-    
-    border: min(4px, 0.8vh) solid var(--main-heavy-color);
-    border-radius: min(12px, 2.4vh);
     text-align: center;
     cursor: pointer;
     background-color: inherit;
@@ -126,10 +125,11 @@ body {
     font-size: min(40px, 4vh);
     font-weight: bold;
     line-height: calc(5.5px + 5.5vh);
-    margin-left: 1.5vh;
-    margin-bottom: 0.5vh;
+    border: min(4px, 0.8vh) solid var(--main-heavy-color);
+    border-radius: min(12px, 2.4vh);
+    margin-top: 0.25vh;
+    margin-bottom: 0.25vh;
 }
-
 
 .navContainer > label > input:checked + span {
     background-color: var(--main-light-color);
@@ -147,8 +147,8 @@ body {
     position: relative;
     width: 65%;
     height: 2vh;
-    margin-right: -1%;
-    transform: translate(0%, -43%);
+    margin-right: 1vh;
+    transform: translate(0%, -37%);
     background: linear-gradient(to right, var(--main-heavy-color) 0%, var(--main-heavy-color) 50%, #fff 50%, #fff 100%);
     border: solid 1px var(--main-heavy-color);
     border-radius: 8px;
@@ -291,7 +291,6 @@ input[type='range']::-webkit-slider-thumb {
     font-weight: bold;
     font-family: 'Montserrat', sans-serif;
     visibility: visible;
-    
 }
 
 #allPomos {
@@ -403,7 +402,7 @@ input[type='range']::-webkit-slider-thumb {
     top: 50%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%); 
+    transform: translate(-50%, -50%);
 }
 
 .cancel {
@@ -445,7 +444,7 @@ input[type='range']::-webkit-slider-thumb {
 @keyframes pulse {
     from {
         transform: scale(1, 1);
-        opacity: 0.5;
+        opacity: 1;
     }
     to {
         transform: scale(1.5, 1.5);

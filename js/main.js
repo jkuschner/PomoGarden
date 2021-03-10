@@ -1,40 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>JSDoc: Source: main.js</title>
+// PWA service worker
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/pomo-sw.js')
+}
 
-    <script src="scripts/prettify/prettify.js"> </script>
-    <script src="scripts/prettify/lang-css.js"> </script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
-</head>
-
-<body>
-
-<div id="main">
-
-    <h1 class="page-title">Source: main.js</h1>
-
-    
-
-
-
-    
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', () => {
     // Store number of pomos on refresh
     // if (localStorage.getItem('count') == null) {
     //     count = 0
     // } else {
     //     count = localStorage.getItem('count')
     // }
-
-    //updatePomo()
 
     // Store theme on refresh
     loadTheme()
@@ -58,7 +33,7 @@
 function loadTheme() {
     const currentTheme = setTheme(getTheme() || 'themeOrange', false)
     const themeRadios = document.forms['themeOptions'].elements['themeOption']
-    for (let i = 0; i &lt; themeRadios.length; i++) {
+    for (let i = 0; i < themeRadios.length; i++) {
         const radio = themeRadios[i]
         if (radio.value == currentTheme) {
             radio.checked = true
@@ -88,8 +63,8 @@ function setTheme(theme, save) {
  * Changes the favicon
  * @param {String} fruitName name of fruit to set the favicon to
  */
-function setFavicon(fruitName){
-    document.getElementById('favicon').href = './images/favicon/'+ fruitName + '_favicon.png';
+function setFavicon(fruitName) {
+    document.getElementById('favicon').href = '../images/favicon/' + fruitName + '_favicon.png'
 }
 
 function getTheme() {
@@ -115,7 +90,7 @@ async function loadTimerValues() {
     timerVals = await getTimerValues()
     longBreakType = getLongBreak() || longBreakType
     const longBreakRadios = document.forms['breakOptions'].elements['breakOption']
-    for (let i = 0; i &lt; longBreakRadios.length; i++) {
+    for (let i = 0; i < longBreakRadios.length; i++) {
         const radio = longBreakRadios[i]
         if (radio.value == longBreakType) {
             radio.checked = true
@@ -182,16 +157,16 @@ function changeVolume() {
     localStorage.setItem('volume', volumeSlider.value)
 
     volumeNumber.innerHTML = volumeSlider.value
-    alarm.volume = volumeSlider.value / 100
-
+    alarmFocus.volume = volumeSlider.value / 100
+    alarmBreak.volume = volumeSlider.value / 100
     if (volumeSlider.value == 0) {
-        volumeImage.src = './images/volume-level-0.svg'
-    } else if (volumeSlider.value &lt;= 33) {
-        volumeImage.src = './images/volume-level-1.svg'
-    } else if (volumeSlider.value &lt;= 66) {
-        volumeImage.src = './images/volume-level-2.svg'
+        volumeImage.src = '../images/volume-level-0.svg'
+    } else if (volumeSlider.value <= 33) {
+        volumeImage.src = '../images/volume-level-1.svg'
+    } else if (volumeSlider.value <= 66) {
+        volumeImage.src = '../images/volume-level-2.svg'
     } else {
-        volumeImage.src = './images/volume-level-3.svg'
+        volumeImage.src = '../images/volume-level-3.svg'
     }
 
     const value = ((volumeSlider.value - volumeSlider.min) / (volumeSlider.max - volumeSlider.min)) * 100
@@ -202,10 +177,10 @@ function changeVolume() {
 // Navigation Bar
 const navBar = document.getElementById('navBar')
 function showNav() {
-    if (navBar.style.right &lt; '1vh') {
+    if (navBar.style.right < '1vh') {
         navBar.style.right = '1vh'
     } else {
-        navBar.style.right = '-35vh'
+        navBar.style.right = '-38vh'
     }
 }
 
@@ -256,7 +231,8 @@ const NUM_POMOS = 4
 const pomo = document.forms['pomoDisplay'].elements['pomo']
 const timeDisplay = document.getElementById('time')
 const pulseCircle = document.getElementsByClassName('pulseCircle')
-const alarm = document.getElementById('alarm')
+const alarmFocus = document.getElementById('alarm-focus')
+const alarmBreak = document.getElementById('alarm-break')
 
 function startPomoTimer(seconds) {
     title.innerHTML = 'Focus'
@@ -273,10 +249,10 @@ function startPomoTimer(seconds) {
     timer = startTimer(seconds, (secondsRemaining) => {
         displayTime(secondsRemaining)
 
-        if (secondsRemaining &lt;= 0) {
+        if (secondsRemaining <= 0) {
             setCount(count + 1)
 
-            alarm.play()
+            alarmFocus.play()
             endTimer()
             setPomoMode(false)
             skipButton.disabled = true
@@ -294,12 +270,12 @@ function startBreakTimer(seconds) {
     timer = startTimer(seconds, (secondsRemaining) => {
         displayTime(secondsRemaining)
 
-        if (secondsRemaining &lt;= 0) {
+        if (secondsRemaining <= 0) {
             if (count == NUM_POMOS) {
                 setCount(0)
             }
 
-            alarm.play()
+            alarmBreak.play()
             endTimer()
             setPomoMode(true)
             resetButton.disabled = true
@@ -361,8 +337,8 @@ function displayTime(time) {
 
 function updatePomo() {
     // Fill in pomo based on count
-    for (let i = 0; i &lt; pomo.length; i++) {
-        pomo[i].checked = i &lt; count
+    for (let i = 0; i < pomo.length; i++) {
+        pomo[i].checked = i < count
     }
 }
 
@@ -409,26 +385,3 @@ function resetPomo() {
 function skipOrReset() {
     modalPopup.style.display = 'block'
 }
-</code></pre>
-        </article>
-    </section>
-
-
-
-
-</div>
-
-<nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#breakTime">breakTime</a></li><li><a href="global.html#loadTheme">loadTheme</a></li><li><a href="global.html#loadTimerValues">loadTimerValues</a></li><li><a href="global.html#longBreakTime">longBreakTime</a></li><li><a href="global.html#setFavicon">setFavicon</a></li><li><a href="global.html#setTheme">setTheme</a></li><li><a href="global.html#sum">sum</a></li><li><a href="global.html#workTime">workTime</a></li></ul>
-</nav>
-
-<br class="clear">
-
-<footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Tue Mar 09 2021 02:03:57 GMT-0800 (Pacific Standard Time)
-</footer>
-
-<script> prettyPrint(); </script>
-<script src="scripts/linenumber.js"> </script>
-</body>
-</html>
