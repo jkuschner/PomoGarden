@@ -150,7 +150,7 @@ body {
     width: 65%;
     height: 2vh;
     margin-right: 1vh;
-    transform: translate(0%, -43%);
+    transform: translate(0%, -37%);
     background: linear-gradient(to right, var(--main-heavy-color) 0%, var(--main-heavy-color) 50%, #fff 50%, #fff 100%);
     border: solid 1px var(--main-heavy-color);
     border-radius: 8px;
