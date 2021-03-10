@@ -109,7 +109,6 @@ body {
 .navContainer > label > input {
     visibility: hidden;
     position: absolute;
-    
 }
 
 .navContainer > label > input + span,
@@ -117,7 +116,7 @@ body {
     position: relative;
     width: 9vh;
     height: 6vh;
-    
+
     border: min(4px, 0.8vh) solid var(--main-heavy-color);
     border-radius: min(12px, 2.4vh);
     text-align: center;
@@ -130,7 +129,6 @@ body {
     margin-left: 1.5vh;
     margin-bottom: 0.5vh;
 }
-
 
 .navContainer > label > input:checked + span {
     background-color: var(--main-light-color);
@@ -292,7 +290,6 @@ input[type='range']::-webkit-slider-thumb {
     font-weight: bold;
     font-family: 'Montserrat', sans-serif;
     visibility: visible;
-    
 }
 
 #allPomos {
@@ -404,7 +401,7 @@ input[type='range']::-webkit-slider-thumb {
     top: 50%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%); 
+    transform: translate(-50%, -50%);
 }
 
 .cancel {

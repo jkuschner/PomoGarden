@@ -28,35 +28,40 @@ const appShellFiles = [
     'images/volume-level-1.svg',
     'images/volume-level-2.svg',
     'images/volume-level-3.svg',
-    'https://fonts.googleapis.com/css2?family=Montserrat&display=swap'
+    'https://fonts.googleapis.com/css2?family=Montserrat&display=swap',
 ]
 
-self.addEventListener('install', e => {
-    e.waitUntil((async () => {
-        const cache = await caches.open(cacheName)
-        console.log('[Service Worker] Caching app shell')
-        await cache.addAll(appShellFiles)
-    })())
+self.addEventListener('install', (e) => {
+    e.waitUntil(
+        (async () => {
+            const cache = await caches.open(cacheName)
+            console.log('[Service Worker] Caching app shell')
+            await cache.addAll(appShellFiles)
+        })()
+    )
 })
 
-self.addEventListener('activate', e => {
-    e.waitUntil((async () => {
-        const keys = await caches.keys()
-        await Promise.all(
-            keys.filter(key => key !== cacheName)
-            .map(key => caches.delete(key))
-        )
-    })())
+self.addEventListener('activate', (e) => {
+    e.waitUntil(
+        (async () => {
+            const keys = await caches.keys()
+            await Promise.all(keys.filter((key) => key !== cacheName).map((key) => caches.delete(key)))
+        })()
+    )
 })
 
-self.addEventListener('fetch', e => {
-    e.respondWith((async () => {
-        console.log(`[Service Worker] Fetching resource: ${e.request.url}`)
-        
-        const cachedRes = await caches.match(e.request)
-        if (cachedRes) return cachedRes
-
-        const networkRes = await fetch(e.request)
-        return networkRes
-    })())
+self.addEventListener('fetch', (e) => {
+    e.respondWith(
+        (async () => {
+            try {
+                const networkRes = await fetch(e.request)
+                const cache = await caches.open(cacheName)
+                cache.put(e.request, networkRes.clone())
+                return networkRes
+            } catch (error) {
+                const cachedRes = await caches.match(e.request)
+                return cachedRes
+            }
+        })()
+    )
 })

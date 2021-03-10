@@ -6,7 +6,7 @@ async function getTimerValues() {
             break10: 600,
             break15: 900,
             break20: 1200,
-        }
+        },
     }
 
     try {
@@ -16,8 +16,8 @@ async function getTimerValues() {
             return testSettings
         } else {
             return defaultTimes
-        } 
-    } catch(error) {
+        }
+    } catch (error) {
         return defaultTimes
     }
 }

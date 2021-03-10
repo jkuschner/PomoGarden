@@ -1,6 +1,6 @@
 // PWA service worker
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register("/pomo-sw.js")
+    navigator.serviceWorker.register('/pomo-sw.js')
 }
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -63,8 +63,8 @@ function setTheme(theme, save) {
  * Changes the favicon
  * @param {String} fruitName name of fruit to set the favicon to
  */
-function setFavicon(fruitName){
-    document.getElementById('favicon').href = '../images/favicon/'+ fruitName + '_favicon.png';
+function setFavicon(fruitName) {
+    document.getElementById('favicon').href = '../images/favicon/' + fruitName + '_favicon.png'
 }
 
 function getTheme() {
