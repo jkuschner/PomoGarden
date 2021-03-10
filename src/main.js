@@ -6,8 +6,6 @@ window.addEventListener('DOMContentLoaded', () => {
     //     count = localStorage.getItem('count')
     // }
 
-    //updatePomo()
-
     // Store theme on refresh
     loadTheme()
 
@@ -177,7 +175,7 @@ function showNav() {
     if (navBar.style.right < '1vh') {
         navBar.style.right = '1vh'
     } else {
-        navBar.style.right = '-35vh'
+        navBar.style.right = '-38vh'
     }
 }
 

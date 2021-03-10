@@ -71,25 +71,28 @@ body {
 }
 
 #navBar {
-    height: 80vh;
+    min-height: 65vh;
     width: 34vh;
     position: fixed;
-    top: 7vh;
-    /* Starts off outside screen region, slides in if nav button is pressed, showNav() in js*/
-    right: -35vh;
+    top: 8vh;
+    right: -38vh;
     background-color: inherit;
     transition: 0.5s;
     font-family: 'Montserrat', sans-serif;
     text-align: right;
     z-index: 5;
-    padding-right: 1.5vh;
+    margin-right: 1vh;
+    padding-left: 1vh;
+    padding-right: 1vh;
+    border: 1px solid var(--main-heavy-color);
+    border-radius: min(12px, 2.4vh);
 }
 
 .navText {
     font-size: min(30px, 3vh);
     height: min(30px, 3vh);
     white-space: nowrap;
-    padding: 0.5vh 0vh 0vh 0px;
+    padding: 0.5vh 1vh 0vh 0px;
 }
 
 .navContainer {
@@ -116,9 +119,6 @@ body {
     position: relative;
     width: 9vh;
     height: 6vh;
-    
-    border: min(4px, 0.8vh) solid var(--main-heavy-color);
-    border-radius: min(12px, 2.4vh);
     text-align: center;
     cursor: pointer;
     background-color: inherit;
@@ -126,8 +126,10 @@ body {
     font-size: min(40px, 4vh);
     font-weight: bold;
     line-height: calc(5.5px + 5.5vh);
-    margin-left: 1.5vh;
-    margin-bottom: 0.5vh;
+    border: min(4px, 0.8vh) solid var(--main-heavy-color);
+    border-radius: min(12px, 2.4vh);
+    margin-top: 0.25vh;
+    margin-bottom: 0.25vh;
 }
 
 
@@ -147,7 +149,7 @@ body {
     position: relative;
     width: 65%;
     height: 2vh;
-    margin-right: -1%;
+    margin-right: 1vh;
     transform: translate(0%, -43%);
     background: linear-gradient(to right, var(--main-heavy-color) 0%, var(--main-heavy-color) 50%, #fff 50%, #fff 100%);
     border: solid 1px var(--main-heavy-color);
@@ -204,19 +206,28 @@ input[type='range']::-webkit-slider-thumb {
     height: calc(30px + 1.5vh);
 }
 
-#outerCircle {
+#outerContainer {
     height: calc(30px + 30vh);
     width: calc(30px + 30vh);
     max-width: 300px;
     max-height: 300px;
-    background-color: var(--main-bg-color);
-    border-radius: 50%;
-    border: min(20px, 3vh) solid var(--main-heavy-color);
-    visibility: visible;
     position: absolute;
     top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+#outerCircle {
+    background-color: var(--main-bg-color);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: min(20px, 3vh) solid var(--main-heavy-color);
+    visibility: visible;
 }
 
 #innerCircle {
@@ -367,6 +378,7 @@ input[type='range']::-webkit-slider-thumb {
 
 .modal {
     display: none;
+    align-items: center;
     position: fixed;
     top: 0;
     right: 0;
@@ -376,30 +388,24 @@ input[type='range']::-webkit-slider-thumb {
     width: 100%;
     height: 100%;
     overflow: auto;
-    text-align: center;
     background-color: rgba(0, 0, 0, 0.6);
 }
 
-.modal::before {
-    content: '';
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
-    margin: 0;
-}
-
-.modal > .content {
-    text-align: left;
-    display: inline-block;
+.modal-content {
+    position: absolute;
     background-color: var(--main-bg-color);
-    box-sizing: border-box;
-    position: relative;
-    min-width: 400px;
-    max-width: 35vw;
+    margin: auto;
+    width: 500px;
+    max-width: 75vw;
+    overflow: auto;
     padding: 20px;
     border-radius: 10px;
     font-size: calc(16px + 0.2vw);
     font-family: 'Montserrat', sans-serif;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); 
 }
 
 .cancel {
@@ -441,10 +447,10 @@ input[type='range']::-webkit-slider-thumb {
 @keyframes pulse {
     from {
         transform: scale(1, 1);
-        opacity: 0.5;
+        opacity: 1;
     }
     to {
-        transform: scale(1.35, 1.35);
+        transform: scale(1.5, 1.5);
         opacity: 0;
     }
 }
