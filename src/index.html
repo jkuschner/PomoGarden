@@ -55,7 +55,6 @@
             <div id="timerButtons">
                 <button id="skip" class="skipResetButton" onclick="skipOrReset()" disabled="disabled">Skip</button>
                 <button id="reset" class="skipResetButton" onclick="skipOrReset()" disabled="disabled">Reset</button>
-
                 <div class="modal" id="modal-popup">
                     <div class="modal-content">
                         <p id="modal-text">Are you sure you want to break this work session?</p>
@@ -134,8 +133,8 @@
                 <input id="volume-slider" type="range" min="0" max="100" value="50" oninput="changeVolume()" />
             </div>
         </div>
-
-        <audio id="alarm" src="./audio/alarm.mp3"></audio>
+        <audio id="alarm-focus" src="./audio/alarm_focus_finished.mp3"></audio>
+        <audio id="alarm-break" src="./audio/alarm_break_finished.mp3"></audio>
 
         <script src="./js/utils.js"></script>
         <script src="./js/main.js"></script>
