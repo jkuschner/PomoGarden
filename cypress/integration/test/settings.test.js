@@ -70,7 +70,7 @@ describe('Alert Tests', () => {
     });
 });
 
-/*describe('Break Tests', () => {
+describe('Break Tests', () => {
     it('test break', () => {
         cy.on('uncaught:exception', (err, runnable) => {
             return false;
@@ -86,14 +86,15 @@ describe('Alert Tests', () => {
         cy.wait(7000);
 
         cy.get('#first-pomo')
-            .invoke('attr', 'style', `background-color: ${background}`)
+            .invoke('attr', 'style', `border: ${background}`)
             .then(new_elem => {
                 expect(new_elem).to.have.css('background-color', background);
             });
         //.should('have.css', 'background-color');
         //cy.get('#first-pomo').should('have.css', 'background-color', 'rgb(255, 0, 0)')
     });
-});*/
+});
+
 describe('Counter Tests', () => {
     it('Assigning css color', () => {
         cy.on('uncaught:exception', (err, runnable) => {
