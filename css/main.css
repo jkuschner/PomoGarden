@@ -33,19 +33,19 @@
     --main-bg-color: white;
     --main-heavy-color: #9332cf;
     --main-light-color: #cca4ff;
-    --fruit-url: url('./images/Grape.svg');
+    --fruit-url: url('../images/Grape.svg');
 }
 .themeKiwi {
     --main-bg-color: white;
     --main-heavy-color: #b8985e;
     --main-light-color: #a9c77e;
-    --fruit-url: url('./images/Kiwi.svg');
+    --fruit-url: url('../images/Kiwi.svg');
 }
 .themeCoconut {
     --main-bg-color: white;
     --main-heavy-color: #9e7b67;
     --main-light-color: #ebe8e1;
-    --fruit-url: url('./images/Coconut.svg');
+    --fruit-url: url('../images/Coconut.svg');
 }
 /*
 .themeGrey {
