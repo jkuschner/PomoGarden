@@ -10,7 +10,7 @@
         "prettier": "prettier --write src/ test/ *.json",
         "gen-docs": "jsdoc -c docs-conf.json",
         "clean": "rimraf build/",
-        "build": "npm run clean && copyfiles -u 1 \"src/**/*\" -e \"src/test-config/*\" build/ && npm run gen-docs",
+        "build": "npm run clean && copyfiles -u 1 \"src/**/*\" build/ && npm run gen-docs",
         "deploy": "npm run build && gh-pages -d build/"
     },
     "repository": {

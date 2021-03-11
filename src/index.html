@@ -3,10 +3,15 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="theme-color" content="#ffffff" />
         <title>Pomo Garden</title>
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="./main.css" />
+        <link rel="manifest" href="./pomo-garden.webmanifest" />
+        <link rel="icon" type="image" href="./images/favicon/Orange_favicon.png" id="favicon" />
+        <link rel="apple-touch-icon" href="./images/icons/apple-touch-icon.png" />
+        <link rel="mask-icon" href="./images/icons/safari-pinned-tab.svg" color="#ffb422" />
     </head>
 
     <body>
@@ -15,22 +20,20 @@
 
             <p id="time">00:00</p>
 
-            <div id="outerCircle">
-                <span id="innerCircle" onclick="startTimerVisual(id)">
-                    <div id="fruitIcon" alt="Fruit"></div>
+            <div id="outerContainer">
+                <div id="outerCircle"></div>
+
+                <button id="innerCircle" onclick="startTimerVisual()">
                     <div id="timerStart">Start</div>
-                </span>
+                    <svg id="animation" viewbox="0 0 250 250">
+                        <path id="border" transform="translate(125, 125)" />
+                    </svg>
+                </button>
 
                 <div class="pulseCircle" id="pulseCircle1" style="animation-delay: -3s"></div>
                 <div class="pulseCircle" id="pulseCircle2" style="animation-delay: -2s"></div>
                 <div class="pulseCircle" id="pulseCircle3" style="animation-delay: -1s"></div>
                 <div class="pulseCircle" id="pulseCircle4" style="animation-delay: 0s"></div>
-
-                <!-- removed height/width and put it in css for now -->
-                <svg id="animation" viewbox="0 0 250 250">
-                    <path id="border" transform="translate(125, 125)" />
-                    <path id="loader" transform="translate(125, 125) scale(.84)" />
-                </svg>
             </div>
 
             <form id="allPomos" name="pomoDisplay">
@@ -53,14 +56,13 @@
             </form>
 
             <div id="timerButtons">
-                <button id="end" class="navRectangle" onclick="skipOrStop()" disabled="disabled">Stop</button>
-                <button id="break" class="navRectangle" onclick="startTimerVisual(id)" disabled="disabled">Break</button>
-
-                <div class="modal" id="skip-popup">
-                    <div class="content vertical-align-middle">
-                        <p>Are you sure you want to break this work session?</p>
-                        <span class="confirm" id="skip-confirm">Confirm</span>
-                        <span class="cancel" id="skip-cancel">Cancel</span>
+                <button id="skip" class="skipResetButton" onclick="skipOrReset()" disabled="disabled">Skip</button>
+                <button id="reset" class="skipResetButton" onclick="skipOrReset()" disabled="disabled">Reset</button>
+                <div class="modal" id="modal-popup">
+                    <div class="modal-content">
+                        <p id="modal-text">Are you sure you want to break this work session?</p>
+                        <span class="confirm" id="modal-confirm">Confirm</span>
+                        <span class="cancel" id="modal-cancel">Cancel</span>
                     </div>
                 </div>
             </div>
@@ -86,60 +88,58 @@
                 </label>
             </form>
 
-            <br />
-            <br />
-            <br />
-            <br />
-
             <h2 class="navText">Theme Color</h2>
 
             <form class="navContainer" name="themeOptions">
                 <label>
-                    <input type="radio" name="themeOption" value="themeBlue" />
-                    <span class="themeBlue"></span>
-                </label>
-                <label>
-                    <input type="radio" name="themeOption" value="themeGreen" />
-                    <span class="themeGreen"></span>
+                    <input type="radio" name="themeOption" value="themeTomato" />
+                    <span class="themeTomato"></span>
                 </label>
                 <label>
                     <input type="radio" name="themeOption" value="themeOrange" />
                     <span class="themeOrange"></span>
                 </label>
                 <label>
-                    <input type="radio" name="themeOption" value="themePurple" />
-                    <span class="themePurple"></span>
+                    <input type="radio" name="themeOption" value="themeLemon" />
+                    <span class="themeLemon"></span>
                 </label>
                 <label>
-                    <input type="radio" name="themeOption" value="themeYellow" />
-                    <span class="themeYellow"></span>
+                    <input type="radio" name="themeOption" value="themeWatermelon" />
+                    <span class="themeWatermelon"></span>
                 </label>
                 <label>
-                    <input type="radio" name="themeOption" value="themeGrey" />
-                    <span class="themeGrey"></span>
+                    <input type="radio" name="themeOption" value="themeOnion" />
+                    <span class="themeOnion"></span>
+                </label>
+                <label>
+                    <input type="radio" name="themeOption" value="themeGrape" />
+                    <span class="themeGrape"></span>
+                </label>
+                <label hidden>
+                    <input type="radio" name="themeOption" disabled="disabled" />
+                </label>
+                <label>
+                    <input type="radio" name="themeOption" value="themeKiwi" />
+                    <span class="themeKiwi"></span>
+                </label>
+                <label>
+                    <input type="radio" name="themeOption" value="themeCoconut" />
+                    <span class="themeCoconut"></span>
                 </label>
             </form>
 
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-
             <h2 class="navText">Volume</h2>
 
-            <div class="navContainer">
+            <div>
                 <img id="volume-image" src="./images/volume-level-2.svg" />
                 <p id="volume-number">50</p>
                 <input id="volume-slider" type="range" min="0" max="100" value="50" oninput="changeVolume()" />
             </div>
         </div>
+        <audio id="alarm-focus" src="./audio/alarm_focus_finished.mp3"></audio>
+        <audio id="alarm-break" src="./audio/alarm_break_finished.mp3"></audio>
 
-        <audio id="alarm" src="./audio/alarm.mp3"></audio>
-
-        <script src="./utils.js"></script>
-        <script src="./main.js"></script>
+        <script src="./js/utils.js"></script>
+        <script src="./js/main.js"></script>
     </body>
 </html>
