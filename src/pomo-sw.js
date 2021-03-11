@@ -1,4 +1,4 @@
-const cacheName = 'pomo-garden-v1'
+const cacheName = 'pomo-garden-v2'
 const appShellFiles = [
     './',
     './index.html',
