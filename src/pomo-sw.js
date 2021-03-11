@@ -26,6 +26,8 @@ const appShellFiles = [
     './images/icons/icon-32.png',
     './images/icons/icon-192.png',
     './images/icons/icon-512.png',
+    './images/icons/apple-touch-icon.png',
+    './images/icons/safari-pinned-tab.svg',
     './audio/alarm_break_finished.mp3',
     './audio/alarm_focus_finished.mp3',
     './audio/alarm.mp3',
