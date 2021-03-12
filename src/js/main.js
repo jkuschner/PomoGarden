@@ -383,7 +383,7 @@ function skipPomo() {
     endTimer()
     
     // full circle path, makes the fruit completely disappear
-    anim = 'M 0, 0 m -125, 0 a 125,125 0 1,0 250,0 a 125,125 0 1,0 -250,0'
+    const anim = 'M 0, 0 m -125, 0 a 125,125 0 1,0 250,0 a 125,125 0 1,0 -250,0'
     border.setAttribute('d', anim)
 }
 
