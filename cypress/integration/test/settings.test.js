@@ -103,28 +103,37 @@ describe('Force time down', () => {
 
 
 describe('Counter Tests', () => {
-    it('Assigning css color', () => {
+    it('error handling, no tests', () => {
         cy.on('uncaught:exception', (err, runnable) => {
             return false;
         });
     
-        /*cy.get('#timerStart').click();
-    
-        cy.wait(8000);*/
-       
     });
 
+    //random test to see if I can modify elements with JS
     it('test', () => {
-        cy.get('#outerCircle')
+        cy.get('body')
             .invoke('css', 'background-color')
             .then(background => {
                 cy.wait(1000);
-                /*cy.get('#first-pomo')
-                    .invoke('attr', 'style', `background-color: ${background}`)
+                cy.get('h2')
+                    .invoke('attr', 'style', `color: ${background}`)
                     .then(new_element => {
-                        expect(new_element).to.have.css('background-color', background);
-                    });*/
-                cy.get('#first-pomo').should('have.css', 'background-color', background);
+                        expect(new_element).to.have.css('color', background);
+                    });
+                cy.get('h2').should('have.css', 'color', background);
             });
     });
+
+    it('timer test', () => {
+        //cy.window().then(win => win.startTimer(25*60 - 1, true));
+        cy.get('#timerStart').click();
+
+        cy.wait(8000);
+
+        cy.get('[type="checkbox"]')
+            .first()
+            .check({force:true});
+
+    })
 });
