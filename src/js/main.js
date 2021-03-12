@@ -313,10 +313,10 @@ function drawCircle(seconds, reverse) {
             return
         }
 
-        if (reverse) {
-            drawFrame(2 * Math.PI * (1 - elapsed / durationMS))
-        } else {
+        if (!reverse) {
             drawFrame(2 * Math.PI * (elapsed / durationMS))
+        } else if (elapsed > 0) {
+            drawFrame(2 * Math.PI * (1 - elapsed / durationMS))
         }
 
         fruitAnimation = window.requestAnimationFrame(draw)
@@ -380,12 +380,14 @@ modalCancel.addEventListener('click', () => {
 function skipPomo() {
     setPomoMode(false)
     endTimer()
+    drawFrame(-0.0001)
 }
 
 function resetPomo() {
     setCount(0)
     setPomoMode(true)
     endTimer()
+    drawFrame(0)
 }
 
 function skipOrReset() {
