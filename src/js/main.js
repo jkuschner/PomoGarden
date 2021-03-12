@@ -378,15 +378,21 @@ modalCancel.addEventListener('click', () => {
 })
 
 function skipPomo() {
+    console.log('skip')
     setPomoMode(false)
     endTimer()
-    drawFrame(-0.0001)
+    
+    // full circle path, makes the fruit completely disappear
+    anim = 'M 0, 0 m -125, 0 a 125,125 0 1,0 250,0 a 125,125 0 1,0 -250,0'
+    border.setAttribute('d', anim)
 }
 
 function resetPomo() {
     setCount(0)
     setPomoMode(true)
     endTimer()
+
+    // make the whole fruit visible
     drawFrame(0)
 }
 
