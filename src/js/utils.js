@@ -28,7 +28,7 @@ function getTimerValues() {
 
 //Takes in time value, converts into MM:SS format
 function formatTime(totalSeconds) {
-    let seconds = totalSeconds % 60
+    let seconds = Math.floor(totalSeconds) % 60
     let minutes = Math.floor(totalSeconds / 60)
     if (minutes < 10) {
         minutes = '0' + minutes

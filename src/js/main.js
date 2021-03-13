@@ -230,8 +230,10 @@ function startTimerVisual() {
 }
 
 // Pomodoro Timer
-let timer = undefined
 let count = 0
+// Timer display and fruit animation
+const MS_PER_SECOND = 1000
+let animation = undefined, timerTimeout = undefined
 
 const NUM_POMOS = 4
 const pomo = document.forms['pomoDisplay'].elements['pomo']
@@ -246,25 +248,14 @@ function startPomoTimer(seconds) {
     skipButton.disabled = false
     displayTime(seconds)
 
-    // pulseCircle[0].style.visibility = 'hidden'
-    // pulseCircle[1].style.visibility = 'hidden'
-    // pulseCircle[2].style.visibility = 'hidden'
-    // pulseCircle[3].style.visibility = 'hidden'
-
-    /* global startTimer */
-    timer = startTimer(seconds, (secondsRemaining) => {
-        displayTime(secondsRemaining)
-
-        if (secondsRemaining <= 0) {
-            setCount(count + 1)
-
-            alarmFocus.play()
-            endTimer()
-            setPomoMode(false)
-            skipButton.disabled = true
-        }
-    })
-    drawCircle(seconds, false)
+    const endCallback = () => {
+        endTimer()
+        setCount(count + 1)
+        setPomoMode(false)
+        alarmFocus.play()
+    }
+    timerTimeout = setAccuTimeout(endCallback, seconds * MS_PER_SECOND)
+    animation = drawAnimation(endCallback, seconds, false)
 }
 
 function startBreakTimer(seconds) {
@@ -273,21 +264,16 @@ function startBreakTimer(seconds) {
     resetButton.disabled = false
     displayTime(seconds)
 
-    timer = startTimer(seconds, (secondsRemaining) => {
-        displayTime(secondsRemaining)
-
-        if (secondsRemaining <= 0) {
-            if (count == NUM_POMOS) {
-                setCount(0)
-            }
-
-            alarmBreak.play()
-            endTimer()
-            setPomoMode(true)
-            resetButton.disabled = true
+    const endCallback = () => {
+        endTimer()
+        if (count == NUM_POMOS) {
+            setCount(0)
         }
-    })
-    drawCircle(seconds, true)
+        setPomoMode(true)
+        alarmBreak.play()
+    }
+    timerTimeout = setAccuTimeout(endCallback, seconds * MS_PER_SECOND)
+    animation = drawAnimation(endCallback, seconds, true)
 }
 
 function setCount(newCount) {
@@ -296,11 +282,25 @@ function setCount(newCount) {
     localStorage.setItem('count', count)
 }
 
-// Fruit animation
-const MS_PER_SECOND = 1000
-let fruitAnimation = undefined
+function setAccuTimeout(endCallback, delay) {
+    const start = Date.now()
 
-function drawCircle(seconds, reverse) {
+    function callback() {
+        const elapsed = Date.now() - start
+        if (elapsed >= delay) {
+            console.log('setAccuTime: endCallback')
+            endCallback()
+        } else {
+            const remainder = delay - elapsed
+            console.log('setAccuTime: callback early, setTimeout again')
+            timerTimeout = setTimeout(callback, remainder)
+        }
+    }
+
+    timerTimeout = setTimeout(callback, delay)
+}
+
+function drawAnimation(endCallback, seconds, reverse) {
     const durationMS = seconds * MS_PER_SECOND
     let start = undefined
 
@@ -310,28 +310,35 @@ function drawCircle(seconds, reverse) {
         }
         const elapsed = timestamp - start
         if (elapsed >= durationMS) {
+            console.log('drawAnimation: endCallback')
+            endCallback()
             return
         }
 
+        displayTime((durationMS - elapsed) / MS_PER_SECOND)
         if (!reverse) {
-            drawFrame(2 * Math.PI * (elapsed / durationMS))
+            drawCircleFrame(2 * Math.PI * (elapsed / durationMS))
         } else if (elapsed > 0) {
-            drawFrame(2 * Math.PI * (1 - elapsed / durationMS))
+            drawCircleFrame(2 * Math.PI * (1 - elapsed / durationMS))
         }
 
-        fruitAnimation = window.requestAnimationFrame(draw)
+        animation = window.requestAnimationFrame(draw)
     }
 
-    fruitAnimation = window.requestAnimationFrame(draw)
+    animation = window.requestAnimationFrame(draw)
 }
 
 const border = document.getElementById('border')
-function drawFrame(alpha) {
-    const x = Math.sin(alpha) * 125,
-        y = Math.cos(alpha) * -125,
-        mid = alpha > Math.PI ? 1 : 0,
+function drawCircleFrame(alpha) {
+    let anim
+    if (alpha < 0) {
+        anim = 'M 0, 0 m -125, 0 a 125,125 0 1,0 250,0 a 125,125 0 1,0 -250,0'
+    } else {
+        const x = Math.sin(alpha) * 125,
+            y = Math.cos(alpha) * -125,
+            mid = alpha > Math.PI ? 1 : 0
         anim = 'M 0 0 v -125 A 125 125 1 ' + mid + ' 1 ' + x + ' ' + y + ' z'
-
+    }
     border.setAttribute('d', anim)
 }
 
@@ -349,19 +356,16 @@ function updatePomo() {
 }
 
 function endTimer() {
-    window.cancelAnimationFrame(fruitAnimation)
-    clearInterval(timer)
+    console.log('endTimer')
+    window.cancelAnimationFrame(animation)
+    clearTimeout(timerTimeout)
+    drawCircleFrame(-1)
 
     innerCircle.disabled = false
     skipButton.disabled = true
     resetButton.disabled = true
     timeDisplay.style.visibility = 'hidden'
     modalPopup.style.display = 'none'
-
-    // pulseCircle[0].style.visibility = 'visible'
-    // pulseCircle[1].style.visibility = 'visible'
-    // pulseCircle[2].style.visibility = 'visible'
-    // pulseCircle[3].style.visibility = 'visible'
 }
 
 const modalPopup = document.getElementById('modal-popup')
@@ -381,19 +385,12 @@ function skipPomo() {
     console.log('skip')
     setPomoMode(false)
     endTimer()
-    
-    // full circle path, makes the fruit completely disappear
-    const anim = 'M 0, 0 m -125, 0 a 125,125 0 1,0 250,0 a 125,125 0 1,0 -250,0'
-    border.setAttribute('d', anim)
 }
 
 function resetPomo() {
     setCount(0)
     setPomoMode(true)
     endTimer()
-
-    // make the whole fruit visible
-    drawFrame(0)
 }
 
 function skipOrReset() {
