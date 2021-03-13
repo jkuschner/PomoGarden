@@ -10,13 +10,6 @@ if (!forceCache && isLocalHost()) {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    // Store number of pomos on refresh
-    // if (localStorage.getItem('count') == null) {
-    //     count = 0
-    // } else {
-    //     count = localStorage.getItem('count')
-    // }
-
     // Store theme on refresh
     loadTheme()
 
@@ -233,7 +226,8 @@ function startTimerVisual() {
 let count = 0
 // Timer display and fruit animation
 const MS_PER_SECOND = 1000
-let animation = undefined, timerTimeout = undefined
+let animation = undefined,
+    timerTimeout = undefined
 
 const NUM_POMOS = 4
 const pomo = document.forms['pomoDisplay'].elements['pomo']
@@ -248,7 +242,13 @@ function startPomoTimer(seconds) {
     skipButton.disabled = false
     displayTime(seconds)
 
+    let hasCalled = false // prevent double callbacks
     const endCallback = () => {
+        if (hasCalled) {
+            return
+        }
+        hasCalled = true
+
         endTimer()
         setCount(count + 1)
         setPomoMode(false)
@@ -264,7 +264,13 @@ function startBreakTimer(seconds) {
     resetButton.disabled = false
     displayTime(seconds)
 
+    let hasCalled = false // avoid double callbacks
     const endCallback = () => {
+        if (hasCalled) {
+            return
+        }
+        hasCalled = true
+
         endTimer()
         if (count == NUM_POMOS) {
             setCount(0)
@@ -288,11 +294,9 @@ function setAccuTimeout(endCallback, delay) {
     function callback() {
         const elapsed = Date.now() - start
         if (elapsed >= delay) {
-            console.log('setAccuTime: endCallback')
             endCallback()
         } else {
             const remainder = delay - elapsed
-            console.log('setAccuTime: callback early, setTimeout again')
             timerTimeout = setTimeout(callback, remainder)
         }
     }
@@ -310,7 +314,6 @@ function drawAnimation(endCallback, seconds, reverse) {
         }
         const elapsed = timestamp - start
         if (elapsed >= durationMS) {
-            console.log('drawAnimation: endCallback')
             endCallback()
             return
         }
@@ -356,7 +359,6 @@ function updatePomo() {
 }
 
 function endTimer() {
-    console.log('endTimer')
     window.cancelAnimationFrame(animation)
     clearTimeout(timerTimeout)
     drawCircleFrame(-1)
@@ -382,7 +384,6 @@ modalCancel.addEventListener('click', () => {
 })
 
 function skipPomo() {
-    console.log('skip')
     setPomoMode(false)
     endTimer()
 }
