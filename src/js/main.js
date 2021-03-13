@@ -6,6 +6,7 @@ if (!forceCache && isLocalHost()) {
     console.log('Local server detected, run without caching')
 } else if ('serviceWorker' in navigator) {
     // PWA service worker
+    console.log('Registering service worker')
     navigator.serviceWorker.register('./pomo-sw.js', { scope: './' })
 }
 
@@ -254,8 +255,8 @@ function startPomoTimer(seconds) {
         setPomoMode(false)
         alarmFocus.play()
     }
-    timerTimeout = setAccuTimeout(endCallback, seconds * MS_PER_SECOND)
-    animation = drawAnimation(endCallback, seconds, false)
+    setAccuTimeout(endCallback, seconds * MS_PER_SECOND)
+    drawAnimation(endCallback, seconds, false)
 }
 
 function startBreakTimer(seconds) {
@@ -278,8 +279,8 @@ function startBreakTimer(seconds) {
         setPomoMode(true)
         alarmBreak.play()
     }
-    timerTimeout = setAccuTimeout(endCallback, seconds * MS_PER_SECOND)
-    animation = drawAnimation(endCallback, seconds, true)
+    setAccuTimeout(endCallback, seconds * MS_PER_SECOND)
+    drawAnimation(endCallback, seconds, true)
 }
 
 function setCount(newCount) {
