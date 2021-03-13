@@ -1,6 +1,6 @@
-# Have a possibility to stop a break session
+# Offline Option
 
-* Deciders: All 
+* Deciders: All
 * Date: 2021-03-05
 
 
