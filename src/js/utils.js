@@ -38,20 +38,3 @@ function formatTime(totalSeconds) {
     }
     return minutes + ':' + seconds
 }
-
-const SECONDS_TO_MS = 1000
-function startTimer(seconds, callback) {
-    let countDown = seconds - 1
-    const interval = setInterval(() => {
-        if (countDown <= 0) {
-            callback(0)
-            clearInterval(interval)
-            return
-        }
-        callback(countDown)
-        countDown--
-    }, SECONDS_TO_MS)
-
-    callback(seconds) // callback immediately for the first second
-    return interval
-}
