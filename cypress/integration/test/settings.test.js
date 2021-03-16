@@ -1,5 +1,4 @@
-//import "cypress-localstorage-commands"
-
+//This test simply opens the localsite and does a true test
 describe('Initial Test', () => {
     beforeEach(() => {
         cy.on('uncaught:exception', (err, runnable) => {
@@ -14,6 +13,7 @@ describe('Initial Test', () => {
     });
 });
 
+//This test checks if theme switching works
 describe('Theme Tests', () => {
     it('Orange Theme', () => {
         cy.on('uncaught:exception', (err, runnable) => {
@@ -44,6 +44,7 @@ describe('Theme Tests', () => {
     });
 });
 
+//This test checks if the alert modal boxes function appropriately
 describe('Alert Tests', () => {
     it('test skip pomo', () => {
         cy.on('uncaught:exception', (err, runnable) => {
@@ -74,34 +75,7 @@ describe('Alert Tests', () => {
     });
 });
 
-/*describe('Break Tests', () => {
-    it('test break', () => {
-        cy.on('uncaught:exception', (err, runnable) => {
-            return false;
-        });
-
-        let cmp;
-        cy.get('#innerCircle').should(($s) => {
-            cmp = $s.text();
-        });
-
-        cy.get('#timerStart').click();
-
-        cy.wait(7000);
-
-        cy.get('#first-pomo')
-            .invoke('attr', 'style', `border: ${background}`)
-            .then(new_elem => {
-                expect(new_elem).to.have.css('background-color', background);
-            });
-        //.should('have.css', 'background-color');
-        //cy.get('#first-pomo').should('have.css', 'background-color', 'rgb(255, 0, 0)')
-    });
-});*/
-
-
-
-
+//This test is an experiment to see if I can modify elements within cypress
 describe('Counter Tests', () => {
     it('error handling, no tests', () => {
         cy.on('uncaught:exception', (err, runnable) => {
@@ -110,9 +84,7 @@ describe('Counter Tests', () => {
     
     });
 
-    //random test to see if I can modify elements with JS
-    //makes settings text disappear with background color
-    it('test', () => {
+    it(' modify nav bar text colors test', () => {
         cy.get('body')
             .invoke('css', 'background-color')
             .then(background => {
@@ -127,20 +99,7 @@ describe('Counter Tests', () => {
     });
 });
 
-/*describe('Force time down', () => {
-    it('make pomo 1 second', () => {
-        //cy.get('#timerStart').click();
-
-        cy.window().then(win => win.startTimer(2 - 1));
-
-        //cy.wait(8000);
-
-        cy.get('[type="checkbox"]')
-            .first()
-            .check({force:true});
-    });
-});*/
-
+//Test the visibility of animations under various button press conditions
 describe('Test animation visibility', () => {
     it('Test if animations are present', () => {
         cy.get('#pulseCircle1').should('have.css', 'display', 'block');
@@ -161,10 +120,12 @@ describe('Test animation visibility', () => {
 
 /*  this test fails because of the way volume-slider is implemented
  *  ideally we would want to replicate the design of the Air Horn lab's volume slider
- *  but for our purposes, this is not an issue the user would run across
+ *  but for our purposes, this is not an issue the user would run across.
+ *  However, improving the slider would prove beneficial to simplify future dev work
  */
+//Tes if volume slider works as intended and changes volume icons
 const nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
-describe('Volume slider test', () => {
+describe('Volume slider test (fails due to implementation, not error)', () => {
     it('Updates the value when changing a range input', () => {
         cy.on('uncaught:exception', (err, runnable) => {
             return false;
@@ -184,6 +145,33 @@ describe('Volume slider test', () => {
         cy.wait(5000);
 
         cy.get('#volume-slider').should('have.css', 'background', 'rgba(0, 0, 0, 0) linear-gradient(to right, rgb(193, 168, 180) 0%, rgb(193, 168, 180) 15%, rgb(255, 255, 255) 15%, rgb(255, 255, 255) 100%) repeat scroll 0% 0% / auto padding-box border-box')
+
+    });
+
+    it('Check on volume number', () => {
+        cy.get('#volume-number').should('have.text', '15')
+
+    });
+
+    it('Check on volume image', () => {
+        cy.get('#volume-image')
+            .then(function($el) {
+                expect($el).to.have.attr('src', './images/volume-level-1.svg')
+            });
     });
   });
 
+//This didn't work because of how callback is implemented
+/*describe('Force time down', () => {
+    it('make pomo 1 second', () => {
+        //cy.get('#timerStart').click();
+
+        cy.window().then(win => win.startTimer(2 - 1));
+
+        //cy.wait(8000);
+
+        cy.get('[type="checkbox"]')
+            .first()
+            .check({force:true});
+    });
+});*/
