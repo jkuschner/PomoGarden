@@ -15,30 +15,30 @@ describe('Initial Test', () => {
 });
 
 describe('Theme Tests', () => {
-    it('Blue Theme', () => {
+    it('Orange Theme', () => {
         cy.on('uncaught:exception', (err, runnable) => {
             return false;
         });
 
         cy.get('#navButton').click();
 
-        cy.get('[value = "themeBlue"]').click({ force: true });
+        cy.get('[value = "themeOrange"]').click({ force: true });
 
-        cy.get('body').should('have.css', 'background-color', 'rgb(255, 255, 255)');
+        cy.get('#outerCircle').should('have.css', 'border', '19.7969px solid rgb(255, 180, 34)');
 
         cy.get('#navButton').click();
     });
 
-    it('Grey Theme', () => {
+    it('Onion Theme', () => {
         cy.on('uncaught:exception', (err, runnable) => {
             return false;
         });
 
         cy.get('#navButton').click();
 
-        cy.get('[value = "themeGrey"]').click({ force: true });
+        cy.get('[value = "themeOnion"]').click({ force: true });
 
-        cy.get('body').should('have.css', 'background-color', 'rgb(18, 18, 18)');
+        cy.get('#outerCircle').should('have.css', 'border', '19.7969px solid rgb(143, 90, 136)');
     });
 });
 
@@ -50,13 +50,12 @@ describe('Alert Tests', () => {
 
         cy.get('#timerStart').click();
 
-        cy.get('#skip-confirm').click({ force: true });
+        cy.get('#skip').click({ force: true });
+        cy.get('#modal-confirm').click({ force: true});
 
         cy.get('#timerStart').should('have.text', 'Break');
     });
-});
 
-describe('Alert Tests', () => {
     it('test cancel skip pomo', () => {
         cy.on('uncaught:exception', (err, runnable) => {
             return false;
@@ -64,9 +63,12 @@ describe('Alert Tests', () => {
 
         cy.get('#timerStart').click();
 
-        cy.get('#skip-cancel').click({ force: true });
+        cy.get('#skip').click({ force: true });
+        cy.get('#modal-cancel').click({ force: true});
 
         cy.get('#time').should('have.css', 'visibility', 'visible');
+
+        cy.wait(5000);
     });
 });
 
@@ -95,11 +97,7 @@ describe('Alert Tests', () => {
     });
 });*/
 
-describe('Force time down', () => {
-    it('make pomo 1 second', () => {
-        
-    });
-});
+
 
 
 describe('Counter Tests', () => {
@@ -111,6 +109,7 @@ describe('Counter Tests', () => {
     });
 
     //random test to see if I can modify elements with JS
+    //makes settings text disappear with background color
     it('test', () => {
         cy.get('body')
             .invoke('css', 'background-color')
@@ -124,16 +123,36 @@ describe('Counter Tests', () => {
                 cy.get('h2').should('have.css', 'color', background);
             });
     });
+});
 
-    it('timer test', () => {
-        //cy.window().then(win => win.startTimer(25*60 - 1, true));
-        cy.get('#timerStart').click();
+/*describe('Force time down', () => {
+    it('make pomo 1 second', () => {
+        //cy.get('#timerStart').click();
 
-        cy.wait(8000);
+        cy.window().then(win => win.startTimer(2 - 1));
+
+        //cy.wait(8000);
 
         cy.get('[type="checkbox"]')
             .first()
             .check({force:true});
+    });
+});*/
 
-    })
+describe('Test animation visibility', () => {
+    it('Test if animations are present', () => {
+        cy.get('#pulseCircle1').should('have.css', 'display', 'block');
+        cy.get('#pulseCircle2').should('have.css', 'display', 'block');
+        cy.get('#pulseCircle3').should('have.css', 'display', 'block');
+        cy.get('#pulseCircle4').should('have.css', 'display', 'block');
+    });
+
+    it('Test if animations disappear after click', () => {
+        cy.get('#timerStart').click();
+
+        cy.get('#pulseCircle1').should('have.css', 'display', 'none');
+        cy.get('#pulseCircle2').should('have.css', 'display', 'none');
+        cy.get('#pulseCircle3').should('have.css', 'display', 'none');
+        cy.get('#pulseCircle4').should('have.css', 'display', 'none');
+    });
 });
