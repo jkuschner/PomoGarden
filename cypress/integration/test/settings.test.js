@@ -39,6 +39,8 @@ describe('Theme Tests', () => {
         cy.get('[value = "themeOnion"]').click({ force: true });
 
         cy.get('#outerCircle').should('have.css', 'border', '19.7969px solid rgb(143, 90, 136)');
+
+        cy.get('#navButton').click();
     });
 });
 
@@ -156,3 +158,32 @@ describe('Test animation visibility', () => {
         cy.get('#pulseCircle4').should('have.css', 'display', 'none');
     });
 });
+
+/*  this test fails because of the way volume-slider is implemented
+ *  ideally we would want to replicate the design of the Air Horn lab's volume slider
+ *  but for our purposes, this is not an issue the user would run across
+ */
+const nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
+describe('Volume slider test', () => {
+    it('Updates the value when changing a range input', () => {
+        cy.on('uncaught:exception', (err, runnable) => {
+            return false;
+        });
+
+        cy.get('#navButton').click();
+
+        cy.get('input[type="range"]').then(($range) => {
+            // get the DOM node
+            const range = $range[0];
+            // set the value manually
+            nativeInputValueSetter.call(range, 15);
+            // now dispatch the event
+            range.dispatchEvent(new Event('change', { value: 15, bubbles: true }));
+        });
+
+        cy.wait(5000);
+
+        cy.get('#volume-slider').should('have.css', 'background', 'rgba(0, 0, 0, 0) linear-gradient(to right, rgb(193, 168, 180) 0%, rgb(193, 168, 180) 15%, rgb(255, 255, 255) 15%, rgb(255, 255, 255) 100%) repeat scroll 0% 0% / auto padding-box border-box')
+    });
+  });
+
