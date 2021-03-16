@@ -199,7 +199,7 @@ function setPomoMode(isPomo) {
         innerCircle.style.backgroundColor = 'var(--main-light-color)'
         title.innerHTML = 'Ready to Work?'
         timerStart.innerHTML = 'Start'
-        modalText.innerHTML = 'Are you sure you want to break this work session?'
+        modalText.innerHTML = 'Are you sure you want to break this work session? Doing so will lose your progress towards the current Pomo.'
         timerFunc = () => {
             startPomoTimer(workTime())
         }
@@ -208,7 +208,7 @@ function setPomoMode(isPomo) {
         innerCircle.style.backgroundColor = 'inherit'
         title.innerHTML = 'Time For a Break'
         timerStart.innerHTML = 'Break'
-        modalText.innerHTML = 'Are you sure you want to reset the entire Pomo?'
+        modalText.innerHTML = 'Are you sure you would like to reset your work session? Doing so will reset your pomo count to zero.'
         timerFunc = () => {
             const bt = count == NUM_POMOS ? longBreakTime() : breakTime()
             startBreakTimer(bt)
@@ -227,9 +227,6 @@ function startTimerVisual() {
 let count = 0
 // Timer display and fruit animation
 const MS_PER_SECOND = 1000
-let animation = undefined,
-    timerTimeout = undefined
-
 const NUM_POMOS = 4
 const pomo = document.forms['pomoDisplay'].elements['pomo']
 const timeDisplay = document.getElementById('time')
@@ -289,6 +286,7 @@ function setCount(newCount) {
     localStorage.setItem('count', count)
 }
 
+let timerTimeout = undefined
 function setAccuTimeout(endCallback, delay) {
     const start = Date.now()
 
@@ -305,6 +303,7 @@ function setAccuTimeout(endCallback, delay) {
     timerTimeout = setTimeout(callback, delay)
 }
 
+let animation = undefined
 function drawAnimation(endCallback, seconds, reverse) {
     const durationMS = seconds * MS_PER_SECOND
     let start = undefined
