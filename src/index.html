@@ -4,12 +4,16 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="theme-color" content="#ffffff" />
+        <meta
+            name="description"
+            content="A clean and simple Pomodoro timer. Since Pomodoro is the Italian word for tomato, our app is fruit themed to match its origins."
+        />
         <title>Pomo Garden</title>
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="./main.css" />
         <link rel="manifest" href="./pomo-garden.webmanifest" />
-        <link rel="icon" type="image" href="./images/favicon/Orange_favicon.png" id="favicon" />
+        <link rel="icon" type="image/png" href="./images/favicon/Orange_favicon.png" id="favicon" />
         <link rel="apple-touch-icon" href="./images/icons/apple-touch-icon.png" />
         <link rel="mask-icon" href="./images/icons/safari-pinned-tab.svg" color="#ffb422" />
     </head>
@@ -24,9 +28,9 @@
                 <div id="outerCircle"></div>
 
                 <button id="innerCircle" onclick="startTimerVisual()">
-                    <div id="timerStart">Start</div>
+                    <span id="timerStart">Start</span>
                     <svg id="animation" viewbox="0 0 250 250">
-                        <path id="border" transform="translate(125, 125)" />
+                        <path id="border" transform="translate(125, 125)" d="" />
                     </svg>
                 </button>
 
@@ -131,9 +135,11 @@
             <h2 class="navText">Volume</h2>
 
             <div>
-                <img id="volume-image" src="./images/volume-level-2.svg" />
+                <img id="volume-image" src="./images/volume-level-2.svg" alt="volume" />
                 <p id="volume-number">50</p>
-                <input id="volume-slider" type="range" min="0" max="100" value="50" oninput="changeVolume()" />
+                <label>
+                    <input id="volume-slider" type="range" min="0" max="100" value="50" oninput="changeVolume()" />
+                </label>
             </div>
         </div>
         <audio id="alarm-focus" src="./audio/alarm_focus_finished.mp3"></audio>
