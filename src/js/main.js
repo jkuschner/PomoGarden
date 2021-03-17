@@ -77,7 +77,7 @@ function getTheme() {
 
 /**
  * Save the chosen theme, also saved for next session
- * @param {String} theme CSS class name of the theme to set 
+ * @param {String} theme CSS class name of the theme to set
  */
 function saveTheme(theme) {
     localStorage.setItem('theme', theme)
@@ -120,7 +120,7 @@ function getLongBreak() {
 
 /**
  * Saves the chosen long break time
- * @param {String} longBreakType 
+ * @param {String} longBreakType
  */
 function saveLongBreak(longBreakType) {
     localStorage.setItem('longBreakType', longBreakType)
@@ -175,7 +175,7 @@ const volumeNumber = document.getElementById('volume-number')
 const volumeImage = document.getElementById('volume-image')
 
 /**
- * Changes the volume image (speaker) based on the selected volume 
+ * Changes the volume image (speaker) based on the selected volume
  */
 function changeVolume() {
     localStorage.setItem('volume', volumeSlider.value)
@@ -199,7 +199,7 @@ function changeVolume() {
 }
 
 /**
- * Shows the navigation bar 
+ * Shows the navigation bar
  */
 const navBar = document.getElementById('navBar')
 function showNav() {
@@ -269,7 +269,7 @@ const alarmBreak = document.getElementById('alarm-break')
 
 /**
  * Starts the timer for the focus/ work session
- * @param {Number} seconds - length of the session 
+ * @param {Number} seconds - length of the session
  */
 function startPomoTimer(seconds) {
     title.innerHTML = 'Focus'
@@ -323,7 +323,7 @@ function startBreakTimer(seconds) {
 
 /**
  * Counts how many pomos the user has completed
- * @param {Number} newCount 
+ * @param {Number} newCount
  */
 function setCount(newCount) {
     count = newCount
@@ -333,9 +333,9 @@ function setCount(newCount) {
 
 let timerTimeout = undefined
 /**
- * 
- * @param {*} endCallback 
- * @param {Number} delay 
+ *
+ * @param {*} endCallback
+ * @param {Number} delay
  */
 function setAccuTimeout(endCallback, delay) {
     const start = Date.now()
@@ -356,9 +356,9 @@ function setAccuTimeout(endCallback, delay) {
 let animation = undefined
 /**
  * Draws the animation for the pomo (fills the circle when break / empty the circle when focus)
- * @param {*} endCallback 
- * @param {Number} seconds 
- * @param {Boolean} reverse 
+ * @param {*} endCallback
+ * @param {Number} seconds
+ * @param {Boolean} reverse
  */
 function drawAnimation(endCallback, seconds, reverse) {
     const durationMS = seconds * MS_PER_SECOND
@@ -390,7 +390,7 @@ function drawAnimation(endCallback, seconds, reverse) {
 const border = document.getElementById('border')
 /**
  * Draws the circle for the animation
- * @param {Number} alpha 
+ * @param {Number} alpha
  */
 function drawCircleFrame(alpha) {
     let anim
