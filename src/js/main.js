@@ -67,10 +67,18 @@ function setFavicon(fruitName) {
     document.getElementById('favicon').href = './images/favicon/' + fruitName + '_favicon.png'
 }
 
+/**
+ * Gets the chosen theme (from storage)
+ * @returns the chosen theme
+ */
 function getTheme() {
     return localStorage.getItem('theme')
 }
 
+/**
+ * Save the chosen theme, also saved for next session
+ * @param {String} theme CSS class name of the theme to set 
+ */
 function saveTheme(theme) {
     localStorage.setItem('theme', theme)
 }
@@ -102,10 +110,18 @@ function loadTimerValues() {
     }
 }
 
+/**
+ * Saves the selected length of the long break
+ * @returns length of the long break
+ */
 function getLongBreak() {
     return localStorage.getItem('longBreakType')
 }
 
+/**
+ * Saves the chosen long break time
+ * @param {String} longBreakType 
+ */
 function saveLongBreak(longBreakType) {
     localStorage.setItem('longBreakType', longBreakType)
 }
@@ -134,8 +150,9 @@ function workTime() {
     return timerVals.workTime
 }
 
-// load volume
-
+/**
+ * Loads the volume
+ */
 function loadVolume() {
     /* global getVolume */
     const currentVolume = getVolume()
@@ -145,6 +162,10 @@ function loadVolume() {
     }
 }
 
+/**
+ * Gets the selected volume
+ * @returns Chosen volume
+ */
 function getVolume() {
     return localStorage.getItem('volume')
 }
@@ -153,6 +174,9 @@ const volumeSlider = document.getElementById('volume-slider')
 const volumeNumber = document.getElementById('volume-number')
 const volumeImage = document.getElementById('volume-image')
 
+/**
+ * Changes the volume image (speaker) based on the selected volume 
+ */
 function changeVolume() {
     localStorage.setItem('volume', volumeSlider.value)
 
@@ -174,7 +198,9 @@ function changeVolume() {
         'linear-gradient(to right, var(--main-light-color) 0%, var(--main-light-color) ' + value + '%, #fff ' + value + '%, white 100%)'
 }
 
-// Navigation Bar
+/**
+ * Shows the navigation bar 
+ */
 const navBar = document.getElementById('navBar')
 function showNav() {
     if (navBar.style.right < '1vh') {
@@ -194,6 +220,10 @@ const modalText = document.getElementById('modal-text')
 
 let timerFunc = undefined,
     stopFunc = undefined
+/**
+ * Sets the pomo "mode" based on if it's focus or break time
+ * @param {Boolean} isPomo true = time to focus. false = break time
+ */
 function setPomoMode(isPomo) {
     if (isPomo) {
         innerCircle.style.backgroundColor = 'var(--main-light-color)'
@@ -217,6 +247,9 @@ function setPomoMode(isPomo) {
     }
 }
 
+/**
+ * Shows the user the time "moving" (inside of the circle changes)
+ */
 function startTimerVisual() {
     innerCircle.disabled = true
     innerCircle.style.backgroundColor = 'inherit'
@@ -234,6 +267,10 @@ const pulseCircle = document.getElementsByClassName('pulseCircle')
 const alarmFocus = document.getElementById('alarm-focus')
 const alarmBreak = document.getElementById('alarm-break')
 
+/**
+ * Starts the timer for the focus/ work session
+ * @param {Number} seconds - length of the session 
+ */
 function startPomoTimer(seconds) {
     title.innerHTML = 'Focus'
     timeDisplay.style.visibility = 'visible'
@@ -256,6 +293,10 @@ function startPomoTimer(seconds) {
     drawAnimation(endCallback, seconds, false)
 }
 
+/**
+ * Starts the timer for the break session
+ * @param {String} seconds - length of session
+ */
 function startBreakTimer(seconds) {
     title.innerHTML = 'Relax'
     timeDisplay.style.visibility = 'visible'
@@ -280,6 +321,10 @@ function startBreakTimer(seconds) {
     drawAnimation(endCallback, seconds, true)
 }
 
+/**
+ * Counts how many pomos the user has completed
+ * @param {Number} newCount 
+ */
 function setCount(newCount) {
     count = newCount
     updatePomo()
@@ -287,6 +332,11 @@ function setCount(newCount) {
 }
 
 let timerTimeout = undefined
+/**
+ * 
+ * @param {*} endCallback 
+ * @param {Number} delay 
+ */
 function setAccuTimeout(endCallback, delay) {
     const start = Date.now()
 
@@ -304,6 +354,12 @@ function setAccuTimeout(endCallback, delay) {
 }
 
 let animation = undefined
+/**
+ * Draws the animation for the pomo (fills the circle when break / empty the circle when focus)
+ * @param {*} endCallback 
+ * @param {Number} seconds 
+ * @param {Boolean} reverse 
+ */
 function drawAnimation(endCallback, seconds, reverse) {
     const durationMS = seconds * MS_PER_SECOND
     let start = undefined
@@ -332,6 +388,10 @@ function drawAnimation(endCallback, seconds, reverse) {
 }
 
 const border = document.getElementById('border')
+/**
+ * Draws the circle for the animation
+ * @param {Number} alpha 
+ */
 function drawCircleFrame(alpha) {
     let anim
     if (alpha < 0) {
@@ -345,12 +405,18 @@ function drawCircleFrame(alpha) {
     border.setAttribute('d', anim)
 }
 
-//sets time element in html accordingly
+/**
+ * Sets time element in html accordingly
+ * @param {Number} time - time on the pomo
+ */
 function displayTime(time) {
     /* global formatTime */
     timeDisplay.innerHTML = formatTime(time)
 }
 
+/**
+ * Fills in the pomos (below the main circle)
+ */
 function updatePomo() {
     // Fill in pomo based on count
     for (let i = 0; i < pomo.length; i++) {
@@ -358,6 +424,9 @@ function updatePomo() {
     }
 }
 
+/**
+ * Finishes the timer - when the timer reaches 0 it "cleans" the circle and the environment before the next round
+ */
 function endTimer() {
     window.cancelAnimationFrame(animation)
     clearTimeout(timerTimeout)
@@ -383,17 +452,26 @@ modalCancel.addEventListener('click', () => {
     modalPopup.style.display = 'none'
 })
 
+/**
+ * Skips the current work session and jump to break session
+ */
 function skipPomo() {
     setPomoMode(false)
     endTimer()
 }
 
+/**
+ * Initializes the pomo count to 0 and waiting to start a new focus session
+ */
 function resetPomo() {
     setCount(0)
     setPomoMode(true)
     endTimer()
 }
 
+/**
+ * Shows warning when the user clicks 'skip' or 'reset'
+ */
 function skipOrReset() {
     modalPopup.style.display = 'block'
 }
