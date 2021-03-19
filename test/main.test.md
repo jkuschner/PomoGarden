@@ -1,7 +1,7 @@
-/*
+## NOTE:
+Our repo has a testing branch named **testing**. Along with the manual tests, we run some cypress testing. This document is simply to show the code for the cypress tests we run from that branch using the command `./node_modules/.bin/cypress open`
 
-NOTE: Please uncomment in order to run tests. Commented out to pass linting checks
-
+```
 //This test simply opens the localsite and does a true test
 describe('Initial Test', () => {
     beforeEach(() => {
@@ -164,4 +164,4 @@ describe('Volume slider test (fails due to implementation, not error)', () => {
             });
     });
   });
-*/
+```
