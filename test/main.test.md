@@ -1,4 +1,5 @@
 ## NOTE:
+
 Our repo has a testing branch named **testing**. Along with the manual tests, we run some cypress testing. This document is simply to show the code for the cypress tests we run from that branch using the command `./node_modules/.bin/cypress open`
 
 ```
